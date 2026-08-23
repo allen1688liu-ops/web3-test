@@ -8,6 +8,25 @@
     <h1>我的 Web3 測試平台</h1>
     <p>錢包目前：尚未連接</p>
 
-    <button>Connect Wallet</button>
+  <button id="connectWallet">Connect Wallet</button>
+<script>
+document.getElementById("connectWallet").onclick = async function () {
+    if (window.ethereum) {
+        try {
+            const accounts = await window.ethereum.request({
+                method: "eth_requestAccounts"
+            });
+
+            document.querySelector("p").innerText =
+                "錢包目前：" + accounts[0];
+
+        } catch (error) {
+            alert("你取消了錢包連接");
+        }
+    } else {
+        alert("目前沒有偵測到錢包");
+    }
+};
+</script>
 </body>
 </html>
