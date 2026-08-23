@@ -20,12 +20,14 @@
   <button id="connectWallet">Connect Wallet</button>
   <br><br>
 <button id="signMessage">測試簽名</button>
+<p id="signStatus"></p>
 
  <script type="module">
   
   const projectId = "82e825b08a8b2c568e019cb081046504"; const button = document.getElementById("connectWallet");
     const statusText = document.getElementById("status");
     const signButton = document.getElementById("signMessage");
+    const signStatus = document.getElementById("signStatus");
 
     function getWallet() {
       if (typeof window.ethereum !== "undefined") {
@@ -108,13 +110,12 @@
             params: [message, accounts[0]]
         });
 
-      statusText.textContent = "簽名成功：" + signature.slice(0, 10) + "...";
+      signStatus.textContent = "簽名成功：" + signature.slice(0, 10) + "...";
         console.log("signature:", signature);
     } catch (error) {
     console.error(error);
-    statusText.textContent =
-        "簽名錯誤：" + (error?.message || String(error));
-}
+    signStatus.textContent =
+    "簽名錯誤：" + (error?.message || String(error));
 });
 
     if (window.ethereum) {
