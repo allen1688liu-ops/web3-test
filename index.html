@@ -1,67 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-    <title>我的 Web3 平台</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的 Web3 平台</title>
 </head>
 
 <body>
-    <h1>我的 Web3 測試平台</h1>
-    <p>錢包目前：尚未連接</p>
+
+  <h1>我的 Web3 測試平台</h1>
+
+  <p id="status">錢包目前：尚未連接</p>
 
   <button id="connectWallet">Connect Wallet</button>
-<script>
-const button = document.getElementById("connectWallet");
-const statusText = document.querySelector("p");
 
-async function showAccount() {
-    if (!window.ethereum) {
-        statusText.textContent = "錢包目前：沒有偵測到錢包";
-        return;
+ <script type="module">
+  import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
+  import { createAppKit } from '@reown/appkit'
+  import { mainnet } from '@reown/appkit/networks'
+  const projectId = "82e825b08a8b2c568e019cb081046504"; const button = document.getElementById("connectWallet");
+    const statusText = document.getElementById("status");
+
+    function getWallet() {
+      if (typeof window.ethereum !== "undefined") {
+        return window.ethereum;
+      }
+
+      return null;
     }
 
-    try {
-        const accounts = await window.ethereum.request({
-            method: "eth_accounts"
+    async function showAccount() {
+      const ethereum = getWallet();
+
+      if (!ethereum) {
+        statusText.textContent = "目前沒有偵測到錢包";
+        return;
+      }
+
+      try {
+        const accounts = await ethereum.request({
+          method: "eth_accounts"
         });
 
         if (accounts && accounts.length > 0) {
-            statusText.textContent = "錢包目前：" + accounts[0];
+          statusText.textContent =
+            "已連接：" +
+            accounts[0].slice(0, 6) +
+            "..." +
+            accounts[0].slice(-4);
+        } else {
+          statusText.textContent = "已偵測到錢包，但尚未連接";
         }
-    } catch (error) {
-        console.log(error);
+      } catch (error) {
+        console.error(error);
+        statusText.textContent = "讀取錢包失敗";
+      }
     }
-}
 
-button.addEventListener("click", async () => {
-    if (!window.ethereum) {
-        alert("目前沒有偵測到錢包");
+    button.addEventListener("click", async () => {
+      const ethereum = getWallet();
+
+      if (!ethereum) {
+        alert("目前沒有偵測到瀏覽器錢包。請確認錢包擴充功能已安裝並啟用。");
         return;
-    }
+      }
 
-    try {
-        await window.ethereum.request({
-            method: "eth_requestAccounts"
+      try {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts"
         });
 
-        await showAccount();
-
-    } catch (error) {
-        console.log(error);
-        alert("錢包連接沒有完成");
-    }
-});
-
-if (window.ethereum) {
-    window.ethereum.on("accountsChanged", function(accounts) {
-        if (accounts.length > 0) {
-            statusText.textContent = "錢包目前：" + accounts[0];
-        } else {
-            statusText.textContent = "錢包目前：尚未連接";
+        if (accounts && accounts.length > 0) {
+          statusText.textContent =
+            "已連接：" +
+            accounts[0].slice(0, 6) +
+            "..." +
+            accounts[0].slice(-4);
         }
+      } catch (error) {
+        console.error(error);
+        alert("錢包連接沒有完成");
+      }
     });
-}
 
-showAccount();
-</script>
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", showAccount);
+    }
+
+    showAccount();
+  </script>
+
 </body>
 </html>
