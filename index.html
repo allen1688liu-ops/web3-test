@@ -10,23 +10,30 @@
 
   <button id="connectWallet">Connect Wallet</button>
 <script>
-document.getElementById("connectWallet").onclick = async function () {
-    if (window.ethereum) {
-        try {
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts"
-            });
+const button = document.getElementById("connectWallet");
 
-            document.querySelector("p").innerText =
-                "錢包目前：" + accounts[0];
-
-        } catch (error) {
-            alert("你取消了錢包連接");
-        }
-    } else {
+button.addEventListener("click", async () => {
+    if (typeof window.ethereum === "undefined") {
         alert("目前沒有偵測到錢包");
+        return;
     }
-};
+
+    try {
+        const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+        });
+
+        if (accounts && accounts.length > 0) {
+            document.querySelector("p").textContent =
+                "錢包目前：" + accounts[0];
+        } else {
+            alert("沒有取得錢包地址");
+        }
+    } catch (error) {
+        console.log(error);
+        alert("錢包連接沒有完成");
+    }
+});
 </script>
 </body>
 </html>
