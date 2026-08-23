@@ -108,7 +108,7 @@
             params: [message, accounts[0]]
         });
 
-        alert("簽名成功！");
+      statusText.textContent = "簽名成功：" + signature.slice(0, 10) + "...";
         console.log("signature:", signature);
     } catch (error) {
         console.error(error);
