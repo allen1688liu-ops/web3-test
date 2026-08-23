@@ -11,29 +11,57 @@
   <button id="connectWallet">Connect Wallet</button>
 <script>
 const button = document.getElementById("connectWallet");
+const statusText = document.querySelector("p");
 
-button.addEventListener("click", async () => {
-    if (typeof window.ethereum === "undefined") {
-        alert("目前沒有偵測到錢包");
+async function showAccount() {
+    if (!window.ethereum) {
+        statusText.textContent = "錢包目前：沒有偵測到錢包";
         return;
     }
 
     try {
         const accounts = await window.ethereum.request({
-            method: "eth_requestAccounts"
+            method: "eth_accounts"
         });
 
         if (accounts && accounts.length > 0) {
-            document.querySelector("p").textContent =
-                "錢包目前：" + accounts[0];
-        } else {
-            alert("沒有取得錢包地址");
+            statusText.textContent = "錢包目前：" + accounts[0];
         }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+button.addEventListener("click", async () => {
+    if (!window.ethereum) {
+        alert("目前沒有偵測到錢包");
+        return;
+    }
+
+    try {
+        await window.ethereum.request({
+            method: "eth_requestAccounts"
+        });
+
+        await showAccount();
+
     } catch (error) {
         console.log(error);
         alert("錢包連接沒有完成");
     }
 });
+
+if (window.ethereum) {
+    window.ethereum.on("accountsChanged", function(accounts) {
+        if (accounts.length > 0) {
+            statusText.textContent = "錢包目前：" + accounts[0];
+        } else {
+            statusText.textContent = "錢包目前：尚未連接";
+        }
+    });
+}
+
+showAccount();
 </script>
 </body>
 </html>
