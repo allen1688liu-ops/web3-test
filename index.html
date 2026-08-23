@@ -111,9 +111,10 @@
       statusText.textContent = "簽名成功：" + signature.slice(0, 10) + "...";
         console.log("signature:", signature);
     } catch (error) {
-        console.error(error);
-        alert("簽名取消或失敗");
-    }
+    console.error(error);
+    statusText.textContent =
+        "簽名錯誤：" + (error?.message || String(error));
+}
 });
 
     if (window.ethereum) {
