@@ -84,7 +84,15 @@
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", showAccount);
     }
+window.addEventListener("focus", () => {
+    setTimeout(showAccount, 1000);
+});
 
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        setTimeout(showAccount, 1000);
+    }
+});
     showAccount();
   </script>
 
