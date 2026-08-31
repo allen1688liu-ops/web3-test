@@ -1,137 +1,3458 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的 Web3 平台</title>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#020817" />
+  <title>KATANA</title>
 
-<body>
-<style>
-  body {
-    color: white;
-    background: black;
+  <style>
+    :root{
+      --bg:#020817;
+      --panel:#071a38;
+      --line:#0f5fb6;
+      --yellow:#fff400;
+      --text:#f7fbff;
+      --muted:#9eb1cf;
+      --good:#5ff59a;
+      --bad:#ff6c7a;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial,"Microsoft JhengHei",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 75% 12%,rgba(0,102,255,.18),transparent 28%),
+        linear-gradient(180deg,#04112a 0%,#020817 55%,#01040c 100%);
+      min-height:100vh;
+    }
+
+    .shell{
+      width:min(1120px,100%);
+      margin:auto;
+      padding:0 18px 110px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 0;
+      background:rgba(2,8,23,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(44,120,255,.16);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--yellow);
+      font-weight:900;
+    }
+
+    .brand-k{
+      font-size:48px;
+      font-style:italic;
+    }
+
+    .brand-name{
+      font-size:30px;
+      letter-spacing:2px;
+    }
+
+    .top-actions{
+    display:flex;
+    align-items:center;
+    position:absolute;
+    top:20px;
+    right:20px;
+}
+
+
+    .lang-btn,
+    .menu-btn{
+      border:1px solid rgba(88,149,255,.25);
+      background:#071a38;
+      color:white;
+      border-radius:12px;
+      padding:11px 14px;
+    }
+
+    .menu-btn{
+      color:var(--yellow);
+      font-size:22px;
+    }
+
+    .hero{
+      margin-top:20px;
+      padding: 5px 30px;
+      border:1px solid rgba(36,125,255,.30);
+      border-radius:26px;
+      background-image: url("images/katana-hero.jpeg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+      display:grid;
+      grid-template-columns: 1fr 260px;
+      gap:20px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:clamp(38px,6vw,68px);
+      line-height:1.08;
+    }
+
+    .hero h1 span{
+      color:var(--yellow);
+    }
+
+    .hero p{
+      margin-top:10px;
+      color:#d4e0f4;
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .connect-btn{
+      margin-top:12px;
+      border:none;
+      background:var(--yellow);
+      color:#06102a;
+      padding:16px 28px;
+      border-radius:14px;
+      font-size:18px;
+      font-weight:900;
+      box-shadow:0 0 26px rgba(255,244,0,.18);
+      transition:.2s;
+    }
+
+    .connect-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .globe{
+      width:140px;
+      aspect-ratio:1;
+      margin:auto;
+      border-radius:50%;
+      border:1px solid #0b8dff;
+      display:grid;
+      place-items:center;
+      background:
+        repeating-radial-gradient(circle,transparent 0 27px,rgba(0,140,255,.13) 28px 29px),
+        radial-gradient(circle,#092e79,#021738 65%,#010715);
+      box-shadow:0 0 45px rgba(0,125,255,.32);
+      animation:float 4s ease-in-out infinite;
+    }
+
+    .globe-k{
+      font-size:65px;
+      color:var(--yellow);
+      font-weight:900;
+      font-style:italic;
+      text-shadow:0 0 28px rgba(255,244,0,.65);
+    }
+
+    @keyframes float{
+      50%{transform:translateY(-8px)}
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .stat{
+      min-height:150px;
+     padding:14px 12px;
+      border:1px solid rgba(43,127,255,.35);
+      border-radius:18px;
+      background:linear-gradient(160deg,#0a2451,#031027);
+    }
+
+    .stat-icon{
+      color:var(--yellow);
+      font-size:28px;
+    }
+
+    .stat-title{
+      margin-top:15px;
+      color:#dbe7f8;
+      font-weight:800;
+    }
+
+    .stat-value{
+      margin-top:14px;
+      color:var(--yellow);
+      font-size:28px;
+      font-weight:900;
+
+      }
+
+    .stat-sub{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .announcement{
+      width:100%;
+      margin-top:18px;
+      border:1px solid var(--yellow);
+      border-radius:18px;
+      padding:18px;
+      display:grid;
+      grid-template-columns:48px 1fr 28px;
+      gap:12px;
+      align-items:center;
+      background:linear-gradient(90deg,#071c42,#031027);
+      color:white;
+    }
+
+    .announcement-icon{
+      color:var(--yellow);
+      font-size:30px;
+    }
+
+    .announcement-title{
+      color:var(--yellow);
+      font-weight:900;
+      margin-bottom:5px;
+    }
+
+    .announcement-arrow{
+      color:var(--yellow);
+      font-size:30px;
+    }
+
+    .section{
+      margin-top:28px;
+      padding:24px;
+      border:1px solid rgba(49,125,255,.22);
+      border-radius:24px;
+      background:linear-gradient(180deg,rgba(7,27,63,.72),rgba(3,12,31,.72));
+    }
+
+    .section h2{
+      font-size:32px;
+      margin-bottom:18px;
+    }
+
+    .quick-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+    }
+
+    .quick{
+      min-height:110px;
+      border:1px solid rgba(39,129,255,.35);
+      background:linear-gradient(180deg,#092354,#041229);
+      border-radius:16px;
+      color:white;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .quick:hover{
+      border-color:var(--yellow);
+      color:var(--yellow);
+      transform:translateY(-2px);
+    }
+
+    .quick-icon{
+      font-size:28px;
+      color:var(--yellow);
+    }
+
+    .ecosystem{
+      margin-top:18px;
+      min-height:170px;
+      padding:24px;
+      border:1px solid rgba(44,129,255,.35);
+      border-radius:20px;
+      background:
+        radial-gradient(circle at 80% 50%,rgba(255,244,0,.08),transparent 25%),
+        linear-gradient(145deg,#071d46,#020b1f);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .ecosystem h3{
+      color:var(--yellow);
+      font-size:28px;
+    }
+
+    .ecosystem p{
+      margin-top:8px;
+      color:#d9e4f7;
+    }
+
+    .eco-k{
+      position:absolute;
+      right:7%;
+      bottom:-30px;
+      color:var(--yellow);
+      font-size:150px;
+      font-weight:900;
+      font-style:italic;
+      opacity:.9;
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .metric{
+      min-height:185px;
+      padding:20px;
+      border:1px solid rgba(38,124,255,.27);
+      border-radius:18px;
+      background:linear-gradient(165deg,#08234a,#041026);
+    }
+
+    .metric-name{
+      color:#b7c6db;
+      font-weight:800;
+    }
+
+    .metric-number{
+      font-size:32px;
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    .metric-delta{
+      color:var(--good);
+      margin-top:7px;
+      font-weight:800;
+    }
+
+    .tabs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:6px;
+      padding:5px;
+      border-radius:999px;
+      background:#031027;
+    }
+
+    .tab{
+      border:none;
+      background:transparent;
+      color:#9dafc9;
+      min-height:44px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    .tab.active{
+      background:var(--yellow);
+      color:#06102a;
+    }
+
+    .activity-list{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .activity{
+      display:grid;
+      grid-template-columns:42px 1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:14px;
+      border:1px solid rgba(65,130,255,.20);
+      border-radius:15px;
+      background:#071838;
+    }
+
+    .coin{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#566fe9;
+    }
+
+    .addr{
+      font-weight:800;
+    }
+
+    .meta{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .amount{
+      font-weight:900;
+    }
+
+    .in{color:var(--good)}
+    .out{color:var(--bad)}
+
+    .partners{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .partner{
+      min-height:90px;
+      border:1px solid rgba(255,244,0,.25);
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      background:#071a38;
+      text-align:center;
+      font-weight:900;
+    }
+    .partner img {
+    max-width: 85%;
+    max-height: 65px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.partner img[src="images/okx.png"] {
+   width: 85%;
+max-width: none;
+max-height: none;
+transform: translate(-2px, 5px) scale(2.8);
+transform-origin: center center;
+justify-self: center;
+align-self: center;
+}
+.partner img[src="images/binance.png"] {
+    transform: translate(-1px, 3px) scale(2.3);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/crypto.com.png"] {
+    transform: translate(0px, -1px) scale(2.2);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+ }
+ .partner img[src="images/fairyproof.png"] {
+    transform: translate(-2px, -4px) scale(2.9);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/bitget.png"] {
+    transform: translate(2px, -3px) scale(2.9);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/trust.png"] {
+    transform: translate(-1px, 0px) scale(2.2);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/defibox.png"] {
+    transform: translate(0px, -4px) scale(2.1);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/coolwallet.png"] {
+    transform: translate(0px, 0px) scale(2.5);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+/* ===== KATANA 錢包頁 ===== */
+
+.wallet-page{
+    padding: 18px 16px 110px;
+    background: #07151f;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.wallet-page-header{
+    margin-bottom: 18px;
+}
+
+.wallet-page-header h1{
+    margin: 0;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.wallet-page-header p{
+    margin: 6px 0 0;
+    color: #9ba9b8;
+    font-size: 16px;
+}
+
+.wallet-info-card{
+    padding: 22px;
+    border: 1px solid rgba(72, 190, 255, 0.22);
+    border-radius: 24px;
+    background: rgba(10, 29, 39, 0.95);
+    box-shadow: inset 0 0 25px rgba(55, 195, 255, 0.03);
+}
+
+.wallet-info-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.wallet-label{
+    color: #9ba9b8;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.wallet-address{
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.wallet-copy-btn{
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(72, 190, 255, 0.22);
+    background: #0d1c26;
+    color: #ffffff;
+    font-size: 22px;
+    display: grid;
+    place-items: center;
+}
+/* ===== USDT 餘額卡 ===== */
+
+.wallet-balance-card{
+    margin-top: 20px;
+    padding: 22px;
+    border: 1px solid rgba(72, 190, 255, 0.22);
+    border-radius: 24px;
+    background: rgba(10, 29, 39, 0.95);
+}
+
+.balance-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.balance-title{
+    color: #9ba9b8;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.verified-badge{
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(72, 220, 210, 0.3);
+    color: #52d8d2;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.balance-main{
+    padding: 26px 0 24px;
+    text-align: center;
+}
+
+.balance-number{
+    font-size: 52px;
+    font-weight: 500;
+    line-height: 1;
+    background: linear-gradient(90deg, #31d7df, #4f91ff);
+   background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.balance-token{
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 18px;
+    border: 1px solid rgba(72, 220, 210, 0.28);
+    border-radius: 14px;
+    color: #55d9d4;
+    font-weight: 700;
+}
+
+.balance-stats{
+    margin-top: 12px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(72, 190, 255, 0.15);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.balance-stat{
+    min-width: 0;
+    padding: 10px 8px;
+    text-align: center;
+}
+
+.balance-stat + .balance-stat{
+    border-left: 1px solid rgba(72, 190, 255, 0.15);
+}
+
+.stat-icon{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stat-label{
+    color: #9ba9b8;
+    font-size: 11px;
+    line-height: 1.4;
+    min-height: 32px;
+}
+
+.stat-value{
+    margin-top: 10px;
+    color: #ffffff;
+   font-size: 15px !important;
+    font-weight: 800;
+
+}
+
+.stat-unit{
+    margin-top: 2px;
+    color: #9ba9b8;
+    font-size: 11px;
+}
+/* ===== 歷史 / 獎勵 / 刷新 ===== */
+.wallet-actions{
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid rgba(72, 190, 220, .25);
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(5, 20, 30, .65);
+}
+
+.wallet-action{
+    height: 150px;
+    border: none;
+    border-right: 1px solid rgba(72, 190, 220, .20);
+    background: transparent;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.wallet-action:last-child{
+    border-right: none;
+}
+
+.wallet-action-icon{
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(72, 190, 220, .30);
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+}
+/* ===== 閃兌與提領 ===== */
+
+.swap-panel{
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid rgba(72, 190, 220, .25);
+    border-radius: 24px;
+    background: rgba(5, 20, 30, .72);
+}
+
+.swap-panel-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.swap-panel-header h2{
+    margin: 0;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.swap-live{
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(72, 220, 210, .28);
+    color: #55d9d4;
+    font-size: 14px;
+}
+
+.swap-tabs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+    border: 1px solid rgba(72, 190, 220, .22);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.swap-tab{
+    height: 54px;
+    border: none;
+    background: transparent;
+    color: #8e9aa7;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.swap-tab.active{
+    color: #ffffff;
+    border: 2px solid #43dbe0;
+    border-radius: 18px;
+    background: rgba(6, 18, 28, .85);
+}
+
+.swap-box{
+    padding: 18px;
+    border: 1px solid rgba(72, 190, 220, .18);
+    border-radius: 22px;
+    background: rgba(8, 26, 38, .78);
+}
+
+.swap-direction{
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid rgba(72, 190, 220, .18);
+    border-radius: 16px;
+    color: #55d9d4;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.swap-input-card{
+    padding: 18px;
+    border: 1px solid rgba(72, 190, 220, .18);
+    border-radius: 18px;
+    background: rgba(10, 28, 38, .88);
+}
+
+.swap-label{
+    color: #9ba9b8;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.swap-input-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.swap-amount{
+    font-size: 38px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.swap-token{
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(72, 190, 220, .22);
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.swap-available,
+.swap-rate{
+    margin-top: 10px;
+    color: #9ba9b8;
+    font-size: 13px;
+}
+
+.swap-arrow{
+    width: 52px;
+    height: 52px;
+    margin: 14px auto;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(72, 190, 220, .2);
+    border-radius: 50%;
+    color: #55d9d4;
+    font-size: 28px;
+}
+
+.swap-confirm{
+    width: 100%;
+    margin-top: 18px;
+    height: 54px;
+    border: none;
+    border-radius: 16px;
+    background: rgba(72, 190, 220, .12);
+    color: #7e8b98;
+    font-size: 18px;
+    font-weight: 800;
+}
+/* ===== 提領畫面 ===== */
+
+.withdraw-box{
+    margin-top: 18px;
+    padding: 20px;
+    border: 1px solid rgba(72,190,220,.25);
+    border-radius: 22px;
+    background: rgba(5,20,30,.65);
+}
+
+.withdraw-direction{
+    padding: 18px;
+    border: 1px solid rgba(72,190,220,.25);
+    border-radius: 16px;
+    color: #55d9d4;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.withdraw-input-card{
+    margin-top: 18px;
+    padding: 22px;
+    border: 1px solid rgba(72,190,220,.25);
+    border-radius: 18px;
+    background: rgba(10,25,35,.7);
+}
+
+.withdraw-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.withdraw-label{
+    color: #9ba9b8;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.withdraw-max{
+    border: 1px solid rgba(72,190,220,.3);
+    border-radius: 20px;
+    padding: 8px 14px;
+    background: rgba(20,60,70,.35);
+    color: #55d9d4;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.withdraw-input-row{
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.withdraw-amount{
+    font-size: 38px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.withdraw-token{
+    padding: 10px 16px;
+    border: 1px solid rgba(72,190,220,.3);
+    border-radius: 24px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.withdraw-available{
+    margin-top: 8px;
+    color: #9ba9b8;
+    font-size: 14px;
+}
+
+.withdraw-confirm{
+    width: 100%;
+    height: 58px;
+    margin-top: 22px;
+    border: 1px solid rgba(72,190,220,.18);
+    border-radius: 28px;
+    background: rgba(72,190,220,.08);
+    color: #65717d;
+    font-size: 18px;
+    font-weight: 800;
+}
+/* ===== 收益歷史頁 ===== */
+.history-page{
+    width: 100%;
+    padding: 22px 18px 120px;
+}
+
+.history-tabs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 24px;
+    background: rgba(7,18,42,.82);
+}
+
+.history-tab{
+    height: 64px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background: transparent;
+    color: #aebbd0;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.history-tab.active{
+    color: #ffe600;
+    border-color: rgba(255,230,0,.55);
+    background: rgba(255,230,0,.10);
+}
+
+.history-content{
+    min-height: 500px;
+    margin-top: 18px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 28px;
+    background: rgba(5,15,32,.82);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 110px;
+}
+
+.history-empty-icon{
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,230,0,.30);
+    border-radius: 24px;
+    background: rgba(255,230,0,.07);
+    color: #ffe600;
+    font-size: 38px;
+}
+
+.history-empty-text{
+    margin-top: 22px;
+    color: #aebbd0;
+    font-size: 20px;
+    font-weight: 800;
+}
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:12px;
+      width:min(720px,calc(100% - 24px));
+      height:72px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      padding:8px 10px;
+      border:1px solid rgba(50,128,255,.25);
+      border-radius:22px;
+      background:rgba(3,13,34,.95);
+      backdrop-filter:blur(15px);
+      z-index:30;
+    }
+
+    .nav-item{
+      border:none;
+      background:transparent;
+      color:#cbd6e8;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      font-size:11px;
+    }
+
+    .nav-item.active{
+      color:var(--yellow);
+    }
+
+    .nav-icon{
+      font-size:22px;
+    }
+
+    .swap-circle{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--yellow);
+      color:#06102a;
+      font-size:24px;
+      margin-top:-18px;
+    }
+
+    @media(max-width:800px){
+      .hero{
+        grid-template-columns:1fr 140px;
+        align-items:center;
+      }
+      .hero h1{
+    font-size:22px !important;
+}
+
+      .stats{
+        grid-template-columns:repeat(4,1fr);
+      }
+.stat{
+    min-height:135px;
+    padding:12px 8px;
+}
+
+.stat-title{
+    font-size:14px;
+    margin-top:10px;
+}
+
+.stat-value{
+    font-size:22px;
+}
+      .partners{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+   .hero h1 {
+    font-size: 20px !important;
+}
+    @media(max-width:560px){
+      .shell{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      .brand-k{
+        font-size:40px;
+      }
+
+      .brand-name{
+        font-size:24px;
+      }
+
+      .hero{
+    height: 190px;
+    min-height: 0;
+    padding: 1px 16px;
+    overflow: hidden;
+}
+
+      .hero h1{
+    font-size:22px !important;
+    line-height:1.1 !important;
+}
+      .globe{
+        width:140px;
+      }
+
+      .globe-k{
+        font-size:65px;
+      }
+
+      .quick-grid{
+        grid-template-columns:repeat(5,1fr);
+        gap:6px;
+      }
+
+      .quick{
+        min-height:92px;
+        padding:6px 2px;
+        font-size:11px;
+      }
+
+      .quick-icon{
+        font-size:23px;
+      }
+
+      .metrics{
+        grid-template-columns:1fr;
+      }
+    }
+ /* ===== 手機版寬度修正 ===== */
+*{ min-width: 0; }
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+@media (max-width: 560px) {
+.shell,
+.hero,
+.stats,
+.announcement,
+.section,
+.quick-grid,
+.ecosystem,
+.metrics,
+.activity-list,
+.partners {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tab {
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+    min-height: 46px;
+    padding: 0 4px;
+}
+
+.activity-list {
+    width: 100%;
+    max-width: 100%;
+}
+
+.activity {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-template-columns: 38px minmax(0, 1fr);
+}
+
+.addr {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.partner {
+    width: 100%;
+    min-width: 0;
+}
+}
+@media (max-width: 560px) {
+
+  .quick-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
   }
+
+  .quick {
+    min-height: 88px;
+    padding: 8px 2px;
+    font-size: 11px;
+  }
+
+  .ecosystem {
+    display: block;
+    padding: 18px 14px;
+    overflow: hidden;
+  }
+
+  .ecosystem h3 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .eco-k {
+    right: -22px;
+    bottom: -22px;
+    font-size: 95px;
+  }
+
+  .activity {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+
+  .activity .amount {
+    grid-column: 2;
+    margin-top: 4px;
+    font-size: 14px;
+  }
+
+  .partners {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .partner {
+    min-height: 80px;
+    font-size: 14px;
+  }
+  body {
+    padding-bottom: 120px;
+}
+}
+ @media (max-width: 560px) { html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+* {
+    box-sizing: border-box;
+}
+}
+@media (max-width:560px) { .hero { grid-template-columns: 1fr 140px !important; align-items: center !important; }
+.hero h1 {
+    font-size: 28px !important;
+}
+}
+.hero-text h1 {
+    font-size: 22px !important;
+    line-height: 1.15 !important;
+    transform: translateY(10px);
+}
+.features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 22px 0;
+    color: #8a9aa5;
+    font-size: 18px;
+}
+
+.features span {
+    white-space: nowrap;
+}
+.features span b {
+    color: #00c96b;
+}
+/* ===== KATANA 客服支援中心 ===== */
+#supportPage { 
+      width: 100%;
+       min-height: 100vh;
+        background: #f5f6f8;
+         padding-bottom: 90px;
+          color: #222;
+         }
+/* 客服頂部 */
+.support-header { 
+    height: 70px;
+     background: #ffffff;
+      display: flex;
+       align-items: center;
+        justify-content: center; 
+        position: relative;
+         border-bottom: 1px solid #eeeeee;
+          font-size: 22px;
+           font-weight: 700;
+         }
+.support-back { 
+    position: absolute;
+     left: 20px;
+      top: 50%;
+       transform: translateY(-50%);
+        border: none; background: transparent;
+         color: #999; 
+         font-size: 38px;
+          cursor: pointer; 
+        }
+/* 聊天區 */
+ .support-chat-area {
+     padding: 25px 18px 120px;
+      min-height: 620px; 
+    }
+.support-no-more { 
+    text-align: center; 
+    color: #b7b7b7; 
+    font-size: 16px;
+     margin-bottom: 45px;
+     }
+.support-time { 
+    text-align: center; 
+    color: #aaaaaa; 
+    font-size: 15px;
+     margin-bottom: 28px; 
+    }
+/* 客服訊息 */ 
+.support-message-row {
+     display: flex;
+      align-items: flex-start;
+       gap: 12px;
+     }
+     .support-message-row.user-message-row {
+    justify-content: flex-end;
+}
+.support-user-image {
+    display: block;
+    width: auto;
+    max-width: 220px;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.support-avatar { 
+    width: 48px;
+     height: 48px;
+      min-width: 48px;
+       border-radius: 50%;
+        background: #071a38;
+         color: #ffd900;
+          display: flex;
+           align-items: center;
+            justify-content: center;
+             font-size: 24px; 
+             font-weight: 900;
+              border: 2px solid #ffd900; 
+            }
+.support-message { 
+    position: relative;
+     max-width: calc(100% - 70px);
+      background: #ffffff;
+       border: 1px solid #e5e5e5; 
+       border-radius: 7px;
+        padding: 16px 18px;
+         color: #333333;
+          font-size: 17px;
+           line-height: 1.8;
+            box-shadow: 0 1px 3px rgba(0,0,0,.05); 
+        }
+/* 左邊小箭頭 */ 
+.support-message::before { 
+    content: "";
+     position: absolute;
+      left: -8px; top: 17px;
+       width: 14px;
+        height: 14px;
+         background: #ffffff;
+          border-left: 1px solid #e5e5e5;
+           border-bottom: 1px solid #e5e5e5;
+            transform: rotate(45deg);
+         }
+         .support-message.user-message::before {
+    left: auto;
+    right: -8px;
+    transform: rotate(225deg);
+}
+/* 底部輸入區 */ 
+.support-input-bar {
+     position: fixed;
+      left: 50%;
+       transform: translateX(-50%);
+        bottom: 96px;
+         width: min(720px, calc(100% - 24px));
+          min-height: 68px; 
+          background: #ffffff;
+           border: 1px solid #e7e7e7; 
+           display: flex; 
+           align-items: center; 
+           gap: 10px; 
+           padding: 10px 12px; 
+           z-index: 50;
+            box-sizing: border-box;
+         }
+.support-input { 
+    flex: 1; 
+    min-height: 44px;
+     display: flex;
+      align-items: center; 
+      padding: 0 14px;
+       border: 1px solid #eeeeee;
+        border-radius: 10px;
+         color: #aaaaaa; 
+         background: #fafafa;
+          font-size: 15px; 
+        }
+.support-emoji,
+ .support-add {
+     width: 42px;
+      height: 42px;
+       flex: 0 0 42px;
+        border: none;
+         background: transparent;
+          color: #777777;
+           font-size: 25px;
+            cursor: pointer;
+         }
+.support-add {
+     border: 2px solid #777777;
+      border-radius: 50%; 
+      line-height: 35px;
+     }
+/* 手機畫面 */
+ @media (max-width: 600px) {
+     .support-header { 
+        height: 60px;
+         font-size: 20px;
+         }
+.support-chat-area {
+    padding: 22px 14px 120px;
+}
+
+.support-message {
+    font-size: 16px;
+    padding: 14px;
+    line-height: 1.7;
+}
+
+.support-avatar {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    font-size: 20px;
+}
+}
+/* ===== APP 獨立頁面切換 ===== */
+.app-page {
+    display: none;
+}
+
+.app-page.active {
+    display: block;
+}
+.quick:focus,
+.quick:active {
+    background: inherit;
+    color: inherit;
+    outline: none;
+}
+/* ===== KATANA 合約頁 ===== */
+
+.contract-page {
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at 50% 20%, rgba(30, 100, 255, 0.18), transparent 45%),
+    linear-gradient(180deg, #0b1f4d 0%, #071a3d 45%, #050d24 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100px;
+}
+
+/* 點狀科技背景 */
+.contract-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(70, 220, 220, 0.18) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+/* 上方 KATANA + 選單 */
+.contract-header {
+    display: none;
+    height: 110px;
+    padding: 28px 32px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.contract-brand {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.contract-menu {
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* 中央內容 */
+.contract-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 70px 20px 20px;
+}
+
+.contract-content h1 {
+    margin: 0 0 35px;
+    font-size: 54px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+/* Earn ETH */
+.contract-earn-btn {
+    padding: 14px 34px;
+    border-radius: 40px;
+    border: 2px solid #ffd400;
+    background: rgba(7, 24, 60, 0.95);
+    color: #ffd400;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow:
+        0 0 0 2px rgba(40, 110, 255, 0.55),
+        0 0 18px rgba(255, 212, 0, 0.25);
+}
+
+/* 無數據區 */
+.contract-empty {
+    margin-top: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contract-empty-icon {
+    width: 105px;
+    height: 105px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #2ce6dc;
+    background: rgba(255,255,255,0.02);
+}
+
+.contract-empty-text {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #aeb8ca;
+}
+/* ===== KATANA 中樞配給頁 ===== */
+.allocation-page {
+     min-height: 100vh;
+      padding: 35px 18px 120px;
+       color: #ffffff;
+        background: 
+        radial-gradient(circle at 50% 15%, rgba(35, 110, 255, 0.35), transparent 40%),
+         linear-gradient(180deg, #0b1f4d 0%, #07162f 55%, #050d1d 100%);
+         position: relative; 
+         overflow: hidden; 
+        }
+/* 點狀科技背景 */
+ .allocation-page::before { 
+    content: "";
+     position: absolute;
+      inset: 0;
+       background-image:
+        radial-gradient(circle, rgba(70, 150, 255, 0.25) 1px, transparent 1px);
+         background-size: 24px 24px;
+          pointer-events: none;
+         }
+.allocation-content {
+     position: relative;
+      z-index: 2;
+       width: 100%;
+        max-width: 620px; 
+        margin: 0 auto;
+         text-align: center;
+         }
+/* 收益詳細說明整體大框 */
+.allocation-main-card {
+    position: relative;
+    width: 100%;
+    padding: 28px 22px 24px;
+    border: 1px solid rgba(70, 150, 255, 0.45);
+    border-radius: 28px;
+    background: rgba(5, 18, 48, 0.45);
+    box-shadow:
+        0 0 20px rgba(40, 120, 255, 0.18),
+        inset 0 0 20px rgba(70, 150, 255, 0.08);
+}
+/* VIP 按鈕 */
+.allocation-vip-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    background: rgba(15, 28, 60, 0.9);
+    color: #ffd91a;
+    font-size: 13px;
+    font-weight: 700;
+    z-index: 5;
+}
+/* ===== KATANA VIP1 頁 ===== */
+
+.vip-page {
+    min-height: 100vh;
+    padding: 28px 18px 120px;
+    color: #ffffff;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(35, 110, 255, 0.28), transparent 40%),
+        linear-gradient(180deg, #0b1f4d 0%, #07162f 55%, #050d1d 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.vip-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(70, 150, 255, 0.22) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.vip-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+}
+.vip-slider {
+    display: flex;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 0;
+    width: 100%;
+    scrollbar-width: none;
+    touch-action: pan-y;
+}
+
+.vip-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.vip-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+}
+.vip-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+
+.vip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transition: all 0.25s ease;
+}
+
+.vip-dot.active {
+    width: 9px;
+    height: 9px;
+    background: #ffd91a;
+}
+
+.vip-back-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 217, 26, 0.45);
+    border-radius: 50%;
+    background: rgba(8, 22, 55, 0.9);
+    color: #ffd91a;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.vip-level {
+    margin-top: 24px;
+    font-size: 38px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.vip-header {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.vip-header .vip-level {
+    margin-top: 0;
+}
+
+.vip-subtitle {
+    margin-top: 8px;
+    color: #cbd8f2;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.vip-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 217, 26, 0.4);
+    border-radius: 999px;
+    background: rgba(8, 22, 55, 0.9);
+    color: #ffd91a;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.vip-unlock-card {
+    margin-top: 24px;
+    padding: 24px 22px;
+    border: 1px solid rgba(70, 150, 255, 0.45);
+    border-radius: 26px;
+    background: rgba(5, 18, 48, 0.75);
+    box-shadow:
+        0 0 20px rgba(40, 120, 255, 0.15),
+        inset 0 0 20px rgba(70, 150, 255, 0.06);
+}
+
+.vip-card-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.vip-balance {
+    margin-top: 12px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #ffd91a;
+}
+
+.vip-progress {
+    width: 100%;
+    height: 10px;
+    margin-top: 20px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.vip-progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffd91a, #4f91ff);
+}
+
+.vip-remaining {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #cbd8f2;
+}
+
+.vip-remaining span {
+    color: #ffd91a;
+    font-weight: 800;
+}
+
+.vip-benefits-title {
+    margin-top: 34px;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #ffd91a;
+}
+
+.vip-benefit-card {
+    min-height: 76px;
+    padding: 0 20px;
+    border: 1px solid rgba(70, 150, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(5, 18, 48, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.allocation-content h1 {
+     margin: 10px 0 30px;
+      font-size: 28px;
+       font-weight: 800;
+        color: #ffffff;
+     }
+/* KATANA */ 
+.allocation-logo {
+     font-size: 46px; 
+     font-weight: 900;
+      letter-spacing: 2px; 
+      color: #ffffff; 
+      margin-bottom: 4px;
+     }
+/* NODE INTEREST RATE */ 
+.allocation-subtitle {
+     color: #ffd91a;
+      font-size: 16px; 
+      font-weight: 800;
+       letter-spacing: 5px;
+        margin-bottom: 22px;
+     }
+/* 說明文字 */ 
+.allocation-description { 
+    color: #cbd8f2;
+     font-size: 17px;
+      margin: 0 0 22px;
+     }
+/* 利率大框 */ 
+.allocation-rate-list {
+     width: 100%;
+      box-sizing: border-box;
+       padding: 8px 22px;
+        border: 1px solid rgba(70, 140, 255, 0.45);
+         border-radius: 28px; 
+         background: rgba(5, 18, 45, 0.78);
+          box-shadow: 
+          0 0 0 1px rgba(40, 110, 255, 0.10),
+           0 15px 40px rgba(0, 0, 0, 0.30); 
+        }
+/* 每一列 */ 
+.allocation-rate-row { 
+    min-height: 68px;
+     display: flex;
+      align-items: center; 
+      justify-content: space-between;
+       gap: 15px; 
+       border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        font-size: 17px; 
+    }
+/* 最後一列不要底線 */ 
+.allocation-rate-row:last-child {
+     border-bottom: none;
+     }
+/* 左邊 USDT */ 
+.allocation-rate-row span:first-child {
+     color: #ffffff;
+      font-weight: 600; 
+      text-align: left;
+     }
+/* 右邊利率 */ 
+.allocation-rate-row span:last-child { 
+    color: #ffd91a;
+     font-weight: 800;
+      white-space: nowrap;
+     }
+/* 節點收益時間 */ 
+.allocation-time { 
+    margin-top: 24px;
+     padding: 18px 15px;
+      border-radius: 20px;
+       border: 1px solid rgba(70, 140, 255, 0.35);
+        background: rgba(7, 22, 52, 0.8);
+         color: #ffffff; 
+         font-size: 17px; 
+         line-height: 1.8; 
+         font-weight: 600; 
+        }
+/* 手機尺寸 */
+ @media (max-width: 600px) {
+     .allocation-page { 
+        padding: 28px 16px 110px;
+     }
+.allocation-content h1 {
+    font-size: 24px;
+}
+
+.allocation-logo {
+    font-size: 40px;
+}
+
+.allocation-subtitle {
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.allocation-rate-list {
+    padding: 6px 16px;
+}
+
+.allocation-rate-row {
+    min-height: 62px;
+    font-size: 15px;
+}
+}
+/* ===== 首次首頁公告彈窗 ===== */
+ .home-notice-popup { 
+    position: fixed;
+     inset: 0; 
+     z-index: 9999;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding: 20px;
+background: rgba(0, 0, 0, 0.62);
+}
+.home-notice-box { 
+    position: relative;
+width: min(92vw, 520px);
+max-height: 92vh;
+overflow-y: auto;
+
+padding: 24px 20px 22px;
+
+border: 1px solid rgba(255, 217, 26, 0.38);
+border-radius: 28px;
+
+background:
+    radial-gradient(circle at 50% 0%, rgba(35, 110, 255, 0.28), transparent 42%),
+    linear-gradient(180deg, #0b1f4d 0%, #07162f 55%, #050d1d 100%);
+color: #ffffff;
+
+box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(255, 217, 26, 0.08);
+}
+.home-notice-x { 
+    position: absolute;
+     top: 14px; 
+     right: 16px;
+
+width: 44px;
+height: 44px;
+
+border: 1px solid rgba(255, 255, 255, 0.22);
+border-radius: 50%;
+
+background: rgba(255, 255, 255, 0.06);
+color: #ffffff;
+
+font-size: 30px;
+line-height: 1;
+}
+.home-notice-tag { 
+    width: max-content; 
+    margin: 0 auto 14px;
+     padding: 4px 10px;
+border: 1px solid  #ffffff;
+border-radius: 999px;
+color: #ffffff;
+transform: translateY(-14px);
+font-size: 10px;
+}
+.home-notice-logo {
+     text-align: center;
+      font-size: 36px; 
+      font-weight: 900;
+      transform: translateY(-22px);
+     }
+.home-notice-title { 
+    margin-top: 0px; 
+    text-align: center;
+font-size: 19px;
+font-weight: 800;
+transform: translateY(-22px);
+}
+
+.home-notice-rate-box {
+     margin-top: 0px; 
+     transform: translateY(-16px);
+     padding: 8px 18px;
+border: 1px solid rgba(255, 217, 26, 0.35);
+border-radius: 22px;
+background: rgba(7, 22, 45, 0.88);
+}
+.home-notice-row { 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 18px;
+padding: 12px 0;
+
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+font-size: 16px;
+white-space: nowrap;
+}
+.home-notice-row:last-child { 
+    border-bottom: none; 
+}
+.home-notice-row span:last-child {
+     color: #ffd91a;
+     font-weight: 800; 
+    }
+.home-notice-close-btn {
+     display: block; 
+     width: 38%;
+      height: 38px;
+margin: 8px auto 0;
+transform: translateY(-15px);
+
+border: none;
+border-radius: 20px;
+
+background: linear-gradient(90deg, #37d9dc, #6654ff);
+color: #ffffff;
+
+font-size: 16px;
+font-weight: 800;
+}
+.hero-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 </style>
-  <h1>我的 Web3 測試平台</h1>
+</head>
+<div id="homePage" class="app-page active">
+<div class="brand">
+  <div class="brand-k">K</div>
+  <div class="brand-name">KATANA</div>
+</div>
 
-  <p id="status">錢包目前：尚未連接</p>
+<div class="top-actions">
+  <button class="lang-btn" id="langBtn">
+    🌐 繁體中文⌄
+  </button>
 
-  <button id="connectWallet">Connect Wallet</button>
-  <br><br>
-<button id="signMessage">測試簽名</button>
-<p id="signStatus"></p>
+</div>
+<section class="hero">
+<div class="hero-text">
 
- <script type="module">
-  
-  const projectId = "82e825b08a8b2c568e019cb081046504"; const button = document.getElementById("connectWallet");
-    const statusText = document.getElementById("status");
-    const signButton = document.getElementById("signMessage");
-    const signStatus = document.getElementById("signStatus");
+  <h1>
+    世界領先的<br>
+    <span>數位資產管理平台</span>
+  </h1>
 
-    function getWallet() {
-      if (typeof window.ethereum !== "undefined") {
-        return window.ethereum;
-      }
+  <p>
+    安全、透明、去中心化<br>
+    讓數位資產創造更大價值
+  </p>
 
-      return null;
-    }
+  <button class="connect-btn" id="connectBtn">
+    立即加入 →
+  </button>
 
-    async function showAccount() {
-      const ethereum = getWallet();
 
-      if (!ethereum) {
-        statusText.textContent = "目前沒有偵測到錢包";
-        return;
-      }
 
-      try {
-        const accounts = await ethereum.request({
-          method: "eth_accounts"
-        });
 
-        if (accounts && accounts.length > 0) {
-          statusText.textContent =
-            "已連接：" +
-            accounts[0].slice(0, 6) +
-            "..." +
-            accounts[0].slice(-4);
-        } else {
-          statusText.textContent = "已偵測到錢包，但尚未連接";
-        }
-      } catch (error) {
-        console.error(error);
-        statusText.textContent = "讀取錢包失敗";
-      }
-    }
+</section>
+  <section class="stats">
 
-    button.addEventListener("click", async () => {
-      const ethereum = getWallet();
+<div class="stat">
+  <div class="stat-icon">▣</div>
+  <div class="stat-title">錢包資產</div>
+  <div class="stat-value">--</div>
+  <div class="stat-sub">USDT</div>
+</div>
 
-      if (!ethereum) {
-        alert("目前沒有偵測到瀏覽器錢包。請確認錢包擴充功能已安裝並啟用。");
-        return;
-      }
+<div class="stat">
+  <div class="stat-icon">↗️</div>
+  <div class="stat-title">今日收益</div>
+  <div class="stat-value">--</div>
+  <div class="stat-sub">USDT</div>
+</div>
 
-      try {
-        const accounts = await ethereum.request({
-          method: "eth_requestAccounts"
-        });
+<div class="stat">
+  <div class="stat-icon">◇</div>
+  <div class="stat-title">總收益</div>
+  <div class="stat-value">--</div>
+  <div class="stat-sub">USDT</div>
+</div>
 
-        if (accounts && accounts.length > 0) {
-          statusText.textContent =
-            "已連接：" +
-            accounts[0].slice(0, 6) +
-            "..." +
-            accounts[0].slice(-4);
-        }
-      } catch (error) {
-        console.error(error);
-        alert("錢包連接沒有完成");
-      }
+<div class="stat">
+  <div class="stat-icon">♢</div>
+  <div class="stat-title">安全等級</div>
+  <div class="stat-value">AAA</div>
+  <div class="stat-sub">最高等級</div>
+</div>
+</section>
+
+<button class="announcement" id="announcementBtn">
+<div class="announcement-icon">📢</div>
+
+<div>
+  <div class="announcement-title">
+    最新公告
+  </div>
+
+  <div>
+    KATANA 平台最新公告與系統資訊
+  </div>
+</div>
+
+<div class="announcement-arrow">›</div>
+</button>
+<h2>⚡️ 快速操作</h2>
+
+<div class="quick-grid">
+
+  <button class="quick" id="quickSwap">
+    <div class="quick-icon">↻</div>
+    <div>閃兌</div>
+  </button>
+
+  <button class="quick" id="quickWithdraw">
+    <div class="quick-icon">⇧</div>
+    <div>提領</div>
+  </button>
+
+  <button class="quick" id="quickContract">
+    <div class="quick-icon">▤</div>
+    <div>合約</div>
+  </button>
+
+  <button class="quick" id="quickAllocation">
+    <div class="quick-icon">◷</div>
+    <div>中樞配給</div>
+  </button>
+
+  <button class="quick">
+    <div class="quick-icon">◉</div>
+    <div>幫助中心</div>
+  </button>
+
+</div>
+
+
+<!-- KATANA 生態 -->
+<div class="ecosystem">
+
+  <h3>KATANA 生態</h3>
+
+  <p>
+    安全・透明・高效・創新
+  </p>
+
+  <button class="connect-btn">
+    了解更多 →
+  </button>
+
+  <div class="eco-k">K</div>
+
+</div>
+<h2>USDT 價值儲蓄協議</h2>
+
+<p style="
+  color:#c8d5e9;
+  line-height:1.8;
+  margin-bottom:20px;
+">
+  KATANA是以太坊鏈上的去中心化穩定幣儲蓄協議。<br>
+作為一款 Web3 DApp，用戶只需透過錢包即可直接接入，<br>
+無需註冊或依賴任何中介機構。
+</p>
+
+<div class="features">
+    <span><b>●</b> 可持續</span>
+<span><b>●</b> 高速</span>
+<span><b>●</b> 安全</span>
+</div>
+<h2 class="metrics-title">即時加密貨幣收益和網路統計</h2>
+<div class="metrics">
+
+  <div class="metric">
+    <div class="metric-name">
+      總收益（示意）
+    </div>
+
+    <div class="metric-number">
+      776,918
+    </div>
+
+    <div class="metric-delta">
+      +12.45% · 24H
+    </div>
+  </div>
+
+
+  <div class="metric">
+    <div class="metric-name">
+      中樞配給（示意）
+    </div>
+
+    <div class="metric-number">
+      523,680
+    </div>
+
+    <div class="metric-delta">
+      +8.21% · 24H
+    </div>
+  </div>
+
+
+  <div class="metric">
+    <div class="metric-name">
+      參與者（示意）
+    </div>
+
+    <div class="metric-number">
+      497,551
+    </div>
+
+    <div class="metric-delta">
+      +6.32% · 24H
+    </div>
+  </div>
+
+
+  <div class="metric">
+    <div class="metric-name">
+      系統收益（示意）
+    </div>
+
+    <div class="metric-number">
+      439,834
+    </div>
+
+    <div class="metric-delta">
+      +9.87% · 24H
+    </div>
+  </div>
+
+</div>
+<h2>近期活動</h2>
+
+<div class="tabs">
+
+  <button class="tab active" data-filter="all">
+    全部
+  </button>
+
+  <button class="tab" data-filter="deposit">
+    充值
+  </button>
+
+  <button class="tab" data-filter="withdraw">
+    提領
+  </button>
+
+</div>
+
+
+<div class="activity-list">
+
+  <div class="activity" data-type="withdraw">
+
+    <div class="coin">◆</div>
+
+    <div>
+      <div class="addr">
+        0x2dde98...052d
+      </div>
+
+      <div class="meta">
+        示意紀錄 · 18:50
+      </div>
+    </div>
+
+    <div class="amount out">
+      -2.8757 ETH
+    </div>
+
+  </div>
+
+
+  <div class="activity" data-type="deposit">
+
+    <div class="coin">◆</div>
+
+    <div>
+      <div class="addr">
+        0x25f9ed...4f25
+      </div>
+
+      <div class="meta">
+        示意紀錄 · 19:39
+      </div>
+    </div>
+
+    <div class="amount in">
+      +2.5910 ETH
+    </div>
+
+  </div>
+
+
+  <div class="activity" data-type="withdraw">
+
+    <div class="coin">◆</div>
+
+    <div>
+      <div class="addr">
+        0x0b5e3a...dfcb
+      </div>
+
+      <div class="meta">
+        示意紀錄 · 19:16
+      </div>
+    </div>
+
+    <div class="amount out">
+      -2.5087 ETH
+    </div>
+
+  </div>
+
+
+  <div class="activity" data-type="deposit">
+<div class="coin">◆</div>
+
+    <div>
+      <div class="addr">
+        0xe4020a...82b3
+      </div>
+
+      <div class="meta">
+        示意紀錄 · 19:30
+      </div>
+    </div>
+
+    <div class="amount in">
+      +2.4679 ETH
+    </div>
+
+  </div>
+
+</div>
+<h2>合作夥伴與協作網絡</h2>
+
+<div class="partners">
+
+ <div class="partner"><img src="images/okx.png" alt="OKX"></div>
+<div class="partner"><img src="images/binance.png" alt="Binance"></div>
+<div class="partner"><img src="images/crypto.com.png" alt="Crypto.com"></div>
+<div class="partner"><img src="images/fairyproof.png" alt="HTX"></div>
+<div class="partner"><img src="images/bitget.png" alt="Bitget"></div>
+<div class="partner"><img src="images/trust.png" alt="Trust Wallet"></div>
+<div class="partner"><img src="images/defibox.png" alt="Defibox"></div>
+<div class="partner"><img src="images/coolwallet.png" alt="CoolWallet"></div>
+
+</div>
+</section>
+
+</div>
+
+<!-- 底部導覽 -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-item active" data-target="homePage">
+
+    <div class="nav-icon">⌂</div>
+
+    <div>首頁</div>
+
+  </button>
+
+  <button class="nav-item" data-target="walletPage">
+
+    <div class="nav-icon">▢</div>
+
+    <div>錢包</div>
+
+  </button>
+
+  <button class="nav-item" data-target="walletPage" data-action="swap">
+
+    <div class="swap-circle">↔️</div>
+
+    <div>閃兌</div>
+
+  </button>
+
+  <button class="nav-item" data-target="history">
+
+    <div class="nav-icon">▤</div>
+
+    <div>收益歷史</div>
+
+  </button>
+
+  <button class="nav-item" data-target="supportPage">
+
+    <div class="nav-icon">◎</div>
+
+    <div>客服</div>
+
+  </button>
+  </nav>
+
+  <!-- ===== KATANA 錢包頁 ===== -->
+<section id="walletPage" class="wallet-page app-page">
+    <div class="wallet-page-header">
+        <h1>錢包</h1>
+        <p>您的數位資產</p>
+    </div>
+    <div class="wallet-info-card">
+        <div class="wallet-info-top">
+            <div>
+                <div class="wallet-label">錢包地址</div>
+                <div class="wallet-address" id="walletAddress">
+                    0x0000...0000
+                </div>
+            </div>
+            <button class="wallet-copy-btn" id="copyWalletAddress">
+                ▣
+            </button>
+        </div>
+    </div>
+<!-- ===== USDT 餘額卡 ===== -->
+<div class="wallet-balance-card">
+    <div class="balance-header">
+    <div class="balance-title">餘額（USDT）</div>
+    <div class="verified-badge">✓ 已驗證</div>
+</div>
+
+<div class="balance-main">
+    <div class="balance-number">0.000000</div>
+    <div class="balance-token">USDT</div>
+</div>
+
+<div class="balance-stats">
+
+    <div class="balance-stat">
+        <div class="stat-icon">▣</div>
+        <div class="stat-label">KATANA餘額（USDT）</div>
+        <div class="stat-value">0.000000</div>
+        <div class="stat-unit">USDT</div>
+    </div>
+
+    <div class="balance-stat">
+        <div class="stat-icon">↔️</div>
+        <div class="stat-label">可閃兌（ETH）</div>
+        <div class="stat-value">0.000000</div>
+        <div class="stat-unit">ETH</div>
+    </div>
+
+    <div class="balance-stat">
+        <div class="stat-icon">↗️</div>
+        <div class="stat-label">總收益（ETH）</div>
+        <div class="stat-value">0.000000</div>
+        <div class="stat-unit">ETH</div>
+    </div>
+
+</div>
+<!-- ===== 錢包快捷功能 ===== -->
+<div class="wallet-actions">
+    <button class="wallet-action">
+        <div class="wallet-action-icon">⟳</div>
+        <div>歷史</div>
+    </button>
+    <button class="wallet-action">
+        <div class="wallet-action-icon">♔</div>
+        <div>獎勵</div>
+    </button>
+    <button class="wallet-action">
+        <div class="wallet-action-icon">↻</div>
+        <div>刷新</div>
+    </button>
+</div>
+<!-- ===== 錢包快捷功能結束 ===== -->
+ <!-- ===== 閃兌與提領 ===== -->
+<div class="swap-panel">
+    <div class="swap-panel-header">
+    <h2>閃兌與提領</h2>
+    <div class="swap-live">⚡️ 即時</div>
+</div>
+
+<div class="swap-tabs">
+    <button class="swap-tab active" id="swapTab">↔️ 閃兌</button>
+    <button class="swap-tab" id="withdrawTab">↑ 提領</button>
+</div>
+
+<div class="swap-box">
+    <div class="swap-direction">↕️ 閃兌 ETH → USDT</div>
+
+    <div class="swap-input-card">
+        <div class="swap-label">您支付</div>
+
+        <div class="swap-input-row">
+            <div class="swap-amount">0.00</div>
+            <div class="swap-token">ETH</div>
+        </div>
+
+        <div class="swap-available">
+            可用：0.000000 ETH
+        </div>
+    </div>
+
+    <div class="swap-arrow">↓</div>
+
+    <div class="swap-input-card">
+        <div class="swap-label">您將收到</div>
+
+        <div class="swap-rate">
+            1 ETH = 0.00 USDT
+        </div>
+
+        <div class="swap-input-row">
+            <div class="swap-amount">0.00</div>
+            <div class="swap-token">USDT</div>
+        </div>
+    </div>
+
+    <button class="swap-confirm">
+        確認閃兌 →
+    </button>
+</div>
+<!-- ===== 提領內容 ===== -->
+<div class="withdraw-box" style="display:none;">
+    <div class="withdraw-direction">↑ 提領 USDT</div>
+    <div class="withdraw-input-card">
+        <div class="withdraw-top">
+            <div class="withdraw-label">金額</div>
+            <button class="withdraw-max">▣ 最大</button>
+        </div>
+        <div class="withdraw-input-row">
+            <div class="withdraw-amount">0.00</div>
+            <div class="withdraw-token">USDT</div>
+        </div>
+        <div class="withdraw-available">
+            可用：0.000000 USDT
+        </div>
+    </div>
+    <button class="withdraw-confirm">
+        確認提領 →
+    </button>
+</div>
+<!-- ===== 提領內容結束 ===== -->
+</div>
+</section>
+
+<!-- ===== KATANA 合約頁 ===== -->
+<section id="contractPage" class="contract-page app-page">
+    <div class="contract-header">
+        <div class="contract-brand">KATANA</div>
+        <button class="contract-menu">☰</button>
+    </div>
+    <div class="contract-content">
+        <h1>Join Event</h1>
+        <button class="contract-earn-btn">
+            Earn ETH
+        </button>
+        <div class="contract-empty">
+            <div class="contract-empty-icon">◆</div>
+            <div class="contract-empty-text">無數據</div>
+        </div>
+    </div>
+</section>
+<!-- ===== KATANA 合約頁結束 ===== -->
+ <!-- ====== KATANA 中樞配給頁 ====== -->
+<section id="allocationPage" class="allocation-page app-page">
+    <div class="allocation-content">
+        <div class="allocation-main-card">
+        <button class="allocation-vip-btn">
+    成為VIP・獲取更多獎勵
+</button>
+        <h1>收益詳細說明</h1>
+        <div class="allocation-logo">
+            KATANA
+        </div>
+        <div class="allocation-subtitle">
+            NODE INTEREST RATE
+        </div>
+        <p class="allocation-description">
+            中樞配給收益利率
+        </p>
+        <div class="allocation-rate-list">
+            <div class="allocation-rate-row">
+                <span>USDT 280–5000</span>
+                <span>0.27%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 5001–20000</span>
+                <span>0.30%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 20001–30000</span>
+                <span>0.33%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 30001–50000</span>
+                <span>0.36%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 50001–100000</span>
+                <span>0.39%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 100001–200000</span>
+                <span>0.43%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 200001–500000</span>
+                <span>0.48%</span>
+            </div>
+            <div class="allocation-rate-row">
+                <span>USDT 500001–9999999</span>
+                <span>0.52%</span>
+            </div>
+        </div>
+        <div class="allocation-time">
+            節點收益時間（GMT+8）<br>
+            7:00 ・ 15:00 ・ 23:00
+        </div>
+        </div> <!-- allocation-main-card 結束 -->
+    </div>
+</section>
+<!-- ====== KATANA 中樞配給頁結束 ====== -->
+ <!-- ====== KATANA VIP1 頁 ====== -->
+
+<section id="vipPage" class="vip-page app-page">
+
+    <div class="vip-content">
+
+        <button id="vipBackBtn" class="vip-back-btn">‹</button>
+
+        
+
+<div class="vip-slider">
+<div class="vip-slide">
+        <div class="vip-header">
+    <div>
+        <div class="vip-level">VIP 1</div>
+        <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+    </div>
+    <div class="vip-status" id="vipStatus">
+        <span id="vipStatusText">未解鎖</span>
+        <span id="vipStatusLock">🔒</span>
+    </div>
+</div>
+
+        <div class="vip-unlock-card">
+
+            <div class="vip-card-title">當前持有資產</div>
+
+            <div class="vip-balance">
+
+                <span id="vipCurrentBalance">200</span>
+
+                /
+
+                <span>3000</span> USDT
+
+            </div>
+
+            <div class="vip-progress">
+
+                <div id="vipProgressBar" class="vip-progress-bar"></div>
+
+            </div>
+
+            <div class="vip-remaining" id="vipRemainingText">
+    還差 <span id="vipRemaining">2800</span> USDT 可解鎖 VIP1
+</div>
+
+        </div>
+        <div class="vip-benefits-title">專屬權益</div>
+
+        <div class="vip-benefit-card">
+
+            <span>◆</span>
+
+            <span>當月加贈100USDT</span>
+
+            <span id="vipBenefitLock">🔒</span>
+
+        </div>
+
+    </div>
+    <!-- ===== VIP2 ===== -->
+<div class="vip-slide">
+    <div class="vip-header">
+        <div>
+            <div class="vip-level">VIP 2</div>
+            <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+        </div>
+        <div class="vip-status">
+    <span id="vip2StatusText">未解鎖</span>
+    <span id="vip2StatusLock">🔒</span>
+</div>
+    </div>
+    <div class="vip-unlock-card">
+        <div class="vip-card-title">當前持有資產</div>
+        <div class="vip-balance">
+            <span id="vip2CurrentBalance">3000</span>
+            /
+            <span>10000</span> USDT
+        </div>
+        <div class="vip-progress">
+           <div id="vip2ProgressBar" class="vip-progress-bar" style="width:30%;"></div>
+        </div>
+        <div class="vip-remaining">
+           還差 <span id="vip2Remaining">7000</span> USDT 可解鎖 VIP2
+        </div>
+    </div>
+    <div class="vip-benefits-title">專屬權益</div>
+    <div class="vip-benefit-card">
+        <span>◆</span>
+        <span>當月加贈800USDT</span>
+        <span id="vip2BenefitLock">🔒</span>
+    </div>
+</div>
+<!-- ===== VIP3 ===== -->
+<div class="vip-slide">
+    <div class="vip-header">
+        <div>
+            <div class="vip-level">VIP 3</div>
+            <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+        </div>
+        <div class="vip-status">
+            <span id="vip3StatusText">未解鎖</span>
+ <span id="vip3StatusLock">🔒</span>
+        </div>
+    </div>
+    <div class="vip-unlock-card">
+        <div class="vip-card-title">當前持有資產</div>
+        <div class="vip-balance">
+<span id="vip3CurrentBalance">3000</span>           
+            /
+            <span>30000</span> USDT
+        </div>
+        <div class="vip-progress">
+            <div id="vip3ProgressBar" class="vip-progress-bar" style="width:10%;"></div>
+        </div>
+        <div class="vip-remaining">
+            還差 <span id="vip3Remaining">27000</span> USDT 可解鎖 VIP3
+        </div>
+    </div>
+    <div class="vip-benefits-title">專屬權益</div>
+    <div class="vip-benefit-card">
+        <span>◆</span>
+        <span>當月加贈3000USDT</span>
+       <span id="vip3BenefitLock">🔒</span>
+       </div>
+       </div>
+    </div> <!-- vip-slider 結束 -->
+    <div class="vip-dots">
+    <span class="vip-dot active"></span>
+    <span class="vip-dot"></span>
+    <span class="vip-dot"></span>
+</div>
+
+</section>
+
+<!-- ====== KATANA VIP1 頁結束 ====== -->
+<!-- ===== KATANA 錢包頁結束 ===== -->
+ <!-- ===== 收益歷史頁 ===== -->
+
+<section id="history" class="history-page app-page">
+    <div class="history-tabs">
+
+        <button class="history-tab active">
+
+            閃兌明細
+
+        </button>
+
+        <button class="history-tab">
+
+            提領明細
+
+        </button>
+
+        <button class="history-tab">
+
+            節點獎勵
+
+        </button>
+
+        <button class="history-tab">
+
+            合約獎勵
+
+        </button>
+
+    </div>
+
+    <div class="history-content">
+
+        <div class="history-empty-icon">
+
+            ✉️
+
+        </div>
+
+        <div class="history-empty-text">
+
+            無數據
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== 收益歷史頁結束 ===== -->
+ <!-- ===== 客服支援中心 ===== -->
+
+<section id="supportPage" class="support-page app-page">
+
+    <div class="support-header">
+
+       <button class="support-back" id="supportBack">〈</button>
+        <div class="support-title">客服支援中心</div>
+
+        <div class="support-header-space"></div>
+
+    </div>
+
+    <div class="support-chat-area">
+
+        <div class="support-no-more">
+
+            沒有更多消息
+
+        </div>
+
+        <div class="support-time" id="supportTime">
+
+            08-27 20:12
+
+        </div>
+
+        <div class="support-message-row">
+
+            <div class="support-avatar">
+
+                🎧
+
+            </div>
+
+            <div class="support-message">
+
+                您好，歡迎來到 KATANA 客服支援中心。<br><br>
+
+                如有任何問題，請直接輸入訊息，我們將盡快為您提供協助。
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="support-input-bar">
+
+       <input
+    class="support-input"
+    id="supportInput"
+    type="text"
+    placeholder="請輸入訊息..."
+>
+
+   <button class="support-emoji" id="supportAdd">
+    ＋
+</button>
+
+<button class="support-add" id="supportSend">
+    ➤
+</button>
+ <input
+    type="file"
+    id="supportImageInput"
+    accept="image/*"
+    style="display:none;"
+>
+</div>
+
+</section>
+
+<!-- ===== 客服支援中心結束 ===== -->
+  <script>
+ // ===== 客服訊息發送 =====
+  const supportInput = document.getElementById("supportInput");
+   const supportSend = document.getElementById("supportSend");
+    const supportChatArea = document.querySelector(".support-chat-area");
+    const supportAdd = document.getElementById("supportAdd");
+     const supportImageInput = document.getElementById("supportImageInput");
+supportAdd.addEventListener("click", function () { 
+    supportImageInput.click(); });
+supportImageInput.addEventListener("change", function () {
+     const file = this.files[0];
+if (!file) return;
+
+const row = document.createElement("div");
+row.className = "support-message-row user-message-row";
+
+const img = document.createElement("img");
+img.src = URL.createObjectURL(file);
+img.className = "support-user-image";
+
+row.appendChild(img);
+supportChatArea.appendChild(row);
+
+supportChatArea.scrollTop = supportChatArea.scrollHeight;
+
+this.value = "";
+});
+function sendSupportMessage() {
+     const message = supportInput.value.trim();
+if (message === "") return;
+
+const row = document.createElement("div");
+row.className = "support-message-row user-message-row";
+
+const bubble = document.createElement("div");
+bubble.className = "support-message user-message";
+bubble.textContent = message;
+
+row.appendChild(bubble);
+supportChatArea.appendChild(row);
+
+supportInput.value = "";
+
+supportChatArea.scrollTop = supportChatArea.scrollHeight;
+}
+supportSend.addEventListener("click", sendSupportMessage);
+supportInput.addEventListener("keydown", function(event) {
+     if (event.key === "Enter") { 
+        sendSupportMessage(); 
+    } 
+});
+
+ // ===== 收益歷史四個按鈕切換 =====
+const historyTabs = document.querySelectorAll(".history-tab");
+
+historyTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        historyTabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
     });
-    signButton.addEventListener("click", async () => {
-    const ethereum = getWallet();
+});
+    // ===== 閃兌 / 提領切換 ===== 
+    const swapTab = document.getElementById("swapTab");
+    const withdrawTab = document.getElementById("withdrawTab");
+     const swapBox = document.querySelector(".swap-box"); 
+     const withdrawBox = document.querySelector(".withdraw-box");
 
-    if (!ethereum) {
-        alert("目前沒有偵測到錢包");
+swapTab.addEventListener("click", () => { swapTab.classList.add("active"); withdrawTab.classList.remove("active");
+swapBox.style.display = "block";
+withdrawBox.style.display = "none";
+});
+withdrawTab.addEventListener("click", () => { withdrawTab.classList.add("active"); swapTab.classList.remove("active");
+swapBox.style.display = "none";
+withdrawBox.style.display = "block";
+});
+  
+  // ===== 簡單進場動畫 =====
+  const sections = document.querySelectorAll(
+    ".hero, .stats, .announcement, .section"
+  );
+
+  sections.forEach((section, index) => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(18px)";
+    section.style.transition =
+      "opacity .55s ease, transform .55s ease";
+
+    setTimeout(() => {
+      section.style.opacity = "1";
+      section.style.transform = "translateY(0)";
+    }, 120 + index * 90);
+  });
+
+
+  // ===== 底部導覽 =====
+  const navItems = document.querySelectorAll(".nav-item");
+  const quickSwap = document.getElementById("quickSwap");
+
+if (quickSwap) {
+    quickSwap.addEventListener("click", () => {
+        navItems.forEach(item => item.classList.remove("active"));
+        document.querySelector('.nav-item[data-action="swap"]')?.click();
+        navItems.forEach(item => item.classList.remove("active"));
+    });
+}
+const quickWithdraw = document.getElementById("quickWithdraw");
+if (quickWithdraw) {
+     quickWithdraw.addEventListener("click", () => { 
+        navItems.forEach(item => item.classList.remove("active"));
+        document.querySelector('.nav-item[data-target="walletPage"]')?.click();
+        navItems.forEach(item => item.classList.remove("active"));
+    setTimeout(() => {
+        withdrawTab.click();
+       document.querySelector(".swap-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+    }, 50);
+});
+}
+const quickContract = document.getElementById("quickContract");
+if (quickContract) { 
+    quickContract.addEventListener("click", () => {
+        navItems.forEach(item => item.classList.remove("active"));
+         document.querySelectorAll(".app-page").forEach(page => {
+             page.classList.remove("active");
+             });
+
+    document.getElementById("contractPage").classList.add("active");
+    window.scrollTo(0, 0);
+});
+}
+const quickAllocation = document.getElementById("quickAllocation");
+if (quickAllocation) { 
+    quickAllocation.addEventListener("click", () => {
+        navItems.forEach(item => item.classList.remove("active"));
+         document.querySelectorAll(".app-page").forEach(page => { 
+            page.classList.remove("active"); 
+        });
+    document.getElementById("allocationPage").classList.add("active");
+
+    window.scrollTo(0, 0);
+});
+}
+const supportBack = document.getElementById("supportBack");
+
+supportBack.addEventListener("click", () => {
+   
+    document.querySelector('.nav-item[data-target="homePage"]').click();
+});
+ navItems.forEach(item => {
+     item.addEventListener("click", () => {
+    // 底部按鈕亮起
+    navItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    const targetId = item.dataset.target;
+    const action = item.dataset.action;
+
+    // 隱藏所有獨立頁面
+    document.querySelectorAll(".app-page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    // 閃兌：進入錢包頁 + 顯示閃兌
+    if (action === "swap") {
+        document.getElementById("walletPage").classList.add("active");
+
+        swapTab.classList.add("active");
+        withdrawTab.classList.remove("active");
+
+        swapBox.style.display = "block";
+        withdrawBox.style.display = "none";
+
+        document.querySelector(".swap-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
         return;
     }
 
-    try {
-        const accounts = await ethereum.request({
-            method: "eth_requestAccounts"
-        });
+    // 一般頁面
+    const target = document.getElementById(targetId);
 
-        const message = "這是我的 Web3 測試簽名";
-
-        const signature = await ethereum.request({
-            method: "personal_sign",
-            params: [message, accounts[0]]
-        });
-
-      signStatus.textContent = "簽名成功：" + signature.slice(0, 10) + "...";
-        console.log("signature:", signature);
-    } catch (error) {
-    console.error(error);
-    signStatus.textContent =
-    "簽名錯誤：" + (error?.message || String(error));
-});
-
-    if (window.ethereum) {
-      window.ethereum.on("accountsChanged", showAccount);
+    if (target) {
+        target.classList.add("active");
     }
-window.addEventListener("focus", () => {
-    setTimeout(showAccount, 1000);
-});
 
-document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) {
-        setTimeout(showAccount, 1000);
+    // 客服輸入框
+    const supportInput = document.querySelector(".support-input-bar");
+
+    if (targetId === "supportPage") {
+        if (supportInput) supportInput.style.display = "flex";
+
+        const now = new Date();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        const hour = String(now.getHours()).padStart(2, "0");
+        const minute = String(now.getMinutes()).padStart(2, "0");
+
+        const supportTime = document.getElementById("supportTime");
+        if (supportTime) {
+            supportTime.textContent =
+                `${month}-${day} ${hour}:${minute}`;
+        }
+    } else {
+        if (supportInput) supportInput.style.display = "none";
     }
-});
-    showAccount();
-  </script>
 
+    window.scrollTo(0, 0);
+});
+});
+
+
+  // ===== 近期活動篩選 =====
+  const tabs = document.querySelectorAll(".tab");
+  const activities = document.querySelectorAll(".activity");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const filter = tab.dataset.filter;
+
+      activities.forEach(activity => {
+        if (
+          filter === "all" ||
+          activity.dataset.type === filter
+        ) {
+          activity.style.display = "grid";
+        } else {
+          activity.style.display = "none";
+        }
+      });
+    });
+  });
+
+
+  // ===== 連接錢包按鈕：目前先做介面預覽 =====
+  const connectBtn = document.getElementById("connectBtn");
+
+  connectBtn.addEventListener("click", () => {
+    alert("目前先完成 KATANA 介面，下一階段再接真實錢包功能。");
+  });
+
+
+  // ===== 公告 =====
+  const announcementBtn =
+    document.getElementById("announcementBtn");
+
+  announcementBtn.addEventListener("click", () => {
+    alert(
+      "KATANA 最新公告\n\n目前為介面展示版本，正式公告內容之後可以從後台更新。"
+    );
+  });
+
+
+  // ===== 語言切換示範 =====
+  const langBtn = document.getElementById("langBtn");
+
+  let currentLang = "zh";
+
+  langBtn.addEventListener("click", () => {
+    if (currentLang === "zh") {
+      currentLang = "en";
+      langBtn.textContent = "🌐 English⌄";
+    } else {
+      currentLang = "zh";
+      langBtn.textContent = "🌐 繁體中文⌄";
+    }
+  });
+
+
+  // ===== 右上角選單：先做預覽 =====
+  const menuBtn = document.getElementById("menuBtn");
+
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    alert(
+      "KATANA 選單\n\n首頁\n資產\n合約\n收益歷史\n白皮書\n公告\n幫助中心\n選擇語言"
+    );
+  });
+}
+  // ===== VIP 頁面切換 ===== 
+  const vipEntryBtn = document.querySelector(".allocation-vip-btn");
+   const vipPage = document.getElementById("vipPage");
+    const vipBackBtn = document.getElementById("vipBackBtn");
+if (vipEntryBtn) {
+     vipEntryBtn.addEventListener("click", () => {
+         document.querySelectorAll(".app-page").forEach(page => {
+             page.classList.remove("active"); 
+            });
+    vipPage.classList.add("active");
+    const slider = document.querySelector(".vip-slider");
+if (slider) {
+    slider.scrollLeft = 0;
+}
+    window.scrollTo(0, 0);
+});
+}
+if (vipBackBtn) { vipBackBtn.addEventListener("click", () => { document.querySelectorAll(".app-page").forEach(page => { page.classList.remove("active"); });
+    document.getElementById("allocationPage").classList.add("active");
+    window.scrollTo(0, 0);
+});
+}
+// ===== VIP1 資產自動計算 =====
+ const vip1Target = 3000; 
+ let currentAssets = 1800;
+function updateVIP1() { 
+    const remaining = Math.max(vip1Target - currentAssets, 0); 
+    const percent = Math.min((currentAssets / vip1Target) * 100, 100);
+const currentEl = document.getElementById("vipCurrentBalance");
+const remainingEl = document.getElementById("vipRemaining");
+const progressEl = document.getElementById("vipProgressBar");
+const statusTextEl = document.getElementById("vipStatusText");
+const statusLockEl = document.getElementById("vipStatusLock");
+
+if (currentEl) {
+    currentEl.textContent = currentAssets;
+}
+
+if (remainingEl) {
+    remainingEl.textContent = remaining;
+}
+
+if (progressEl) {
+    progressEl.style.width = percent + "%";
+}
+const remainingTextEl = document.getElementById("vipRemainingText");
+ const benefitLockEl = document.getElementById("vipBenefitLock");
+if (currentAssets >= vip1Target) { 
+    if (remainingTextEl) { remainingTextEl.textContent = "VIP1 已解鎖"; }
+if (benefitLockEl) {
+    benefitLockEl.textContent = "🔓";
+}
+} else { 
+    if (remainingTextEl) { 
+        remainingTextEl.innerHTML = 
+        '還差 <span id="vipRemaining">' + remaining + '</span> USDT 可解鎖 VIP1';
+     }
+
+if (benefitLockEl) {
+    benefitLockEl.textContent = "🔒";
+}
+}
+if (statusTextEl && statusLockEl) {
+    if (currentAssets >= vip1Target) {
+        statusTextEl.textContent = "已解鎖";
+        statusLockEl.textContent = "🔓";
+    } else {
+        statusTextEl.textContent = "未解鎖";
+        statusLockEl.textContent = "🔒";
+    }
+}
+}
+updateVIP1();
+// ===== VIP2 資產自動計算 ===== 
+const vip2Target = 10000;
+function updateVIP2() {
+     const remaining = Math.max(vip2Target - currentAssets, 0);
+      const percent = Math.min((currentAssets / vip2Target) * 100, 100);
+
+const currentEl2 = document.getElementById("vip2CurrentBalance");
+const remainingEl2 = document.getElementById("vip2Remaining");
+const progressEl2 = document.getElementById("vip2ProgressBar");
+
+if (currentEl2) {
+    currentEl2.textContent = currentAssets;
+}
+
+const remainingTextEl2 = remainingEl2?.parentElement;
+
+if (remainingTextEl2) {
+    if (currentAssets >= vip2Target) {
+        remainingTextEl2.textContent = "已解鎖 VIP2";
+    } else {
+        remainingTextEl2.innerHTML =
+            '還差 <span id="vip2Remaining">' + remaining + '</span> USDT 可解鎖 VIP2';
+    }
+}
+
+if (progressEl2) {
+    progressEl2.style.width = percent + "%";
+}
+const statusTextEl2 = document.getElementById("vip2StatusText");
+ const statusLockEl2 = document.getElementById("vip2StatusLock"); 
+ const benefitLockEl2 = document.getElementById("vip2BenefitLock");
+
+if (statusTextEl2 && statusLockEl2) { 
+    if (currentAssets >= vip2Target) { 
+        statusTextEl2.textContent = "已解鎖"; 
+        statusLockEl2.textContent = "🔓";
+
+    if (benefitLockEl2) {
+        benefitLockEl2.textContent = "🔓";
+    }
+} else {
+    statusTextEl2.textContent = "未解鎖";
+    statusLockEl2.textContent = "🔒";
+
+    if (benefitLockEl2) {
+        benefitLockEl2.textContent = "🔒";
+    }
+}
+}
+}
+updateVIP2();
+// ===== VIP3 資產自動計算 ===== 
+const vip3Target = 30000;
+function updateVIP3() {
+     const remaining = Math.max(vip3Target - currentAssets, 0);
+      const percent = Math.min((currentAssets / vip3Target) * 100, 100);
+const currentEl3 = document.getElementById("vip3CurrentBalance");
+const remainingEl3 = document.getElementById("vip3Remaining");
+const progressEl3 = document.getElementById("vip3ProgressBar");
+
+const statusTextEl3 = document.getElementById("vip3StatusText");
+const statusLockEl3 = document.getElementById("vip3StatusLock");
+const benefitLockEl3 = document.getElementById("vip3BenefitLock");
+
+if (currentEl3) {
+    currentEl3.textContent = currentAssets;
+}
+
+if (remainingEl3) {
+    if (currentAssets >= vip3Target) {
+        remainingEl3.parentElement.innerHTML = "已解鎖 VIP3";
+    } else {
+        remainingEl3.textContent = remaining;
+    }
+}
+
+if (progressEl3) {
+    progressEl3.style.width = percent + "%";
+}
+
+if (statusTextEl3 && statusLockEl3) {
+    if (currentAssets >= vip3Target) {
+        statusTextEl3.textContent = "已解鎖";
+        statusLockEl3.textContent = "🔓";
+
+        if (benefitLockEl3) {
+            benefitLockEl3.textContent = "🔓";
+        }
+    } else {
+        statusTextEl3.textContent = "未解鎖";
+        statusLockEl3.textContent = "🔒";
+
+        if (benefitLockEl3) {
+            benefitLockEl3.textContent = "🔒";
+        }
+    }
+}
+}
+updateVIP3();
+// ===== VIP 每次只滑一頁 ===== 
+const vipSlider = document.querySelector(".vip-slider");
+ const vipSlides = document.querySelectorAll(".vip-slide");
+ const vipDots = document.querySelectorAll(".vip-dot");
+
+if (vipSlider && vipSlides.length) { 
+    let currentVipIndex = 0;
+     let startX = 0;
+      let isDragging = false;
+
+vipSlider.addEventListener("pointerdown", (e) => {
+    startX = e.clientX;
+    isDragging = true;
+});
+
+vipSlider.addEventListener("pointerup", (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const diff = e.clientX - startX;
+
+    if (Math.abs(diff) < 40) return;
+
+    if (diff < 0 && currentVipIndex < vipSlides.length - 1) {
+        currentVipIndex++;
+    } else if (diff > 0 && currentVipIndex > 0) {
+        currentVipIndex--;
+    }
+
+    vipSlider.scrollTo({
+        left: currentVipIndex * vipSlider.clientWidth,
+        behavior: "smooth"
+    });
+    vipDots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentVipIndex);
+});
+});
+}
+</script>
+
+<!-- ===== 首次進入首頁公告彈窗 ===== -->
+<div id="homeNoticePopup" class="home-notice-popup">
+    <div class="home-notice-box">
+        <div class="home-notice-tag">收益詳細說明</div>
+        <div class="home-notice-logo">KATANA</div>
+        <div class="home-notice-title">KATANA 中樞核心配給</div>
+        <div class="home-notice-rate-box">
+            <div class="home-notice-row">
+    <span>USDT 280–5000</span>
+    <span>0.27%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 5001–20000</span>
+    <span>0.30%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 20001–30000</span>
+    <span>0.33%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 30001–50000</span>
+    <span>0.36%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 50001–100000</span>
+    <span>0.39%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 100001–200000</span>
+    <span>0.43%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 200001–500000</span>
+    <span>0.48%</span>
+</div>
+
+<div class="home-notice-row">
+    <span>USDT 500001–9999999</span>
+    <span>0.52%</span>
+</div>
+        </div>
+        <button id="homeNoticeCloseBtn" class="home-notice-close-btn">
+            關閉
+        </button>
+    </div>
+    </div>
+    <script>
+const homeNoticePopup = document.getElementById("homeNoticePopup");
+const homeNoticeCloseBtn = document.getElementById("homeNoticeCloseBtn");
+
+if (homeNoticeCloseBtn && homeNoticePopup) {
+    homeNoticeCloseBtn.addEventListener("click", function () {
+        homeNoticePopup.style.display = "none";
+    });
+}
+</script>
 </body>
 </html>
