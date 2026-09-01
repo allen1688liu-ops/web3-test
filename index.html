@@ -1105,6 +1105,9 @@ align-self: center;
   border-radius:20px;
 
   background:rgba(4,24,65,.72);
+
+  position:relative;
+top:-8px;
 }
 
 /* 左邊喇叭 */
@@ -2206,15 +2209,32 @@ font-weight: 800;
   /* 繁體中文按鈕 */
   .lang-btn {
     font-size: 10px;
-    padding: 5px 6px;
+    padding:  5px 28px 5px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80px;
   }
-  .lang-btn > span:first-of-type {
-    transform: translateX(4px);
+  .lang-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
+.lang-btn > span:first-of-type {
+    transform: translateX(8px);
+}
+
+.lang-arrow {
+    position: absolute;
+right: 8px;
+top: 38%;
+    color: #ffe600 !important;
+    display: inline-block;
+    transform: translateY(-50%);
+}
 }
 
 </style>
@@ -2226,7 +2246,7 @@ font-weight: 800;
 
 <div class="top-actions">
 <button class="lang-btn" id="langBtn">
-    <span>繁體中文</span>
+    <span class="lang-text">繁體中文</span>
     <span class="lang-arrow">⌄</span>
 </button>
 </div>
@@ -3338,10 +3358,10 @@ supportBack.addEventListener("click", () => {
   langBtn.addEventListener("click", () => {
     if (currentLang === "zh") {
       currentLang = "en";
-      langBtn.textContent = "English⌄";
+      langBtn.querySelector(".lang-text").textContent = "English";
     } else {
       currentLang = "zh";
-      langBtn.textContent = "繁體中文⌄";
+     langBtn.querySelector(".lang-text").textContent = "繁體中文";
     }
   });
 
