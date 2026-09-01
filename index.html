@@ -1239,6 +1239,21 @@ transform:translateY(-10px);
       .metrics{
         grid-template-columns:1fr;
       }
+
+      .quick-title{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quick-title span{
+    height: 0.6px;
+    width: 180px;
+flex: none;
+    background: #ffe600;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ffe600;
+}
     }
  /* ===== 手機版寬度修正 ===== */
 *{ min-width: 0; }
@@ -2316,7 +2331,7 @@ top: 38%;
   </div>
   <div class="announcement-arrow">›</div>
 </button>
-<h2>⚡️ 快速操作</h2>
+<h2 class="quick-title">快速操作 <span></span></h2>
 
 <div class="quick-grid">
 
