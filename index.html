@@ -50,7 +50,7 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:16px 0;
+      padding:28px 0 16px;
       background:rgba(2,8,23,.92);
       backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(44,120,255,.16);
@@ -80,6 +80,9 @@
     position:absolute;
     top:20px;
     right:20px;
+    left:auto;
+    transform: none;
+    z-index:50;
 }
 
 
@@ -1071,6 +1074,7 @@ align-self: center;
       #homePage{
     padding-left:16px !important;
     padding-right:16px !important;
+    position: relative;
 }
 
       .brand-k{
@@ -2053,6 +2057,19 @@ font-weight: 800;
     display: block;
     object-fit: contain;
 }
+.lang-globe {
+    width: 22px;
+    height: 22px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.lang-btn { 
+    display: flex;
+     align-items: center; 
+     gap: 8px;
+}
+
 </style>
 </head>
 <div id="homePage" class="app-page active">
@@ -2061,10 +2078,16 @@ font-weight: 800;
 </div>
 
 <div class="top-actions">
-  <button class="lang-btn" id="langBtn">
-    🌐 繁體中文⌄
-  </button>
-
+<button class="lang-btn" id="langBtn">
+    <svg class="lang-globe" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M3 12h18" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M12 3c2.5 2.5 4 5.6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.6-4-9s1.5-6.5 4-9z"
+              stroke="currentColor" stroke-width="1.8"/>
+    </svg>
+    <span>繁體中文</span>
+    <span class="lang-arrow">⌄</span>
+</button>
 </div>
 <section class="hero">
 <div class="hero-text">
