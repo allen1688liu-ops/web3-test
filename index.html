@@ -201,6 +201,14 @@ background-repeat: no-repeat;
       font-size:28px;
     }
 
+    .stat-icon img{
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+}
+
     .stat-title{
       margin-top:15px;
       color:#dbe7f8;
@@ -1052,18 +1060,33 @@ align-self: center;
         grid-template-columns:repeat(4,1fr);
       }
 .stat{
-    min-height:135px;
-    padding:12px 8px;
+  min-height:0;
+  padding:7px 6px;
+}
+
+.stat-icon img{
+  width:42px;
+  height:42px;
+  margin:0 auto;
 }
 
 .stat-title{
-    font-size:14px;
-    margin-top:10px;
+  font-size:14px;
+  margin:0;
+  line-height:1.1;
 }
 
 .stat-value{
-    font-size:22px;
+  font-size:18px;
+  margin:0;
+  line-height:1.1;
 }
+
+.stat-sub{
+  margin:0;
+  line-height:1.1;
+}
+
       .partners{
         grid-template-columns:repeat(2,1fr);
       }
@@ -2146,31 +2169,31 @@ font-weight: 800;
   <section class="stats">
 
 <div class="stat">
-  <div class="stat-icon">▣</div>
+  <div class="stat-icon"><img src="images/wallet.png" alt="錢包資產"></div>
   <div class="stat-title">錢包資產</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">USDT</div>
 </div>
 
 <div class="stat">
-  <div class="stat-icon">↗️</div>
+  <div class="stat-icon"><img src="images/today.png" alt="今日收益"></div>
   <div class="stat-title">今日收益</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">USDT</div>
 </div>
 
 <div class="stat">
-  <div class="stat-icon">◇</div>
+  <div class="stat-icon"><img src="images/total.png" alt="總收益"></div>
   <div class="stat-title">總收益</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">USDT</div>
 </div>
 
 <div class="stat">
-  <div class="stat-icon">♢</div>
-  <div class="stat-title">安全等級</div>
-  <div class="stat-value">AAA</div>
-  <div class="stat-sub">最高等級</div>
+  <div class="stat-icon"><img src="images/vip.png" alt="VIP等級"></div>
+  <div class="stat-title">VIP等級</div>
+  <div class="stat-value">VIP 0</div>
+  <div class="stat-sub">當前等級</div>
 </div>
 </section>
 
