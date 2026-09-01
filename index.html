@@ -2078,6 +2078,34 @@ font-weight: 800;
      transform: translateY(30px);
 }
 
+/* ===== 手機版統一調整區 ===== */
+@media (max-width: 560px) {
+
+  /* KATANA Logo */
+  .brand-logo {
+    width: 205px;
+  }
+
+  /* 繁體中文按鈕位置 */
+  .top-actions {
+    top: 30px;
+    right: 20px;
+  }
+
+  /* 繁體中文按鈕 */
+  .lang-btn {
+    font-size: 10px;
+    padding: 6px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lang-btn > span:first-of-type {
+    transform: translateX(3px);
+}
+
+}
+
 </style>
 </head>
 <div id="homePage" class="app-page active">
