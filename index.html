@@ -1090,6 +1090,78 @@ align-self: center;
   line-height:1.1;
 }
 
+/* ===== 公告區：樣式 B ===== */
+
+.announcement{
+  width:100%;
+  min-height:58px;
+  padding:6px 14px;
+
+  display:grid;
+  grid-template-columns:60px 1fr 30px;
+  align-items:center;
+
+  border:1.5px solid #ffe600;
+  border-radius:20px;
+
+  background:rgba(4,24,65,.72);
+}
+
+/* 左邊喇叭 */
+.announcement-icon{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.announcement-icon img{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+  display:block;
+  transform:scale(1.1);
+  transform-origin:center;
+}
+
+/* 中間文字 */
+.announcement-text{
+  text-align:left;
+  padding-left:8px;
+}
+
+.announcement-title{
+  color:#ffe600;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:5px;
+}
+
+.announcement-sub{
+  color:#ffffff;
+  font-size:13px;
+  line-height:1.3;
+  white-space:nowrap;
+}
+
+/* 右邊單純黃色箭頭 */
+.announcement-arrow{
+  color:#ffe600;
+  font-size:32px;
+  font-weight:700;
+  text-align:center;
+  line-height:1;
+}
+
+.announcement-icon{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-right:1px solid rgba(255,230,0,.55);
+  padding-right:5px;
+  height:33px;
+}
+
 .stat-title{
 transform:translateY(-19px);
 }
@@ -2211,19 +2283,18 @@ font-weight: 800;
 </section>
 
 <button class="announcement" id="announcementBtn">
-<div class="announcement-icon">📢</div>
-
-<div>
-  <div class="announcement-title">
-    最新公告
+  <div class="announcement-icon">
+    <img src="images/announcement.png" alt="最新公告">
   </div>
-
-  <div>
-    KATANA 平台最新公告與系統資訊
+  <div class="announcement-text">
+    <div class="announcement-title">
+      最新公告
+    </div>
+    <div class="announcement-sub">
+      KATANA 平台最新公告與系統資訊
+    </div>
   </div>
-</div>
-
-<div class="announcement-arrow">›</div>
+  <div class="announcement-arrow">›</div>
 </button>
 <h2>⚡️ 快速操作</h2>
 
