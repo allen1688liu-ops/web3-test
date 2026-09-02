@@ -276,7 +276,7 @@ background-repeat: no-repeat;
       display:grid;
       grid-template-columns:repeat(5,1fr);
       gap:10px;
-      margin-top: 12px;
+      margin-top: 9px;
     }
 
     .quick{
@@ -1236,6 +1236,19 @@ transform:translateY(-10px);
       .quick-icon{
         font-size:23px;
       }
+
+      .quick-icon{
+    font-size:23px;
+}
+
+.quick-icon img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+    display:block;
+    transform:scale(1.8);
+    transform-origin:center;
+}
 
       .metrics{
         grid-template-columns:1fr;
@@ -2330,27 +2343,37 @@ top: 38%;
 <div class="quick-grid">
 
   <button class="quick" id="quickSwap">
-    <div class="quick-icon">↻</div>
+    <div class="quick-icon">
+  <img src="./images/swap.png" alt="閃兌">
+</div>
     <div>閃兌</div>
   </button>
 
   <button class="quick" id="quickWithdraw">
-    <div class="quick-icon">⇧</div>
+    <div class="quick-icon">
+  <img src="./images/withdraw.png" alt="提領">
+</div>
     <div>提領</div>
   </button>
 
   <button class="quick" id="quickContract">
-    <div class="quick-icon">▤</div>
+    <div class="quick-icon">
+  <img src="./images/contract.png" alt="合約">
+</div>
     <div>合約</div>
   </button>
 
   <button class="quick" id="quickAllocation">
-    <div class="quick-icon">◷</div>
+    <div class="quick-icon">
+  <img src="./images/allocation.png" alt="中樞配給">
+</div>
     <div>中樞配給</div>
   </button>
 
   <button class="quick">
-    <div class="quick-icon">◉</div>
+    <div class="quick-icon">
+  <img src="./images/help.png" alt="幫助中心">
+</div>
     <div>幫助中心</div>
   </button>
 
