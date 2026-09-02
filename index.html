@@ -1244,15 +1244,32 @@ transform:translateY(-10px);
     display: flex;
     align-items: center;
     gap: 12px;
+    font-size: 21px;
 }
 
 .quick-title span{
     height: 0.6px;
-    width: 180px;
-flex: none;
+    width: 130px;
+    position: relative;
+    flex: none;
     background: #ffe600;
     border-radius: 10px;
-    box-shadow: 0 0 15px #ffe600;
+    box-shadow:
+  0 0 4px #ffe600,
+  0 0 10px #ffe600,
+  0 0 18px rgba(255,230,0,.7);
+}
+.quick-title span::after{
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffe600;
+    transform: translateY(-50%);
+    box-shadow: 0 0 6px #ffe600;
 }
     }
  /* ===== 手機版寬度修正 ===== */
