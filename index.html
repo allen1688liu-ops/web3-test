@@ -343,26 +343,36 @@ background-size:cover;
 position:relative;
 overflow:hidden;
 }
-    .ecosystem h3{
-      color:var(--yellow);
-      font-size:28px;
-    }
+    ecosystem h3{ 
+        color:#ffffff; 
+        font-size:28px;
+
+position:relative;
+left:0px;
+top:0px;
+
+transform:scale(0.8);
+transform-origin:left center;
+}
 
     .ecosystem p{
       margin-top:8px;
       color:#d9e4f7;
     }
 
-    .eco-k{
-      position:absolute;
-      right:7%;
-      bottom:-30px;
-      color:var(--yellow);
-      font-size:150px;
-      font-weight:900;
-      font-style:italic;
-      opacity:.9;
-    }
+    .eco-katana{ 
+        position:absolute; 
+        right:84px; 
+        bottom:75px;
+width:100%;
+height:auto;
+
+transform:scale(0.75);
+transform-origin:center;
+
+z-index:1;
+pointer-events:none;
+}
 
     .metrics{
       display:grid;
@@ -1371,15 +1381,29 @@ html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
   }
 
   .ecosystem h3 {
-    font-size: 24px;
+    font-size: 23px;
     line-height: 1.2;
-  }
+    position: relative;
+    left: 1.4px;
+    top: 25px;
+}
 
-  .eco-k {
-    right: -22px;
-    bottom: -22px;
-    font-size: 95px;
-  }
+.eco-desc {
+    font-size: 8.6px;
+    line-height: 1.5;
+    position: relative;
+    left: 3px;
+    top: 20px;
+}
+
+.connect-btn { 
+    padding: 9px 14px; 
+    font-size: 12px;
+
+position: relative;
+left: 1px;
+top: 10px;
+}
 
   .activity {
     grid-template-columns: 38px minmax(0, 1fr);
@@ -2410,15 +2434,20 @@ top: 38%;
 <!-- KATANA 生態 -->
 <div class="ecosystem">
 
-  <h3>KATANA 生態</h3>
 
-  <p>
-    安全・透明・高效・創新
-  </p>
+
+<h3>安全・透明・高效・創新</h3>
+
+<p class="eco-desc">
+  KATANA 是以太坊鏈上的去中心化穩定幣儲蓄協議。<br>
+  作為一款 Web3 DApp，用戶只需透過錢包即可直接接入，<br>
+  無需註冊或依賴任何中介機構。
+</p>
 
   <button class="connect-btn">
     了解更多 →
   </button>
+  <img src="./images/katana.png" class="eco-katana" alt="KATANA">
 
 
 </div>
