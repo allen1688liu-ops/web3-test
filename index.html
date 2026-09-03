@@ -374,35 +374,56 @@ z-index:1;
 pointer-events:none;
 }
 
-    .metrics{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
+    .metrics { 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 6px; 
     }
 
-    .metric{
-      min-height:185px;
-      padding:20px;
-      border:1px solid rgba(38,124,255,.27);
-      border-radius:18px;
-      background:linear-gradient(165deg,#08234a,#041026);
-    }
+.metric { 
+    min-height: 86px; 
+    padding: 8px; 
+    border: 1px solid rgba(38, 124, 255, 0.35); 
+    border-radius: 10px; 
+    background: linear-gradient(165deg, #08234a, #041026);
 
-    .metric-name{
-      color:#b7c6db;
-      font-weight:800;
-    }
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.metric-icon { 
+    font-size: 22px; 
+    flex-shrink: 0; 
+}
 
-    .metric-number{
-      font-size:32px;
-      font-weight:900;
-      margin-top:14px;
-    }
-
-    .metric-delta{
-      color:var(--good);
-      margin-top:7px;
-      font-weight:800;
+.metric-icon img {
+    width: 100%;
+    height: auto;
+    transform: scale(1.3);
+    transform-origin: center;
+}
+.metric-info { 
+    min-width: 0; 
+}
+.metric-name { 
+    color: #b7c6db; 
+    font-size: 9px; 
+    font-weight: 800; 
+    white-space: nowrap; 
+}
+.metric-number { 
+    color: #ffffff; 
+    font-size: 15px; 
+    line-height: 1.1; 
+    font-weight: 900; 
+    margin-top: 5px; 
+}
+.metric-delta { 
+    color: var(--good); 
+    font-size: 8px; 
+    font-weight: 800;
+     margin-top: 5px;
+      white-space: nowrap; 
     }
 
     .tabs{
@@ -1288,8 +1309,9 @@ transform:translateY(-10px);
 }
 
       .metrics{
-        grid-template-columns:1fr;
-      }
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:6px;
+}
 
       .quick-title{
     display: flex;
@@ -1482,7 +1504,7 @@ font-size: 12px;
 
 position: relative;
 left: 0px;           
-top: 4px;           
+top: 7px;           
 }
 
 .features span {
@@ -2489,64 +2511,52 @@ top: 38%;
 <h2 class="metrics-title">即時加密貨幣收益和網路統計</h2>
 <div class="metrics">
 
-  <div class="metric">
-    <div class="metric-name">
-      總收益（示意）
+ <div class="metric">
+    <div class="metric-icon">
+    <img src="./images/tvl.png" alt="">
+</div>
+    <div class="metric-info">
+        <div class="metric-name">總收益 (ETH)</div>
+        <div class="metric-number">776,918 </div>
+        <div class="metric-delta"> +12.45% · 24H</div>
     </div>
-
-    <div class="metric-number">
-      776,918
-    </div>
-
-    <div class="metric-delta">
-      +12.45% · 24H
-    </div>
-  </div>
+</div>
 
 
   <div class="metric">
-    <div class="metric-name">
-      中樞配給（示意）
+    <div class="metric-icon">
+    <img src="./images/allo.png" alt="">
+</div>
+    <div class="metric-info">
+        <div class="metric-name">中樞配給</div>
+        <div class="metric-number">523,680</div>
+        <div class="metric-delta">+8.21% · 24H</div>
     </div>
-
-    <div class="metric-number">
-      523,680
-    </div>
-
-    <div class="metric-delta">
-      +8.21% · 24H
-    </div>
-  </div>
+</div>
 
 
   <div class="metric">
-    <div class="metric-name">
-      參與者（示意）
+    <div class="metric-icon">
+    <img src="./images/users.png" alt="">
+</div>
+    <div class="metric-info">
+        <div class="metric-name">參與者</div>
+        <div class="metric-number">497,551</div>
+        <div class="metric-delta">+6.32% · 24H</div>
     </div>
-
-    <div class="metric-number">
-      497,551
-    </div>
-
-    <div class="metric-delta">
-      +6.32% · 24H
-    </div>
-  </div>
+</div>
 
 
   <div class="metric">
-    <div class="metric-name">
-      系統收益（示意）
+    <div class="metric-icon">
+    <img src="./images/revenue.png" alt="">
+</div>
+    <div class="metric-info">
+        <div class="metric-name">系統收益</div>
+        <div class="metric-number">439,834</div>
+        <div class="metric-delta">+9.87% · 24H</div>
     </div>
-
-    <div class="metric-number">
-      439,834
-    </div>
-
-    <div class="metric-delta">
-      +9.87% · 24H
-    </div>
-  </div>
+</div>
 
 </div>
 <h2>近期活動</h2>
