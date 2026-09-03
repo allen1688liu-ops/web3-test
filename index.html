@@ -1402,7 +1402,31 @@ html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 
 position: relative;
 left: 1px;
-top: 13px;
+top: -2px;
+}
+
+/* 生態區－了解更多按鈕 */
+ .eco-more-btn {
+     position: relative;
+
+/* 位置 */
+left: 0px;
+top: 30px;
+
+/* 外觀 */
+background: #fff000;
+color: #111;
+border: none;
+border-radius: 12px;
+
+/* 大小 */
+padding: 9px 18px;
+
+/* 文字 */
+font-size: 12px;
+font-weight: 600;
+
+cursor: pointer;
 }
 
   .activity {
@@ -1447,13 +1471,18 @@ top: 13px;
     font-size: 11px !important;
     transform: translateY(8px);
 }
-.features {
-    display: flex;
-    justify-content: space-around;
+.features { 
+    display: flex; 
+    justify-content: space-around; 
     align-items: center;
-    margin: 22px 0;
-    color: #8a9aa5;
-    font-size: 18px;
+
+margin: 12px 0;      
+color: #8a9aa5;
+font-size: 12px;     
+
+position: relative;
+left: 0px;           
+top: 4px;           
 }
 
 .features span {
@@ -2444,7 +2473,7 @@ top: 38%;
   無需註冊或依賴任何中介機構。
 </p>
 
-  <button class="connect-btn">
+  <button class="eco-more-btn">
     了解更多 →
   </button>
   <img src="./images/katana.png" class="eco-katana" alt="KATANA">
