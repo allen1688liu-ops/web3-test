@@ -501,7 +501,8 @@ box-shadow:
     0 0 8px rgba(70, 130, 255, 0.35),
     0 0 22px rgba(70, 130, 255, 0.18);
 
-max-height: 300px;
+height: 500px;
+max-height: none;
 overflow-y: auto;
 overflow-x: hidden;
 }
@@ -522,7 +523,8 @@ overflow-x: hidden;
       grid-template-columns:42px 1fr auto;
       gap:12px;
       align-items:center;
-      padding:14px;
+      padding: 5px 10px;
+      min-height: 70px;
       border:1px solid rgba(65,130,255,.20);
       border-radius:15px;
       background:#071838;
@@ -531,10 +533,9 @@ overflow-x: hidden;
     .coin{
       width:38px;
       height:38px;
-      border-radius:50%;
       display:grid;
       place-items:center;
-      background:#566fe9;
+      
     }
 
     .addr{
@@ -1419,6 +1420,7 @@ html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 .activity-list {
     width: 100%;
     max-width: 100%;
+    overflow: hidden;
 }
 
 .activity {
@@ -2428,7 +2430,7 @@ top: 38%;
 }
 
 .activity-scroll {
-    max-height: 400px;
+    height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
     display: grid;
@@ -2641,7 +2643,9 @@ top: 38%;
 
   <div class="activity" data-type="withdraw">
 
-    <div class="coin">◆</div>
+    <div class="coin">
+    <img src="images/ETH.png" alt="ETH">
+</div>
 
     <div>
       <div class="addr">
