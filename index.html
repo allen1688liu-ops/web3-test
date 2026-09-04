@@ -464,7 +464,8 @@ gap: 8px;
       gap:6px;
       padding:5px;
       border-radius:999px;
-      background:#031027;
+      background: rgba(3, 16, 39, 0.55);
+      margin-top: 7px
     }
 
     .tab{
@@ -477,15 +478,40 @@ gap: 8px;
     }
 
     .tab.active{
-      background:var(--yellow);
-      color:#06102a;
-    }
+    background: transparent;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+    box-shadow:
+        0 0 6px var(--yellow),
+        0 0 14px rgba(255, 230, 0, 0.65);
+}
 
     .activity-list{
-      display:grid;
-      gap:10px;
-      margin-top:14px;
-    }
+         display:grid; 
+         gap:10px; 
+         margin-top:14px;
+
+padding:16px;
+border-radius:22px;
+
+background:rgba(7, 24, 62, 0.38);
+border:1px solid rgba(70, 130, 255, 0.55);
+
+box-shadow:
+    0 0 8px rgba(70, 130, 255, 0.35),
+    0 0 22px rgba(70, 130, 255, 0.18);
+}
+
+.activity-list-title{
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-shadow:
+        0 0 6px rgba(70,130,255,0.8),
+        0 0 14px rgba(70,130,255,0.5);
+}
 
     .activity{
       display:grid;
@@ -2393,6 +2419,11 @@ top: 38%;
 }
 }
 
+.activity-title {
+    margin-top: 10px;
+}
+
+
 </style>
 </head>
 <div id="homePage" class="app-page active">
@@ -2591,26 +2622,10 @@ top: 38%;
 </div>
 
 </div>
-<h2>近期活動</h2>
-
-<div class="tabs">
-
-  <button class="tab active" data-filter="all">
-    全部
-  </button>
-
-  <button class="tab" data-filter="deposit">
-    充值
-  </button>
-
-  <button class="tab" data-filter="withdraw">
-    提領
-  </button>
-
-</div>
 
 
 <div class="activity-list">
+    <div class="activity-list-title">· 即時交易動態 </div>
 
   <div class="activity" data-type="withdraw">
 
