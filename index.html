@@ -378,16 +378,26 @@ pointer-events:none;
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 
         gap: 10px; 
+        margin-top: 12px
     }
 
 .metric { 
     height: 65px;
     min-height: 0; 
     padding: 6px; 
-    border: 1px solid rgba(38, 124, 255, 0.35); 
-    border-radius: 10px; 
-    background: linear-gradient(165deg, #08234a, #041026);
+    border: 0.6px solid rgba(70, 130, 255, 0.92);
+border-radius: 10px;
 
+background: linear-gradient(
+    180deg,
+    rgba(7, 24, 62, 0.52) 0%,
+    rgba(3, 13, 36, 0.72) 100%
+);
+
+box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 5px rgba(60, 130, 255, 0.30),
+    0 0 12px rgba(60, 130, 255, 0.18);
 display: flex;
 align-items: center;
 gap: 8px;
@@ -405,19 +415,19 @@ gap: 8px;
 }
 
 .metric:nth-child(1) .metric-icon img {
-    transform: translateX(-102px) scale(0.27);
+    transform: translateX(-102px)translateY(3px) scale(0.27);
 }
 
 .metric:nth-child(2) .metric-icon img {
-    transform: translateX(-103px) scale(0.28);
+    transform: translateX(-103px)translateY(2px) scale(0.28);
 }
 
 .metric:nth-child(3) .metric-icon img {
-    transform: translateX(-102px) scale(0.3);
+    transform: translateX(-102px) translateY(3px)scale(0.3);
 }
 
 .metric:nth-child(4) .metric-icon img {
-   transform: translateX(-103px) scale(0.25);
+   transform: translateX(-103px)translateY(2px) scale(0.25);
 }
 .metric-info {
     min-width: 0;
@@ -443,6 +453,10 @@ gap: 8px;
      margin-top: 5px;
       white-space: nowrap; 
     }
+
+    .metric-24h {
+    color: #b7c6db;
+}
 
     .tabs{
       display:grid;
@@ -2536,7 +2550,7 @@ top: 38%;
     <div class="metric-info">
         <div class="metric-name">總收益 (ETH)</div>
         <div class="metric-number">776,918 </div>
-        <div class="metric-delta"> +12.45% · 24H</div>
+        <div class="metric-delta">+12.45%<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -2548,7 +2562,7 @@ top: 38%;
     <div class="metric-info">
         <div class="metric-name">中樞配給</div>
         <div class="metric-number">523,680</div>
-        <div class="metric-delta">+8.21% · 24H</div>
+        <div class="metric-delta">+8.21%<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -2560,7 +2574,7 @@ top: 38%;
     <div class="metric-info">
         <div class="metric-name">參與者</div>
         <div class="metric-number">497,551</div>
-        <div class="metric-delta">+6.32% · 24H</div>
+        <div class="metric-delta">+6.32%<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -2572,7 +2586,7 @@ top: 38%;
     <div class="metric-info">
         <div class="metric-name">系統收益</div>
         <div class="metric-number">439,834</div>
-        <div class="metric-delta">+9.87% · 24H</div>
+       <div class="metric-delta">+9.87%<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
