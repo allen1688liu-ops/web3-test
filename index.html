@@ -564,7 +564,13 @@ top: -10px;
     font-size: 8px;
     position: relative;
     left: 12px;
-    top: 9px;
+    top: 12px;
+}
+
+.time{
+    position: relative;
+    left: 20px;
+    top: 12.5px;
 }
 
     .meta{
@@ -576,6 +582,22 @@ top: -10px;
     .amount{
       font-weight:900;
     }
+
+    .amount-number{
+    color: var(--good);
+    font-size: 12px;
+    position: relative;
+    left: 175px;
+    top: -40px;
+}
+
+.eth-unit{
+    color: #8f98aa;
+    font-size: 8px;
+    position: relative;
+    left: 175px;
+    top: -41px;
+}
 
     .in{color:var(--good)}
     .out{color:var(--bad)}
@@ -2678,14 +2700,15 @@ top: 38%;
       </div>
 
       <div class="meta">
-  <span class="type-tag">⇧ 提領</span>
+  <span class="type-tag">提領</span>
   <span class="time">09:45</span>
 </div>
     </div>
 
     <div class="amount out">
-      -2.8757 ETH
-    </div>
+    <span class="amount-number">-2.8757</span>
+    <span class="eth-unit">ETH</span>
+</div>
 
   </div>
 
