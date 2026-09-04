@@ -486,10 +486,10 @@ gap: 8px;
         0 0 14px rgba(255, 230, 0, 0.65);
 }
 
-    .activity-list{
-         display:grid; 
-         gap:10px; 
-         margin-top:14px;
+    .activity-list{ 
+        display:grid; 
+        gap:10px; 
+        margin-top:14px;
 
 padding:16px;
 border-radius:22px;
@@ -500,6 +500,10 @@ border:1px solid rgba(70, 130, 255, 0.55);
 box-shadow:
     0 0 8px rgba(70, 130, 255, 0.35),
     0 0 22px rgba(70, 130, 255, 0.18);
+
+max-height: 300px;
+overflow-y: auto;
+overflow-x: hidden;
 }
 
 .activity-list-title{
@@ -2423,6 +2427,13 @@ top: 38%;
     margin-top: 10px;
 }
 
+.activity-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    gap: 10px;
+}
 
 </style>
 </head>
@@ -2626,6 +2637,7 @@ top: 38%;
 
 <div class="activity-list">
     <div class="activity-list-title">· 即時交易動態 </div>
+    <div class="activity-scroll">
 
   <div class="activity" data-type="withdraw">
 
@@ -2708,7 +2720,7 @@ top: 38%;
     </div>
 
   </div>
-
+</div>
 </div>
 <h2>合作夥伴與協作網絡</h2>
 
