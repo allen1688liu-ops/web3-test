@@ -514,7 +514,7 @@ overflow-x: hidden;
     color: #ffffff;
     font-size: 12px;
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 12px; 
     text-shadow:
         0 0 6px rgba(70,130,255,0.8),
         0 0 14px rgba(70,130,255,0.5);
@@ -614,7 +614,7 @@ top: -10px;
     }
 
     .partner{
-      min-height:90px;
+      min-height:60px;
       border:1px solid rgba(255,244,0,.25);
       border-radius:15px;
       display:grid;
@@ -634,49 +634,49 @@ top: -10px;
    width: 85%;
 max-width: none;
 max-height: none;
-transform: translate(-2px, 5px) scale(2.8);
+transform: translate(1px, -7px) scale(1.2);
 transform-origin: center center;
 justify-self: center;
 align-self: center;
 }
 .partner img[src="images/binance.png"] {
-    transform: translate(-1px, 3px) scale(2.3);
+    transform: translate(-1px, 1px) scale(1.7);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
 }
 .partner img[src="images/crypto.com.png"] {
-    transform: translate(0px, -1px) scale(2.2);
+    transform: translate(0px, 1px) scale(1.6);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
  }
- .partner img[src="images/fairyproof.png"] {
-    transform: translate(-2px, -4px) scale(2.9);
+ .partner img[src="images/htx.png"] {
+    transform: translate(-2px, -1px) scale(1.9);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
 }
 .partner img[src="images/bitget.png"] {
-    transform: translate(2px, -3px) scale(2.9);
+    transform: translate(-2px, 2px) scale(1.75);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
 }
 .partner img[src="images/trust.png"] {
-    transform: translate(-1px, 0px) scale(2.2);
+    transform: translate(-1px, 1px) scale(1.3);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
 }
 .partner img[src="images/defibox.png"] {
-    transform: translate(0px, -4px) scale(2.1);
+    transform: translate(0px, -1px) scale(1.60);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
 }
 .partner img[src="images/coolwallet.png"] {
-    transform: translate(0px, 0px) scale(2.5);
+    transform: translate(0px, 0px) scale(1.4);
     transform-origin: center center;
     justify-self: center;
     align-self: center;
@@ -1580,11 +1580,18 @@ cursor: pointer;
   .partners {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    margin-top: 17px
   }
 
   .partner {
-    min-height: 80px;
+    height: 68px;
+min-height: 68px;
     font-size: 14px;
+    background: transparent;
+
+    border: 1px solid rgba(65, 130, 255, 0.25);
+border-radius: 15px;
+box-shadow: 0 0 5px rgba(65, 130, 255, 0.18);
   }
   body {
     padding-bottom: 120px;
@@ -2491,6 +2498,11 @@ top: 38%;
     align-content: start;
 }
 
+.partner-title {
+    position: relative;
+    top: 8px;
+}
+
 </style>
 </head>
 <div id="homePage" class="app-page active">
@@ -2962,14 +2974,14 @@ top: 38%;
   </div>
 </div>
 </div>
-<h2>合作夥伴與協作網絡</h2>
+<h2 class="partner-title">合作夥伴與協作網絡</h2>  
 
 <div class="partners">
 
  <div class="partner"><img src="images/okx.png" alt="OKX"></div>
 <div class="partner"><img src="images/binance.png" alt="Binance"></div>
 <div class="partner"><img src="images/crypto.com.png" alt="Crypto.com"></div>
-<div class="partner"><img src="images/fairyproof.png" alt="HTX"></div>
+<div class="partner"><img src="images/htx.png" alt="HTX"></div>
 <div class="partner"><img src="images/bitget.png" alt="Bitget"></div>
 <div class="partner"><img src="images/trust.png" alt="Trust Wallet"></div>
 <div class="partner"><img src="images/defibox.png" alt="Defibox"></div>
