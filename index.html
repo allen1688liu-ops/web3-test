@@ -1205,6 +1205,17 @@ align-self: center;
       color:var(--yellow);
     }
 
+    .nav-item.active .nav-home-img,
+.nav-item.active .nav-wallet-img,
+.nav-item.active .nav-swap-img,
+.nav-item.active .nav-history-img,
+.nav-item.active .nav-support-img {
+    filter: brightness(0) saturate(100%)
+            invert(88%) sepia(100%)
+            saturate(2000%) hue-rotate(359deg)
+            brightness(105%);
+}
+
     .nav-icon{
       font-size:22px;
     }
