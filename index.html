@@ -2435,11 +2435,21 @@ transform: translateY(-14px);
 font-size: 6px;
 }
 .home-notice-logo {
-     text-align: center;
-      font-size: 36px; 
-      font-weight: 900;
-      transform: translateY(-22px);
-     }
+    position: relative;
+    height: 40px;
+    text-align: center;
+}
+
+.home-notice-logo img {
+    position: absolute;
+    width: 350px;
+    height: auto;
+    left: 51%;
+    top: -15%;
+    transform: translate(-50%, -50%);
+}
+
+
 .home-notice-title { 
     margin-top: 0px; 
     text-align: center;
@@ -4091,7 +4101,9 @@ vipSlider.addEventListener("pointerup", (e) => {
 <div id="homeNoticePopup" class="home-notice-popup">
     <div class="home-notice-box">
         <div class="home-notice-tag">收益詳細說明</div>
-        <div class="home-notice-logo">KATANA</div>
+        <div class="home-notice-logo">
+    <img src="images/katana-logo.png" alt="KATANA">
+</div>
         <div class="home-notice-title">KATANA 中樞核心配給</div>
         <div class="home-notice-rate-box">
             <div class="home-notice-row">
