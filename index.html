@@ -2389,9 +2389,11 @@ background: rgba(0, 0, 0, 0.62);
 }
 .home-notice-box { 
     position: relative;
-width: min(92vw, 520px);
+width: min(80vw, 520px);
+box-sizing: border-box;
 max-height: 92vh;
 overflow-y: auto;
+overflow-x: hidden;
 
 padding: 24px 20px 22px;
 
@@ -2492,6 +2494,8 @@ transform: translateY(-37px);
 
 .home-notice-rate-box {
      margin-top: 0px; 
+     margin-left: 25px;
+margin-right: 25px;
      transform: translateY(-1px);
      padding: 8px 18px;
 border: 1px solid rgba(255, 217, 26, 0.35);
@@ -2502,11 +2506,11 @@ background: rgba(7, 22, 45, 0.88);
     display: flex; 
     justify-content: space-between; 
     gap: 18px;
-padding: 6px 0;
+padding: 7px 0;
 
 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-font-size: 12px;
+font-size: 11px;
 white-space: nowrap;
 }
 .home-notice-row:last-child { 
@@ -2518,8 +2522,8 @@ white-space: nowrap;
     }
 .home-notice-close-btn {
      display: block; 
-     width: 38%;
-      height: 38px;
+     width: 30%;
+      height: 34px;
 margin: 8px auto 0;
 transform: translateY(-1px);
 
