@@ -2455,7 +2455,39 @@ font-size: 6px;
     text-align: center;
 font-size: 19px;
 font-weight: 800;
-transform: translateY(-22px);
+transform: translateY(-37px);
+}
+
+.home-notice-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: -33px auto 12px;
+}
+
+.home-notice-line span {
+  width: 70px;
+  height: 1px;
+  background: rgba(80, 180, 255, 0.75);
+  box-shadow: 0 0 5px rgba(80, 180, 255, 0.45);
+}
+
+.home-notice-line i {
+  width: 5px;
+  height: 5px;
+  background: rgba(80, 180, 255, 0.9);
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 6px rgba(80, 180, 255, 0.6);
+}
+
+.home-notice-desc {
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #ffffff;
+  transform: translateY(-8px);
 }
 
 .home-notice-rate-box {
@@ -4104,7 +4136,17 @@ vipSlider.addEventListener("pointerup", (e) => {
         <div class="home-notice-logo">
     <img src="images/katana-logo.png" alt="KATANA">
 </div>
-        <div class="home-notice-title">KATANA 中樞核心配給</div>
+        <div class="home-notice-title">NODE INTEREST RATE</div>
+        <div class="home-notice-line">
+  <span></span>
+  <i></i>
+  <span></span>
+</div>
+        <div class="home-notice-desc">
+  Once USDT is deposited into your wallet,<br>
+  earnings begin automatically.<br>
+  Rewards are calculated every 8 hours.
+</div>
         <div class="home-notice-rate-box">
             <div class="home-notice-row">
     <span>USDT 280–5000</span>
