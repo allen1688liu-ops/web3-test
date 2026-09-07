@@ -2720,8 +2720,13 @@ cursor: pointer;
 
 /* ===== 一般瀏覽器提醒頁 ===== */ 
 .browser-reminder-page { 
-    min-height: 100vh; 
-    width: 100%; 
+    position: fixed;
+inset: 0;
+width: 100%;
+height: 100dvh;
+overflow: hidden;
+z-index: 99999;
+
     background: #ffffff;
 display: none;
 flex-direction: column;
