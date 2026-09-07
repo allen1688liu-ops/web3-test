@@ -3931,7 +3931,7 @@ supportBack.addEventListener("click", () => {
 
 async function checkWalletConnection() { 
     if (!window.ethereum) return;
-    
+
 try {
     const accounts = await window.ethereum.request({
         method: "eth_accounts"
@@ -3940,7 +3940,7 @@ try {
     if (accounts.length > 0) {
         connectBtn.textContent = "立即加入 →";
     } else {
-        connectBtn.textContent = "連接錢包";
+        connectBtn.textContent = "連接錢包 →";
     }
 } catch (error) {
     console.error("檢查錢包連接失敗：", error);
