@@ -2718,6 +2718,35 @@ font-weight: 800;
 cursor: pointer;
 }
 
+/* ===== 一般瀏覽器提醒頁 ===== */ 
+.browser-reminder-page { 
+    min-height: 100vh; 
+    width: 100%; 
+    background: #ffffff;
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+text-align: center;
+padding: 20px;
+box-sizing: border-box;
+}
+.browser-reminder-page.active { 
+    display: flex; 
+}
+.browser-reminder-icon { 
+    font-size: 110px; 
+    line-height: 1; 
+    color: #27d4d4;
+     margin-bottom: 140px; 
+    }
+.browser-reminder-text { 
+    color: #aabbd4; 
+    font-size: 14px; 
+    line-height: 1.5; 
+    font-weight: 400; 
+    }
 </style>
 </head>
 <!-- 連接錢包頁 -->
@@ -2733,6 +2762,17 @@ cursor: pointer;
         </button>
     </div>
     </div>
+ <!-- 一般瀏覽器提醒頁 -->
+<div id="browserReminderPage" class="browser-reminder-page active">
+    <div class="browser-reminder-icon">
+    <img src="./images/browser-lock.png" alt="">
+</div>
+    <div class="browser-reminder-text">
+        You are currently visiting a decentralized website,<br>
+        please run it in a wallet app
+    </div>
+         </div>
+
 <div id="homePage" class="app-page active">
 <div class="brand">
   <img src="images/logo.png" class="brand-logo" alt="KATANA">
