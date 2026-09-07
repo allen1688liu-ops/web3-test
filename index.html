@@ -4363,6 +4363,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const homePage = document.getElementById("homePage");
     const homeNoticePopup = document.getElementById("homeNoticePopup");
     const bottomNav = document.querySelector(".bottom-nav");
+    const connectWalletBtn = document.getElementById("connectWalletBtn");
 
     reminderPage.classList.remove("active");
     connectPage.style.display = "none";
@@ -4381,6 +4382,30 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         reminderPage.classList.add("active");
     }
+    if (connectWalletBtn) { 
+        connectWalletBtn.addEventListener("click", async function () { 
+            try { 
+                if (!window.ethereum) { 
+                    alert("Wallet not found"); 
+                    return;               
+                }
+                
+        await window.ethereum.request({
+            method: "eth_requestAccounts"
+        });
+
+        connectPage.style.display = "none";
+        homePage.style.display = "block";
+
+        if (bottomNav) {
+            bottomNav.style.display = "";
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+});
+}
 });
 </script>
 </body>
