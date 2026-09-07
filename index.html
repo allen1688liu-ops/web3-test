@@ -4378,34 +4378,19 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     if (window.ethereum) { 
-        try { 
-            const accounts = await window.ethereum.request({ 
-                method: "eth_accounts" 
-            });
-
-    if (accounts.length > 0) {
-        // 已連接 → 直接進首頁
-        connectPage.style.display = "none";
+        // 錢包瀏覽器 → 直接進首頁 
+        connectPage.style.display = "none"; 
         homePage.style.display = "";
-        homePage.classList.add("active");
+         homePage.classList.add("active");
 
-        if (bottomNav) {
-            bottomNav.style.display = "flex";
-        }
-    } else {
-        // 未連接 → 顯示連接錢包頁
-        connectPage.style.display = "flex";
-    }
-
-} catch (error) {
-    console.error(error);
-    connectPage.style.display = "flex";
+if (bottomNav) {
+    bottomNav.style.display = "flex";
 }
 } else {
-     // 一般瀏覽器 → 顯示白色盾牌頁 
-     reminderPage.classList.add("active"); 
-    }
-    
+     // 一般瀏覽器 → 顯示白色提醒頁
+      reminderPage.classList.add("active");
+     }
+
     if (connectWalletBtn) { 
         connectWalletBtn.addEventListener("click", async function () { 
             try { 
