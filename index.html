@@ -2715,7 +2715,7 @@ box-sizing: border-box;
   </p>
 
   <button class="connect-btn" id="connectBtn">
-    立即加入 →
+    連接錢包 →
   </button>
 
 
@@ -3929,9 +3929,19 @@ supportBack.addEventListener("click", () => {
   // ===== 連接錢包按鈕：目前先做介面預覽 =====
   const connectBtn = document.getElementById("connectBtn");
 
-  connectBtn.addEventListener("click", () => {
-    alert("目前先完成 KATANA 介面，下一階段再接真實錢包功能。");
-  });
+  connectBtn.addEventListener("click", async () => {
+     try { 
+        const accounts = await window.ethereum.request({ 
+            method: "eth_requestAccounts" 
+        });
+        
+    if (accounts.length > 0) {
+        connectBtn.textContent = "立即加入 →";
+    }
+} catch (error) {
+    console.error("連接錢包失敗：", error);
+}
+});
 
 
   // ===== 公告 =====
