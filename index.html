@@ -3930,21 +3930,29 @@ supportBack.addEventListener("click", () => {
   const connectBtn = document.getElementById("connectBtn");
 
 async function checkWalletConnection() { 
-    if (!window.ethereum) return;
+    // 等錢包環境初始化完成 
+    for (let i = 0; i < 10; i++) {
+         if (window.ethereum) {
+             try {
+                 const accounts = await window.ethereum.request({ 
+                    method: "eth_accounts"
+                 });
 
-try {
-    const accounts = await window.ethereum.request({
-        method: "eth_accounts"
-    });
-
-    if (accounts.length > 0) {
-        connectBtn.textContent = "立即加入 →";
-    } else {
-        connectBtn.textContent = "連接錢包 →";
+            if (accounts && accounts.length > 0) {
+                connectBtn.textContent = "立即加入 →";
+                connectBtn.dataset.state = "connected";
+                return;
+            }
+        } catch (error) {
+            console.error("檢查錢包連接失敗：", error);
+        }
     }
-} catch (error) {
-    console.error("檢查錢包連接失敗：", error);
+
+    await new Promise(resolve => setTimeout(resolve, 300));
 }
+
+connectBtn.textContent = "連接錢包 →";
+connectBtn.dataset.state = "disconnected";
 }
 checkWalletConnection();
 
