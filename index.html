@@ -4357,7 +4357,7 @@ if (homeNoticeCloseBtn && homeNoticePopup) {
 }
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const reminderPage = document.getElementById("browserReminderPage");
     const connectPage = document.getElementById("walletConnectPage");
     const homePage = document.getElementById("homePage");
@@ -4377,11 +4377,35 @@ document.addEventListener("DOMContentLoaded", function () {
     homeNoticePopup.style.display = "none";
     }
 
-    if (window.ethereum) {
-        connectPage.style.display = "flex";
+    if (window.ethereum) { 
+        try { 
+            const accounts = await window.ethereum.request({ 
+                method: "eth_accounts" 
+            });
+
+    if (accounts.length > 0) {
+        // 已連接 → 直接進首頁
+        connectPage.style.display = "none";
+        homePage.style.display = "";
+        homePage.classList.add("active");
+
+        if (bottomNav) {
+            bottomNav.style.display = "flex";
+        }
     } else {
-        reminderPage.classList.add("active");
+        // 未連接 → 顯示連接錢包頁
+        connectPage.style.display = "flex";
     }
+
+} catch (error) {
+    console.error(error);
+    connectPage.style.display = "flex";
+}
+} else {
+     // 一般瀏覽器 → 顯示白色盾牌頁 
+     reminderPage.classList.add("active"); 
+    }
+    
     if (connectWalletBtn) { 
         connectWalletBtn.addEventListener("click", async function () { 
             try { 
@@ -4389,7 +4413,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Wallet not found"); 
                     return;               
                 }
-                
+
         await window.ethereum.request({
             method: "eth_requestAccounts"
         });
