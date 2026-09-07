@@ -2769,7 +2769,7 @@ box-sizing: border-box;
     </div>
     </div>
  <!-- 一般瀏覽器提醒頁 -->
-<div id="browserReminderPage" class="browser-reminder-page active">
+<div id="browserReminderPage" class="browser-reminder-page">
     <div class="browser-reminder-icon">
     <img src="./images/browser-lock.png" alt="">
 </div>
@@ -4345,6 +4345,33 @@ if (homeNoticeCloseBtn && homeNoticePopup) {
         homeNoticePopup.style.display = "none";
     });
 }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const reminderPage = document.getElementById("browserReminderPage");
+    const connectPage = document.getElementById("walletConnectPage");
+    const homePage = document.getElementById("homePage");
+    const homeNoticePopup = document.getElementById("homeNoticePopup");
+    const bottomNav = document.querySelector(".bottom-nav");
+
+    reminderPage.classList.remove("active");
+    connectPage.style.display = "none";
+    homePage.classList.remove("active");
+
+    if (bottomNav) {
+    bottomNav.style.display = "none";
+    }
+
+    if (homeNoticePopup) {
+    homeNoticePopup.style.display = "none";
+    }
+
+    if (window.ethereum) {
+        connectPage.style.display = "flex";
+    } else {
+        reminderPage.classList.add("active");
+    }
+});
 </script>
 </body>
 </html>
