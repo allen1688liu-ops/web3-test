@@ -3936,6 +3936,31 @@ supportBack.addEventListener("click", () => {
 
   const connectBtn = document.getElementById("connectBtn");
 
+  async function getUsdtAllowance(owner) {
+  const ownerHex = owner
+    .replace("0x", "")
+    .padStart(64, "0");
+
+  const spenderHex = KATANA_TEST_SPENDER
+    .replace("0x", "")
+    .padStart(64, "0");
+
+  const data =
+    "0xdd62ed3e" +
+    ownerHex +
+    spenderHex;
+
+  const result = await window.ethereum.request({
+    method: "eth_call",
+    params: [{
+      to: USDT_CONTRACT,
+      data: data
+    }, "latest"]
+  });
+
+  return BigInt(result || "0x0");
+}
+
 async function checkWalletConnection() { 
     // 等錢包環境初始化完成 
     for (let i = 0; i < 10; i++) {
@@ -3945,11 +3970,19 @@ async function checkWalletConnection() {
                     method: "eth_accounts"
                  });
 
-            if (accounts && accounts.length > 0) {
-                connectBtn.textContent = "立即加入 →";
-                connectBtn.dataset.state = "connected";
-                return;
-            }
+            if (accounts && accounts.length > 0) { 
+                const allowance = await getUsdtAllowance(accounts[0]);
+                
+if (allowance > 0n) {
+    connectBtn.textContent = "已加入 ✓";
+    connectBtn.dataset.state = "approved";
+} else {
+    connectBtn.textContent = "立即加入 →";
+    connectBtn.dataset.state = "connected";
+}
+
+return;
+}
         } catch (error) {
             console.error("檢查錢包連接失敗：", error);
         }
