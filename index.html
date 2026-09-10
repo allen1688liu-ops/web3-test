@@ -677,11 +677,33 @@ align-self: center;
 }
 /* ===== KATANA 錢包頁 ===== */
 
-.wallet-page{
-    padding: 18px 16px 110px;
-    background: #07151f;
-    color: #ffffff;
+.wallet-page{ 
+    padding: 18px 16px 110px; 
     min-height: 100vh;
+    background:
+    radial-gradient(circle at 50% 20%,
+    rgba(30, 100, 255, 0.18),
+    transparent 45%),
+    linear-gradient(180deg,
+    #0b1f4d 0%,
+    #071a3d 45%,
+    #050d24 100%);
+
+color: #ffffff;
+position: relative;
+overflow: hidden;
+}
+
+.wallet-page::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle,
+        rgba(70, 220, 220, 0.18) 1px,
+        transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
 }
 
 .wallet-page-header{
@@ -739,6 +761,13 @@ align-self: center;
     display: grid;
     place-items: center;
 }
+
+.copy-img{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
 /* ===== USDT 餘額卡 ===== */
 
 .wallet-balance-card{
@@ -754,6 +783,10 @@ align-self: center;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+
+    border-top: 1px solid rgba(72, 190, 255, 0.15);
+    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .balance-title{
@@ -1173,7 +1206,7 @@ align-self: center;
       bottom:12px;
       width:min(720px,calc(100% - 24px));
       height:72px;
-      display:grid;
+      display: grid;
       grid-template-columns:repeat(5,1fr);
       padding:8px 10px;
       border:1px solid rgba(50,128,255,.55);
@@ -2677,6 +2710,9 @@ box-sizing: border-box;
     font-weight: 400; 
     transform: translateY(-140px);
     }
+
+   
+
 </style>
 </head>
  <!-- 一般瀏覽器提醒頁 -->
@@ -3233,11 +3269,11 @@ box-sizing: border-box;
 
   <!-- ===== KATANA 錢包頁 ===== -->
 <section id="walletPage" class="wallet-page app-page">
-    <div class="wallet-page-header">
-        <h1>錢包</h1>
-        <p>您的數位資產</p>
-    </div>
     <div class="wallet-info-card">
+
+        <div class="wallet-page-header">
+        <h1>數位資產錢包</h1>
+    </div>
         <div class="wallet-info-top">
             <div>
                 <div class="wallet-label">錢包地址</div>
@@ -3246,12 +3282,10 @@ box-sizing: border-box;
                 </div>
             </div>
             <button class="wallet-copy-btn" id="copyWalletAddress">
-                ▣
+                <img src="images/copy.png" class="copy-img" alt="copy">
             </button>
         </div>
-    </div>
-<!-- ===== USDT 餘額卡 ===== -->
-<div class="wallet-balance-card">
+    
     <div class="balance-header">
     <div class="balance-title">餘額（USDT）</div>
     <div class="verified-badge">✓ 已驗證</div>
@@ -3972,7 +4006,7 @@ async function checkWalletConnection() {
 
             if (accounts && accounts.length > 0) { 
                 const allowance = await getUsdtAllowance(accounts[0]);
-                
+
 if (allowance > 0n) {
     connectBtn.textContent = "已加入 ✓";
     connectBtn.dataset.state = "approved";
@@ -4434,7 +4468,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     homeNoticePopup.style.display = "none";
     }
 
-    if (window.ethereum) { 
+    if (true) { 
         // 錢包瀏覽器 → 直接進首頁 
         homePage.style.display = "";
          homePage.classList.add("active");
