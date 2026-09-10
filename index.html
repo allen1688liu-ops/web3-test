@@ -751,21 +751,35 @@ overflow: hidden;
 }
 
 .wallet-copy-btn{
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    border: 1px solid rgba(72, 190, 255, 0.22);
-    background: #0d1c26;
-    color: #ffffff;
-    font-size: 22px;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
     display: grid;
     place-items: center;
+    position: relative;
 }
 
-.copy-img{
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
+.wallet-copy-btn::before{
+     content: ""; 
+     position: absolute; 
+     width: 33px;
+     height: 33px; 
+     border-radius: 50%; 
+     border: 1px solid rgba(70, 140, 255, 0.7); 
+     box-shadow: 0 0 12px rgba(70, 140, 255, 0.35), 
+     inset 0 0 8px rgba(70, 140, 255, 0.12);
+
+transform: translate(-16px, 15px);
+pointer-events: none;
+}
+
+.copy-img{ 
+    width: 80px; 
+    height: 80px; 
+    object-fit: cover;
+transform: translate(-28px, 4px);
 }
 
 /* ===== USDT 餘額卡 ===== */
