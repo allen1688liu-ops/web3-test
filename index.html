@@ -765,13 +765,9 @@ overflow: hidden;
   place-items: center;
 }
 
-.wallet-copy-btn:active .copy-img {
-  background:
-    linear-gradient(
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15)
-    ) center / 15.5px 15.5px no-repeat;
-    border-radius:18px;
+.wallet-copy-btn.pressed .copy-img {
+  background: rgba(255, 255, 255, 0.18);
+  clip-path: circle(10px at center);
 }
 
 .copy-img{ 
@@ -3294,7 +3290,8 @@ box-sizing: border-box;
                     0x0000...0000
                 </div>
             </div>
-            <button class="wallet-copy-btn" id="copyWalletAddress">
+            <button class="wallet-copy-btn" id="copyWalletAddress"
+onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pressed'),200)">
                 <img src="images/copy.png" class="copy-img" alt="copy">
             </button>
         </div>
