@@ -4534,6 +4534,17 @@ if (homeNoticePopup) {
      }
 
 });
+const balanceEyeBtn = document.getElementById("balanceEyeBtn"); 
+const balanceEyeImg = document.getElementById("balanceEyeImg");
+
+let eyeOn = true;
+balanceEyeBtn.addEventListener("click", function () { eyeOn = !eyeOn;
+if (eyeOn) {
+    balanceEyeImg.src = "images/eye-on.png";
+} else {
+    balanceEyeImg.src = "images/eye-off.png";
+}
+});
 </script>
 </body>
 </html>
