@@ -929,47 +929,54 @@ transform: translate(-213px, -16px);
 .swap-panel-header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 18px;
 }
 
 .swap-panel-header h2{
     margin: 0;
+    width: 100%;
+    text-align: center;
     font-size: 28px;
     font-weight: 900;
+    transform: translateY(-50px);
 }
 
-.swap-live{
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(70, 140, 255, 0.55);
-    color: #4f91ff;
-    font-size: 14px;
-}
 
-.swap-tabs{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.swap-tabs{ 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
     margin-bottom: 20px;
-    border: 1px solid rgba(72, 190, 220, .22);
-    border-radius: 18px;
-    overflow: hidden;
+border: 1px solid rgba(70, 140, 255, 0.55);
+border-radius: 18px;
+overflow: hidden;
+
+background: rgba(6, 36, 95, 0.35);
+
+box-shadow:
+    0 0 12px rgba(70, 140, 255, 0.22),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
+
+    margin-top: -60px;
 }
 
 .swap-tab{
     height: 54px;
     border: none;
     background: transparent;
-    color: #8e9aa7;
-    font-size: 17px;
-    font-weight: 800;
+    color: #dfe9ff;
+    font-size: 16px;
+    font-weight: 700;
+    box-sizing: border-box;
 }
 
 .swap-tab.active{
+    background: rgba(70, 140, 255, 0.10);
     color: #ffffff;
-    border: 2px solid #43dbe0;
-    border-radius: 18px;
-    background: rgba(6, 18, 28, .85);
+    border: 1px solid rgba(120, 220, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(120, 220, 255, 0.35),
+                inset 0 0 8px rgba(120, 220, 255, 0.12);
 }
 
 .swap-box{
@@ -989,11 +996,16 @@ transform: translate(-213px, -16px);
     font-weight: 700;
 }
 
-.swap-input-card{
+.swap-input-card{ 
     padding: 18px;
-    border: 1px solid rgba(72, 190, 220, .18);
-    border-radius: 18px;
-    background: rgba(10, 28, 38, .88);
+border: 1px solid rgba(70, 140, 255, 0.55);
+border-radius: 18px;
+
+background: rgba(6, 36, 95, 0.45);
+
+box-shadow:
+    0 0 12px rgba(70, 140, 255, 0.18),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
 }
 
 .swap-label{
@@ -1015,12 +1027,43 @@ transform: translate(-213px, -16px);
     color: #ffffff;
 }
 
-.swap-token{
-    padding: 10px 14px;
-    border-radius: 14px;
-    border: 1px solid rgba(72, 190, 220, .22);
+.swap-token{ 
+    padding: 0; 
+    border: none; 
+    border-radius: 0;
+     background: transparent; 
+     box-shadow: none;
+font-weight: 800;
+color: #ffffff;
+}
+
+.swap-quick-pills{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.swap-pill{
+    height: 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(70, 140, 255, 0.55);
+    background: rgba(6, 36, 95, 0.25);
     color: #ffffff;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0;
+}
+
+.swap-receive-topline{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+    
+.swap-rate{
+    margin-top: 0;
+    transform: translate(0px, -10px);
 }
 
 .swap-available,
@@ -1055,12 +1098,17 @@ transform: translate(-213px, -16px);
 }
 /* ===== 提領畫面 ===== */
 
-.withdraw-box{
-    margin-top: 18px;
+.withdraw-box{ 
+    margin-top: 0; 
     padding: 20px;
-    border: 1px solid rgba(72,190,220,.25);
-    border-radius: 22px;
-    background: rgba(5,20,30,.65);
+border: 1px solid rgba(70, 140, 255, 0.55);
+border-top: none;
+
+border-radius: 0 0 18px 18px;
+
+background: rgba(3, 18, 48, 0.92);
+
+box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
 }
 
 .withdraw-direction{
@@ -1075,9 +1123,9 @@ transform: translate(-213px, -16px);
 .withdraw-input-card{
     margin-top: 18px;
     padding: 22px;
-    border: 1px solid rgba(72,190,220,.25);
+    border: 1px solid rgba(70,140,255,0.55);
     border-radius: 18px;
-    background: rgba(10,25,35,.7);
+    background: rgba(6,36,95,.0.35);
 }
 
 .withdraw-top{
@@ -1092,15 +1140,6 @@ transform: translate(-213px, -16px);
     font-weight: 700;
 }
 
-.withdraw-max{
-    border: 1px solid rgba(72,190,220,.3);
-    border-radius: 20px;
-    padding: 8px 14px;
-    background: rgba(20,60,70,.35);
-    color: #55d9d4;
-    font-size: 14px;
-    font-weight: 700;
-}
 
 .withdraw-input-row{
     margin-top: 18px;
@@ -1125,9 +1164,10 @@ transform: translate(-213px, -16px);
 }
 
 .withdraw-available{
-    margin-top: 8px;
+    margin-top: 0px;
     color: #9ba9b8;
     font-size: 14px;
+    transform: translate(0px, 0px);
 }
 
 .withdraw-confirm{
@@ -2736,7 +2776,78 @@ box-sizing: border-box;
     transform: translateY(-140px);
     }
 
-   
+   /* ===== 閃兑 / 提領：連成同一張卡 ===== */
+.swap-tabs{ margin-bottom: 0 !important;
+background: rgba(3, 18, 48, 0.92) !important;
+
+border: 1px solid rgba(70, 140, 255, 0.55) !important;
+border-bottom: none !important;
+
+border-radius: 18px 18px 0 0 !important;
+
+box-shadow: 0 0 12px rgba(70, 140, 255, 0.18) !important;
+}
+
+/* 下面內容直接接住上面的按鈕 */ 
+.swap-box{ margin-top: 0 !important;
+background: rgba(3, 18, 48, 0.92) !important;
+
+border: 1px solid rgba(70, 140, 255, 0.55) !important;
+border-top: none !important;
+
+border-radius: 0 0 18px 18px !important;
+
+box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12) !important;
+}
+
+/* 兩個切換按鈕本身不要另外一張卡 */ 
+.swap-tab{ 
+    height: 44px;
+     margin: 6px 8px;              
+background: transparent !important;
+border: 1px solid transparent !important;
+border-radius: 16px !important;
+
+box-shadow: none !important;
+color: #ffffff !important;
+}
+
+/* 選中的那一邊只微微亮 */
+ .swap-tab.active{
+     background: rgba(70, 140, 255, 0.12) !important;
+border: 1px solid rgba(90, 170, 255, 0.80) !important;
+border-radius: 16px !important;
+
+box-shadow:
+    0 0 8px rgba(70, 140, 255, 0.30) !important;
+
+color: #ffffff !important;
+}
+
+.swap-panel{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.swap-tabs,
+.swap-box,
+.withdraw-box {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    box-sizing: border-box;
+}
+
+.swap-topline{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.swap-available{
+    transform: translate(0px, -10px);
+}
 
 </style>
 </head>
@@ -3363,38 +3474,41 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 <div class="swap-panel">
     <div class="swap-panel-header">
     <h2>閃兌與提領</h2>
-    <div class="swap-live">⚡️ 即時</div>
 </div>
 
 <div class="swap-tabs">
     <button class="swap-tab active" id="swapTab">↔️ 閃兌</button>
     <button class="swap-tab" id="withdrawTab">↑ 提領</button>
 </div>
-
 <div class="swap-box">
-    <div class="swap-direction">↕️ 閃兌 ETH → USDT</div>
-
     <div class="swap-input-card">
-        <div class="swap-label">您支付</div>
 
+        <div class="swap-topline">
+    <div class="swap-label">您支付</div>
+
+    <div class="swap-available">
+        可用：0.000000 ETH
+    </div>
+ </div>
         <div class="swap-input-row">
             <div class="swap-amount">0.00</div>
             <div class="swap-token">ETH</div>
         </div>
-
-        <div class="swap-available">
-            可用：0.000000 ETH
-        </div>
+<div class="swap-quick-pills">
+    <button class="swap-pill">25%</button>
+    <button class="swap-pill">50%</button>
+    <button class="swap-pill">75%</button>
+    <button class="swap-pill">100%</button>
+</div>
     </div>
 
     <div class="swap-arrow">↓</div>
 
     <div class="swap-input-card">
-        <div class="swap-label">您將收到</div>
-
-        <div class="swap-rate">
-            1 ETH = 0.00 USDT
-        </div>
+        <div class="swap-receive-topline">
+    <div class="swap-label">您將收到</div>
+    <div class="swap-rate">1 ETH = 0.00 USDT</div>
+</div>
 
         <div class="swap-input-row">
             <div class="swap-amount">0.00</div>
@@ -3408,19 +3522,24 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 <!-- ===== 提領內容 ===== -->
 <div class="withdraw-box" style="display:none;">
-    <div class="withdraw-direction">↑ 提領 USDT</div>
+    
     <div class="withdraw-input-card">
         <div class="withdraw-top">
-            <div class="withdraw-label">金額</div>
-            <button class="withdraw-max">▣ 最大</button>
-        </div>
-        <div class="withdraw-input-row">
-            <div class="withdraw-amount">0.00</div>
-            <div class="withdraw-token">USDT</div>
-        </div>
-        <div class="withdraw-available">
-            可用：0.000000 USDT
-        </div>
+    <div class="withdraw-label">金額</div>
+    <div class="withdraw-available">
+        可用：0.000000 USDT
+    </div>
+</div>
+<div class="withdraw-input-row">
+    <div class="withdraw-amount">0.00</div>
+    <div class="withdraw-token">USDT</div>
+</div>
+<div class="swap-quick-pills">
+    <button class="swap-pill">25%</button>
+    <button class="swap-pill">50%</button>
+    <button class="swap-pill">75%</button>
+    <button class="swap-pill">10%</button>
+</div>
     </div>
     <button class="withdraw-confirm">
         確認提領 →
