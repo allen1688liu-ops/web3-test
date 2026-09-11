@@ -802,6 +802,29 @@ transform: translate(-213px, -16px);
     color: #9ba9b8;
     font-size: 16px;
     font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.balance-eye-btn{
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    left: -20px;
+}
+
+.balance-eye-img{
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
 }
 
 .balance-main{
@@ -3306,7 +3329,13 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
         </div>
     
     <div class="balance-header">
-    <div class="balance-title">餘額（USDT）</div>
+    <div class="balance-title">
+  <span>餘額（USDT）</span>
+
+  <button class="balance-eye-btn" id="balanceEyeBtn">
+    <img src="images/eye-on.png" id="balanceEyeImg" class="balance-eye-img" alt="eye">
+  </button>
+</div>
 </div>
 
 <div class="balance-main">
