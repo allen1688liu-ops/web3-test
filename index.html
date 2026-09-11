@@ -875,6 +875,11 @@ transform: translate(-213px, -16px);
     margin-top:-40px;
 }
 
+#walletPage .balance-stats .balance-stat > * {
+  position: relative;
+  top: -10px;
+}
+
 .balance-stat{
     min-width: 0;
     padding: 10px 8px;
@@ -910,53 +915,15 @@ transform: translate(-213px, -16px);
     color: #9ba9b8;
     font-size: 11px;
 }
-/* ===== 歷史 / 獎勵 / 刷新 ===== */
-.wallet-actions{
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid rgba(72, 190, 220, .25);
-    border-radius: 22px;
-    overflow: hidden;
-    background: rgba(5, 20, 30, .65);
-}
 
-.wallet-action{
-    height: 150px;
-    border: none;
-    border-right: 1px solid rgba(72, 190, 220, .20);
-    background: transparent;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.wallet-action:last-child{
-    border-right: none;
-}
-
-.wallet-action-icon{
-    width: 58px;
-    height: 58px;
-    border: 1px solid rgba(72, 190, 220, .30);
-    border-radius: 15px;
-    display: grid;
-    place-items: center;
-    font-size: 30px;
-}
 /* ===== 閃兌與提領 ===== */
 
 .swap-panel{
     margin-top: 28px;
     padding: 22px;
-    border: 1px solid rgba(72, 190, 220, .25);
     border-radius: 24px;
-    background: rgba(5, 20, 30, .72);
+    border: 1px solid rgba(70, 140, 255, 0.55);
+    background: rgba(6, 36, 95, 0.55);
 }
 
 .swap-panel-header{
@@ -975,8 +942,8 @@ transform: translate(-213px, -16px);
 .swap-live{
     padding: 8px 12px;
     border-radius: 999px;
-    border: 1px solid rgba(72, 220, 210, .28);
-    color: #55d9d4;
+    border: 1px solid rgba(70, 140, 255, 0.55);
+    color: #4f91ff;
     font-size: 14px;
 }
 
@@ -1391,6 +1358,26 @@ transform: translate(-213px, -16px);
   margin:0 auto;
   transform:translateY(-7px) scale(1.7);
   transform-origin:center;
+}
+
+/* 1. 錢包資產 */
+.stats .stat:nth-child(1) .stat-icon img{
+  transform: translateY(-7px) scale(1.5);
+}
+
+/* 2. 今日收益 */
+.stats .stat:nth-child(2) .stat-icon img{
+  transform: translateY(-7px) scale(1.5);
+}
+
+/* 3. 總收益 */
+.stats .stat:nth-child(3) .stat-icon img{
+  transform: translateY(-7px) scale(1.7);
+}
+
+/* 4. VIP等級 */
+.stats .stat:nth-child(4) .stat-icon img{
+  transform: translateY(-7px) scale(1.7);
 }
 
 .stat-title{
@@ -3372,22 +3359,6 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
 
 </div>
-<!-- ===== 錢包快捷功能 ===== -->
-<div class="wallet-actions">
-    <button class="wallet-action">
-        <div class="wallet-action-icon">⟳</div>
-        <div>歷史</div>
-    </button>
-    <button class="wallet-action">
-        <div class="wallet-action-icon">♔</div>
-        <div>獎勵</div>
-    </button>
-    <button class="wallet-action">
-        <div class="wallet-action-icon">↻</div>
-        <div>刷新</div>
-    </button>
-</div>
-<!-- ===== 錢包快捷功能結束 ===== -->
  <!-- ===== 閃兌與提領 ===== -->
 <div class="swap-panel">
     <div class="swap-panel-header">
