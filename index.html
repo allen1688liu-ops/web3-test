@@ -794,8 +794,9 @@ transform: translate(-213px, -16px);
     gap: 12px;
 
     border-top: 1px solid rgba(72, 190, 255, 0.15);
-    padding-top: 20px;
+    padding-top: 1px;
     margin-top: 20px;
+    
 }
 
 .balance-title{
@@ -836,39 +837,34 @@ transform: translate(-213px, -16px);
     font-size: 52px;
     font-weight: 500;
     line-height: 1;
-    background: linear-gradient(90deg, #31d7df, #4f91ff);
-   background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    background: none;
+    -webkit-text-fill-color: #ffffff;
 
     display: inline-block;
     position: relative;
-    left: -65px;
-    top: -10px;
+    left: 60px;
+    top: -35px;
 }
 
 .balance-big {
-  font-size: 52px;
+  font-size: 57px;
 }
 
 .balance-small {
   font-size: 30px;
 }
 
-.balance-token{
-    display: inline-block;
-    margin-top: 18px;
-    padding: 0;
-border: none;
-border-radius: 0;
-background: transparent;
-box-shadow: none;
-    color: #26A17B;
-    font-weight: 700;
-    position: relative;
-    left: 30px;
-    top: -10px;
+#walletPage .balance-stats .stat-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transform: scale(2.0);
+  transform-origin: center;
 }
+
 
 .balance-stats{
     margin-top: 12px;
@@ -876,6 +872,7 @@ box-shadow: none;
     border-top: 1px solid rgba(72, 190, 255, 0.15);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    margin-top:-40px;
 }
 
 .balance-stat{
@@ -2812,14 +2809,14 @@ box-sizing: border-box;
   <div class="stat-icon"><img src="images/today.png" alt="今日收益"></div>
   <div class="stat-title">今日收益</div>
   <div class="stat-value">--</div>
-  <div class="stat-sub">USDT</div>
+  <div class="stat-sub">ETH</div>
 </div>
 
 <div class="stat">
   <div class="stat-icon"><img src="images/total.png" alt="總收益"></div>
   <div class="stat-title">總收益</div>
   <div class="stat-value">--</div>
-  <div class="stat-sub">USDT</div>
+  <div class="stat-sub">ETH</div>
 </div>
 
 <div class="stat">
@@ -3342,27 +3339,33 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     <div class="balance-number">
   <span class="balance-big">0</span><span class="balance-small">.000000</span>
 </div>
-    <div class="balance-token">USDT</div>
+    
 </div>
 
 <div class="balance-stats">
 
     <div class="balance-stat">
-        <div class="stat-icon">▣</div>
-        <div class="stat-label">KATANA餘額（USDT）</div>
+        <div class="stat-icon"> 
+  <img src="./images/ethyellow.png" alt="">
+</div>
+        <div class="stat-label">今日收益（ETH）</div>
         <div class="stat-value">0.000000</div>
-        <div class="stat-unit">USDT</div>
+        <div class="stat-unit">ETH</div>
     </div>
 
     <div class="balance-stat">
-        <div class="stat-icon">↔️</div>
+        <div class="stat-icon">
+  <img src="./images/swapyellow.png" alt="">
+</div>
         <div class="stat-label">可閃兌（ETH）</div>
         <div class="stat-value">0.000000</div>
         <div class="stat-unit">ETH</div>
     </div>
 
     <div class="balance-stat">
-        <div class="stat-icon">↗️</div>
+        <div class="stat-icon">
+  <img src="./images/profityellow.png" alt="">
+</div>
         <div class="stat-label">總收益（ETH）</div>
         <div class="stat-value">0.000000</div>
         <div class="stat-unit">ETH</div>
