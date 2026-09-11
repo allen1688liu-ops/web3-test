@@ -723,7 +723,7 @@ overflow: hidden;
 }
 
 .wallet-info-card{
-    padding: 22px;
+    padding: 22px 22px 3px;
     border: 1px solid rgba(70, 140, 255, 0.55);
     border-radius: 24px;
     background: rgba(8, 24, 58, 0.72);
@@ -980,7 +980,7 @@ box-shadow:
 }
 
 .swap-box{
-    padding: 18px;
+    padding:  18px;
     border: 1px solid rgba(72, 190, 220, .18);
     border-radius: 22px;
     background: rgba(8, 26, 38, .78);
@@ -1121,7 +1121,7 @@ box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
 }
 
 .withdraw-input-card{
-    margin-top: 18px;
+    margin-top: 0px;
     padding: 22px;
     border: 1px solid rgba(70,140,255,0.55);
     border-radius: 18px;
@@ -1169,6 +1169,29 @@ box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
     font-size: 14px;
     transform: translate(0px, 0px);
 }
+
+.withdraw-note{ 
+    margin-top: 12px; 
+    margin-bottom: 12px;
+    color: rgba(190, 200, 215, 0.72);
+    font-size: 11px;
+    line-height: 1.6;
+    font-weight: 400;
+
+text-align: left;
+}
+
+.withdraw-note div{
+     display: list-item; 
+     list-style-type: disc; 
+     list-style-position: outside;
+margin-left: 18px;
+padding-left: 2px;
+margin-bottom: 4px;
+
+text-indent: 0;
+}
+
 
 .withdraw-confirm{
     width: 100%;
@@ -3538,9 +3561,14 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     <button class="swap-pill">25%</button>
     <button class="swap-pill">50%</button>
     <button class="swap-pill">75%</button>
-    <button class="swap-pill">10%</button>
+    <button class="swap-pill">100%</button>
 </div>
     </div>
+    <div class="withdraw-note">
+    <div>當前最低提領金額為40USDT。</div>
+    <div>確認此交易後，此提領是不可逆轉的。</div>
+    <div>預計到帳時間為提交提領申請起的1個工作日內到帳，到帳時間可能受實際申請時間、審核要求、平台帳務作業情況等影響而有異動。</div>
+</div>
     <button class="withdraw-confirm">
         確認提領 →
     </button>
