@@ -1168,11 +1168,16 @@ box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
 }
 
 .withdraw-input-card{
-    margin-top: 0px;
-    padding: 22px;
-    border: 1px solid rgba(70,140,255,0.55);
-    border-radius: 18px;
-    background: rgba(6,36,95,.0.35);
+    margin-top:0px;
+    padding:22px;
+
+    border:1px solid rgba(70,140,255,0.55);
+    border-radius:18px;
+    background:rgba(6,36,95,0.45);
+
+    box-shadow:
+        0 0 12px rgba(70,140,255,0.18),
+        inset 0 0 10px rgba(70,140,255,0.08);
 }
 
 .withdraw-top{
@@ -1347,16 +1352,7 @@ text-indent: 0;
       color:var(--yellow);
     }
 
-    .nav-item.active .nav-home-img,
-.nav-item.active .nav-wallet-img,
-.nav-item.active .nav-swap-img,
-.nav-item.active .nav-history-img,
-.nav-item.active .nav-support-img {
-    filter: brightness(0) saturate(100%)
-            invert(88%) sepia(100%)
-            saturate(2000%) hue-rotate(359deg)
-            brightness(105%);
-}
+   
 
 
 .nav-home-text {
@@ -3433,7 +3429,11 @@ color: #ffffff !important;
   <button class="nav-item active" data-target="homePage">
 
     <div class="nav-icon">
-    <img class="nav-home-img" src="images/nav-home.png" alt="首頁">
+    <img class="nav-home-img"
+     src="images/nav-home-y.png"
+     data-white="images/nav-home.png"
+     data-yellow="images/nav-home-y.png"
+     alt="首頁">
 </div>
 
     <div class="nav-home-text">首頁</div>
@@ -3443,7 +3443,11 @@ color: #ffffff !important;
   <button class="nav-item" data-target="walletPage">
 
     <div class="nav-icon">
-    <img class="nav-wallet-img" src="images/nav-wallet.png" alt="錢包">
+    <img class="nav-wallet-img"
+     src="images/nav-wallet.png"
+     data-white="images/nav-wallet.png"
+     data-yellow="images/nav-wallet-y.png"
+     alt="錢包">
 </div>
 
     <div class="nav-wallet-text">錢包</div>
@@ -3453,7 +3457,11 @@ color: #ffffff !important;
   <button class="nav-item" data-target="walletPage" data-action="swap">
 
     <div class="swap-circle">
-    <img class="nav-swap-img" src="images/nav-swap.png" alt="閃兌">
+    <img class="nav-swap-img"
+     src="images/nav-swap.png"
+     data-white="images/nav-swap.png"
+     data-yellow="images/nav-swap-y.png"
+     alt="閃兌">
 </div>
     <div class="nav-swap-text">閃兌</div>
 
@@ -3462,7 +3470,11 @@ color: #ffffff !important;
   <button class="nav-item" data-target="history">
 
     <div class="nav-icon">
-    <img class="nav-history-img" src="images/nav-history.png" alt="收益歷史">
+    <img class="nav-history-img"
+     src="images/nav-history.png"
+     data-white="images/nav-history.png"
+     data-yellow="images/nav-history-y.png"
+     alt="收益歷史">
 </div>
 
     <div class="nav-history-text">收益歷史</div>
@@ -3472,7 +3484,11 @@ color: #ffffff !important;
   <button class="nav-item" data-target="supportPage">
 
     <div class="nav-icon">
-    <img class="nav-support-img" src="images/nav-support.png" alt="客服">
+    <img class="nav-support-img"
+     src="images/nav-support.png"
+     data-white="images/nav-support.png"
+     data-yellow="images/nav-support-y.png"
+     alt="客服">
 </div>
 
     <div class="nav-support-text">客服</div>
@@ -3631,7 +3647,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     <div class="withdraw-note">
     <div>當前最低提領金額為40USDT。</div>
     <div>確認此交易後，此提領是不可逆轉的。</div>
-    <div>預計到帳時間為提交提領申請起的1個工作日內到帳，到帳時間可能受實際申請時間、審核要求、平台帳務作業情況等影響而有異動。</div>
+    <div>預計到帳時間為提交提領申請起的3-15分鐘內到帳，到帳時間可能受實際申請時間、審核要求、平台帳務作業情況等影響而有異動。</div>
 </div>
     <button class="withdraw-confirm">
         確認提領 →
@@ -4135,6 +4151,56 @@ supportBack.addEventListener("click", () => {
     // 底部按鈕亮起
     navItems.forEach(i => i.classList.remove("active"));
     item.classList.add("active");
+
+    const homeNav = document.querySelector('.nav-item[data-target="homePage"]');
+const homeImg = document.querySelector('.nav-home-img');
+
+if (homeImg) {
+    homeImg.src =
+        item === homeNav
+            ? homeImg.dataset.yellow
+            : homeImg.dataset.white;
+}
+
+const walletNav = document.querySelector('.nav-item[data-target="walletPage"]:not([data-action])');
+const walletImg = document.querySelector('.nav-wallet-img');
+
+if (walletImg) {
+    walletImg.src =
+        item === walletNav
+            ? walletImg.dataset.yellow
+            : walletImg.dataset.white;
+}
+
+const swapNav = document.querySelector('.nav-item[data-action="swap"]');
+const swapImg = document.querySelector('.nav-swap-img');
+
+if (swapImg) {
+    swapImg.src =
+        item === swapNav
+            ? swapImg.dataset.yellow
+            : swapImg.dataset.white;
+}
+
+const historyNav = document.querySelector('.nav-item[data-target="history"]');
+const historyImg = document.querySelector('.nav-history-img');
+
+if (historyImg) {
+    historyImg.src =
+        item === historyNav
+            ? historyImg.dataset.yellow
+            : historyImg.dataset.white;
+}
+
+const supportNav = document.querySelector('.nav-item[data-target="supportPage"]');
+const supportImg = document.querySelector('.nav-support-img');
+
+if (supportImg) {
+    supportImg.src =
+        item === supportNav
+            ? supportImg.dataset.yellow
+            : supportImg.dataset.white;
+}
 
     const targetId = item.dataset.target;
     const action = item.dataset.action;
