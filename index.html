@@ -1108,15 +1108,28 @@ color: #ffffff;
 }
 
 .swap-arrow{
-    width: 52px;
-    height: 52px;
-    margin: 14px auto;
-    display: grid;
-    place-items: center;
-    border: 1px solid rgba(72, 190, 220, .2);
-    border-radius: 50%;
-    color: #55d9d4;
-    font-size: 28px;
+    margin:14px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:auto;
+    height:auto;
+    border:none;
+    border-radius:0;
+    background:none;
+    box-shadow:none;
+    color:transparent;
+    font-size:0;
+}
+
+.swap-arrow-img{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+    display:block;
+
+    transform:scale(3.00);
 }
 
 .swap-confirm{
@@ -3557,7 +3570,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     <div class="swap-input-card">
 
         <div class="swap-topline">
-    <div class="swap-label">您支付</div>
+    <div class="swap-label">支付</div>
 
     <div class="swap-available">
         可用：0.000000 ETH
@@ -3575,11 +3588,12 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
     </div>
 
-    <div class="swap-arrow">↓</div>
-
+    <div class="swap-arrow">
+  <img src="images/swap-down.png" class="swap-arrow-img">
+</div>
     <div class="swap-input-card">
         <div class="swap-receive-topline">
-    <div class="swap-label">您將收到</div>
+    <div class="swap-label">即將收到</div>
     <div class="swap-rate">1 ETH = 0.00 USDT</div>
 </div>
 
