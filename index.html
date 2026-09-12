@@ -970,6 +970,40 @@ box-shadow:
     box-sizing: border-box;
 }
 
+.swap-tab-icon{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    position:relative;
+    left:-5px;
+    top:0px;
+
+    transform:scale(2.50);
+}
+
+.withdraw-tab-icon{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    position:relative;
+    left:0px;
+    top:0px;
+
+    transform:scale(2.00);
+}
+
+.swap-tab-text{
+    position:relative;
+    left:-5px;
+    top:-3.5px;
+}
+
+.withdraw-tab-text{
+    position:relative;
+    left:0px;
+    top:0px;
+}
+
 .swap-tab.active{
     background: rgba(70, 140, 255, 0.10);
     color: #ffffff;
@@ -1087,12 +1121,12 @@ color: #ffffff;
 
 .swap-confirm{
     width: 100%;
-    margin-top: 18px;
-    height: 54px;
-    border: none;
-    border-radius: 16px;
-    background: rgba(72, 190, 220, .12);
-    color: #7e8b98;
+    height: 58px;
+    margin-top: 22px;
+    border: 1px solid rgba(72,190,220,.18);
+    border-radius: 28px;
+    background: rgba(72,190,220,.08);
+    color: #65717d;
     font-size: 18px;
     font-weight: 800;
 }
@@ -3507,8 +3541,18 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 
 <div class="swap-tabs">
-    <button class="swap-tab active" id="swapTab">↔️ 閃兌</button>
-    <button class="swap-tab" id="withdrawTab">↑ 提領</button>
+
+  <button class="swap-tab active" id="swapTab">
+    <img src="images/swap-tab.png" class="swap-tab-icon">
+    <span class="swap-tab-text">閃兌</span>
+  </button>
+
+  <button class="swap-tab" id="withdrawTab">
+    <img src="images/withdraw-tab.png" class="withdraw-tab-icon">
+    <span class="withdraw-tab-text">提領</span>
+  </button>
+
+</div>
 </div>
 <div class="swap-box">
     <div class="swap-input-card">
