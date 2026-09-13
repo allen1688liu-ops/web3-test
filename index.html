@@ -4073,7 +4073,7 @@ if (supportImg) {
 
     walletAddressEl.dataset.fullAddress = hasAddress ? address : "";
     walletAddressEl.textContent = hasAddress
-      ? `${address.slice(0, 6)}...${address.slice(-4)}`
+      ? `${address.slice(0, 12)}...${address.slice(-8)}`
       : "0x0000...0000";
     walletAddressEl.title = hasAddress ? address : "";
   }
