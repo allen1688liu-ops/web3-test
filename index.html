@@ -571,6 +571,21 @@ align-self: center;
    包含：錢包資料、USDT 餘額、閃兌、提領
    ================================================== */
 
+/* 錢包頁面的地址與數字使用等寬字體，標題維持原本字體 */
+.wallet-address,
+.stats .stat-value,
+.metric-number,
+.amount-number,
+.balance-number,
+.balance-stats .stat-value,
+.swap-amount,
+.swap-available,
+.swap-rate,
+.withdraw-amount,
+.withdraw-available {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
 .wallet-page{ 
     padding: 18px 16px 110px; 
     min-height: 100vh;
