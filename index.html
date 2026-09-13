@@ -571,12 +571,10 @@ align-self: center;
    包含：錢包資料、USDT 餘額、閃兌、提領
    ================================================== */
 
-/* 錢包頁面的地址與數字使用等寬字體，標題維持原本字體 */
-.wallet-address,
+/* 網站中的數字使用獨立字體，標題維持原本字體 */
 .stats .stat-value,
 .metric-number,
 .amount-number,
-.balance-number,
 .balance-stats .stat-value,
 .swap-amount,
 .swap-available,
@@ -584,6 +582,16 @@ align-self: center;
 .withdraw-amount,
 .withdraw-available {
     font-family: "DIN Alternate", "Arial Narrow", "Trebuchet MS", sans-serif;
+}
+
+/* 錢包地址：接近參考圖的粗體等寬字型 */
+.wallet-address {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+/* 主要餘額：接近參考圖的圓潤數字字型 */
+.balance-number {
+    font-family: "Arial Rounded MT Bold", "Avenir Next", Arial, sans-serif;
 }
 
 .wallet-page{ 
@@ -656,7 +664,7 @@ overflow: hidden;
 }
 
 .wallet-address{
-    color: #ffffff;
+    color: #000000;
     font-size: 22px;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -738,9 +746,9 @@ transform: translate(-213px, -16px);
     font-size: 52px;
     font-weight: 500;
     line-height: 1;
-    color: #ffffff;
+    color: #000000;
     background: none;
-    -webkit-text-fill-color: #ffffff;
+    -webkit-text-fill-color: #000000;
 
     display: inline-block;
     position: relative;
