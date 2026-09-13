@@ -4107,12 +4107,17 @@ if (supportImg) {
     const usdtDecimals = 6n;
     const divisor = 10n ** usdtDecimals;
     const integerPart = rawBalance / divisor;
-    const decimalPart = (rawBalance % divisor).toString().padStart(6, "0");
+    const decimalPart = (rawBalance % divisor)
+      .toString()
+      .padStart(6, "0")
+      .replace(/0+$/, "");
 
     return {
       integer: integerPart.toString(),
       decimal: decimalPart,
-      full: `${integerPart}.${decimalPart}`
+      full: decimalPart
+        ? `${integerPart}.${decimalPart}`
+        : integerPart.toString()
     };
   }
 
@@ -4123,7 +4128,9 @@ if (supportImg) {
 
     if (eyeOn) {
       walletBalanceBigEl.textContent = balance.integer;
-      walletBalanceSmallEl.textContent = `.${balance.decimal}`;
+      walletBalanceSmallEl.textContent = balance.decimal
+        ? `.${balance.decimal}`
+        : "";
     } else {
       walletBalanceBigEl.textContent = "****";
       walletBalanceSmallEl.textContent = "";
