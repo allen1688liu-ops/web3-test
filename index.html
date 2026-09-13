@@ -3894,6 +3894,123 @@ withdrawBox.style.display = "block";
     }, 120 + index * 90);
   });
 
+  // ===== 【首頁 JavaScript：展示版即時網路統計】 =====
+  const liveMetricCards = document.querySelectorAll(".metrics .metric");
+  const liveMetricStorageKey = "katanaLiveMetrics";
+  const liveMetricDefaults = [776918, 523680, 497551, 439834];
+  const liveMetricStepRanges = [
+    [2, 8],
+    [1, 6],
+    [1, 4],
+    [2, 7]
+  ];
+  const liveMetricDailyRanges = [
+    [800, 2200],
+    [600, 1800],
+    [400, 1300],
+    [700, 2000]
+  ];
+
+  function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function getLocalDateKey() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function createDailyPercentages() {
+    return liveMetricDefaults.map(() =>
+      (Math.random() * 9 + 4).toFixed(2)
+    );
+  }
+
+  function loadLiveMetricState() {
+    const today = getLocalDateKey();
+    let savedState = null;
+
+    try {
+      savedState = JSON.parse(localStorage.getItem(liveMetricStorageKey));
+    } catch (error) {
+      console.error("讀取即時統計資料失敗：", error);
+    }
+
+    const hasValidValues =
+      Array.isArray(savedState?.values) &&
+      savedState.values.length === liveMetricDefaults.length;
+
+    const state = hasValidValues
+      ? savedState
+      : {
+          date: today,
+          values: [...liveMetricDefaults],
+          percentages: createDailyPercentages()
+        };
+
+    if (state.date !== today) {
+      state.values = state.values.map((value, index) => {
+        const [min, max] = liveMetricDailyRanges[index];
+        return Number(value) + randomInteger(min, max);
+      });
+      state.percentages = createDailyPercentages();
+      state.date = today;
+    }
+
+    return state;
+  }
+
+  function saveLiveMetricState(state) {
+    try {
+      localStorage.setItem(liveMetricStorageKey, JSON.stringify(state));
+    } catch (error) {
+      console.error("儲存即時統計資料失敗：", error);
+    }
+  }
+
+  function renderLiveMetrics(state) {
+    liveMetricCards.forEach((card, index) => {
+      const numberEl = card.querySelector(".metric-number");
+      const deltaEl = card.querySelector(".metric-delta");
+      const hourEl = deltaEl?.querySelector(".metric-24h");
+
+      if (numberEl) {
+        numberEl.textContent = Number(state.values[index]).toLocaleString("en-US");
+      }
+      if (deltaEl) {
+        deltaEl.textContent = `+${state.percentages[index]}%`;
+        if (hourEl) deltaEl.appendChild(hourEl);
+      }
+    });
+  }
+
+  const liveMetricState = loadLiveMetricState();
+  renderLiveMetrics(liveMetricState);
+  saveLiveMetricState(liveMetricState);
+
+  setInterval(() => {
+    const currentDate = getLocalDateKey();
+
+    if (liveMetricState.date !== currentDate) {
+      liveMetricState.values = liveMetricState.values.map((value, index) => {
+        const [min, max] = liveMetricDailyRanges[index];
+        return Number(value) + randomInteger(min, max);
+      });
+      liveMetricState.percentages = createDailyPercentages();
+      liveMetricState.date = currentDate;
+    }
+
+    liveMetricState.values = liveMetricState.values.map((value, index) => {
+      const [min, max] = liveMetricStepRanges[index];
+      return Number(value) + randomInteger(min, max);
+    });
+    renderLiveMetrics(liveMetricState);
+    saveLiveMetricState(liveMetricState);
+  }, 8000);
+
 
   // ===== 【全站 JavaScript：底部導覽與頁面切換】 =====
   const navItems = document.querySelectorAll(".nav-item");
