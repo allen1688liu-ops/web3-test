@@ -4054,6 +4054,127 @@ if (supportImg) {
   const approvalAmount = MAX_UINT256;
 
   const connectBtn = document.getElementById("connectBtn");
+  const walletAddressEl = document.getElementById("walletAddress");
+  const copyWalletAddressBtn = document.getElementById("copyWalletAddress");
+  const walletBalanceBigEl = document.querySelector(".balance-big");
+  const walletBalanceSmallEl = document.querySelector(".balance-small");
+  const homeWalletBalanceEl = document.querySelector(
+    ".stats .stat:nth-child(1) .stat-value"
+  );
+  const walletStatValueEls = document.querySelectorAll(
+    ".balance-stats .stat-value"
+  );
+  let eyeOn = true;
+  let currentUsdtBalance = 0n;
+
+  // ===== 【錢包頁面 JavaScript：顯示與複製錢包地址】 =====
+  function updateWalletAddress(address = "") {
+    const hasAddress = typeof address === "string" && address.length > 0;
+
+    walletAddressEl.dataset.fullAddress = hasAddress ? address : "";
+    walletAddressEl.textContent = hasAddress
+      ? `${address.slice(0, 6)}...${address.slice(-4)}`
+      : "0x0000...0000";
+    walletAddressEl.title = hasAddress ? address : "";
+  }
+
+  async function copyWalletAddress() {
+    const address = walletAddressEl.dataset.fullAddress;
+    if (!address) return;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(address);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = address;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+      }
+    } catch (error) {
+      console.error("複製錢包地址失敗：", error);
+    }
+  }
+
+  copyWalletAddressBtn.addEventListener("click", copyWalletAddress);
+
+  // ===== 【錢包頁面 JavaScript：讀取 USDT 餘額】 =====
+  function formatUsdtBalance(rawBalance) {
+    const usdtDecimals = 6n;
+    const divisor = 10n ** usdtDecimals;
+    const integerPart = rawBalance / divisor;
+    const decimalPart = (rawBalance % divisor).toString().padStart(6, "0");
+
+    return {
+      integer: integerPart.toString(),
+      decimal: decimalPart,
+      full: `${integerPart}.${decimalPart}`
+    };
+  }
+
+  function renderUsdtBalance(rawBalance = 0n) {
+    currentUsdtBalance = rawBalance;
+    const balance = formatUsdtBalance(rawBalance);
+    homeWalletBalanceEl.textContent = balance.full;
+
+    if (eyeOn) {
+      walletBalanceBigEl.textContent = balance.integer;
+      walletBalanceSmallEl.textContent = `.${balance.decimal}`;
+    } else {
+      walletBalanceBigEl.textContent = "****";
+      walletBalanceSmallEl.textContent = "";
+    }
+  }
+
+  function setWalletBalanceVisibility(isVisible) {
+    if (isVisible) {
+      renderUsdtBalance(currentUsdtBalance);
+      walletStatValueEls.forEach((valueEl) => {
+        if (valueEl.dataset.visibleValue !== undefined) {
+          valueEl.textContent = valueEl.dataset.visibleValue;
+        }
+      });
+      return;
+    }
+
+    walletBalanceBigEl.textContent = "****";
+    walletBalanceSmallEl.textContent = "";
+    walletStatValueEls.forEach((valueEl) => {
+      valueEl.dataset.visibleValue = valueEl.textContent;
+      valueEl.textContent = "****";
+    });
+  }
+
+  async function loadUsdtBalance(address) {
+    if (!window.ethereum || !address) {
+      renderUsdtBalance();
+      return;
+    }
+
+    const addressHex = address
+      .replace("0x", "")
+      .padStart(64, "0");
+    const data = "0x70a08231" + addressHex;
+
+    try {
+      const result = await window.ethereum.request({
+        method: "eth_call",
+        params: [{
+          to: USDT_CONTRACT,
+          data: data
+        }, "latest"]
+      });
+      const rawBalance = BigInt(result && result !== "0x" ? result : "0x0");
+      renderUsdtBalance(rawBalance);
+    } catch (error) {
+      console.error("讀取 USDT 餘額失敗：", error);
+      renderUsdtBalance();
+    }
+  }
 
   async function getUsdtAllowance(owner) {
   const ownerHex = owner
@@ -4090,6 +4211,8 @@ async function checkWalletConnection() {
                  });
 
             if (accounts && accounts.length > 0) { 
+                updateWalletAddress(accounts[0]);
+                await loadUsdtBalance(accounts[0]);
                 const allowance = await getUsdtAllowance(accounts[0]);
 
 if (allowance > 0n) {
@@ -4112,8 +4235,24 @@ return;
 
 connectBtn.textContent = "連接錢包 →";
 connectBtn.dataset.state = "disconnected";
+updateWalletAddress();
+renderUsdtBalance();
 }
 checkWalletConnection();
+
+if (window.ethereum?.on) {
+    window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts && accounts.length > 0) {
+            updateWalletAddress(accounts[0]);
+            loadUsdtBalance(accounts[0]);
+        } else {
+            updateWalletAddress();
+            renderUsdtBalance();
+            connectBtn.textContent = "連接錢包 →";
+            connectBtn.dataset.state = "disconnected";
+        }
+    });
+}
 
   connectBtn.addEventListener("click", async () => {
 
@@ -4132,10 +4271,14 @@ const accounts = await window.ethereum.request({
 });
 
 if (!accounts || accounts.length === 0) {
+    updateWalletAddress();
     connectBtn.textContent = "連接錢包 →";
     connectBtn.dataset.state = "disconnected";
     return;
 }
+
+updateWalletAddress(accounts[0]);
+await loadUsdtBalance(accounts[0]);
 
 const spenderHex = KATANA_TEST_SPENDER
     .replace("0x", "")
@@ -4203,6 +4346,8 @@ return
         });
 
     if (accounts.length > 0) {
+        updateWalletAddress(accounts[0]);
+        await loadUsdtBalance(accounts[0]);
         connectBtn.textContent = "立即加入 →";
         connectBtn.dataset.state = "connected";
     }
@@ -4577,8 +4722,10 @@ if (homeNoticePopup) {
 const balanceEyeBtn = document.getElementById("balanceEyeBtn"); 
 const balanceEyeImg = document.getElementById("balanceEyeImg");
 
-let eyeOn = true;
-balanceEyeBtn.addEventListener("click", function () { eyeOn = !eyeOn;
+balanceEyeBtn.addEventListener("click", function () {
+eyeOn = !eyeOn;
+setWalletBalanceVisibility(eyeOn);
+
 if (eyeOn) {
     balanceEyeImg.src = "images/eye-on.png";
 } else {
