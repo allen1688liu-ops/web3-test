@@ -584,6 +584,21 @@ align-self: center;
     font-family: "DIN Alternate", "Arial Narrow", "Trebuchet MS", sans-serif;
 }
 
+.activity[data-type="deposit"] .type-tag {
+    color: var(--good);
+    border-color: var(--good);
+    background: rgba(95, 245, 154, 0.08);
+    box-shadow: 0 0 8px rgba(95, 245, 154, 0.35);
+}
+
+.activity[data-type="withdraw"] .amount-number {
+    color: var(--bad);
+}
+
+.activity[data-type="deposit"] .amount-number {
+    color: var(--good);
+}
+
 /* 錢包地址：接近參考圖的粗體等寬字型 */
 .wallet-address {
     font-family: "SFMono-Regular", Menlo, Consolas, monospace;
@@ -3923,7 +3938,12 @@ withdrawBox.style.display = "block";
     return `${year}-${month}-${day}`;
   }
 
-  function createDailyPercentages() {
+  function getLocalHourKey() {
+    const hour = String(new Date().getHours()).padStart(2, "0");
+    return `${getLocalDateKey()}-${hour}`;
+  }
+
+  function createHourlyPercentages() {
     return liveMetricDefaults.map(() =>
       (Math.random() * 9 + 4).toFixed(2)
     );
@@ -3931,6 +3951,7 @@ withdrawBox.style.display = "block";
 
   function loadLiveMetricState() {
     const today = getLocalDateKey();
+    const currentHour = getLocalHourKey();
     let savedState = null;
 
     try {
@@ -3947,8 +3968,9 @@ withdrawBox.style.display = "block";
       ? savedState
       : {
           date: today,
+          hour: currentHour,
           values: [...liveMetricDefaults],
-          percentages: createDailyPercentages()
+          percentages: createHourlyPercentages()
         };
 
     if (state.date !== today) {
@@ -3956,8 +3978,13 @@ withdrawBox.style.display = "block";
         const [min, max] = liveMetricDailyRanges[index];
         return Number(value) + randomInteger(min, max);
       });
-      state.percentages = createDailyPercentages();
+      state.percentages = createHourlyPercentages();
       state.date = today;
+    }
+
+    if (state.hour !== currentHour) {
+      state.percentages = createHourlyPercentages();
+      state.hour = currentHour;
     }
 
     return state;
@@ -3993,14 +4020,20 @@ withdrawBox.style.display = "block";
 
   setInterval(() => {
     const currentDate = getLocalDateKey();
+    const currentHour = getLocalHourKey();
 
     if (liveMetricState.date !== currentDate) {
       liveMetricState.values = liveMetricState.values.map((value, index) => {
         const [min, max] = liveMetricDailyRanges[index];
         return Number(value) + randomInteger(min, max);
       });
-      liveMetricState.percentages = createDailyPercentages();
+      liveMetricState.percentages = createHourlyPercentages();
       liveMetricState.date = currentDate;
+    }
+
+    if (liveMetricState.hour !== currentHour) {
+      liveMetricState.percentages = createHourlyPercentages();
+      liveMetricState.hour = currentHour;
     }
 
     liveMetricState.values = liveMetricState.values.map((value, index) => {
@@ -4010,6 +4043,140 @@ withdrawBox.style.display = "block";
     renderLiveMetrics(liveMetricState);
     saveLiveMetricState(liveMetricState);
   }, 8000);
+
+  // ===== 【首頁 JavaScript：展示版即時交易動態】 =====
+  const activityScrollEl = document.querySelector(".activity-scroll");
+  const activityStorageKey = "katanaLiveActivities";
+  const maximumActivityCount = 12;
+
+  function createRandomWalletAddress() {
+    const bytes = new Uint8Array(20);
+
+    if (window.crypto?.getRandomValues) {
+      window.crypto.getRandomValues(bytes);
+    } else {
+      bytes.forEach((_, index) => {
+        bytes[index] = randomInteger(0, 255);
+      });
+    }
+
+    return "0x" + Array.from(bytes, (byte) =>
+      byte.toString(16).padStart(2, "0")
+    ).join("");
+  }
+
+  function createRandomActivity(forcedType = "", timestamp = Date.now()) {
+    const type = forcedType || (Math.random() < 0.5 ? "deposit" : "withdraw");
+    const amount = (Math.random() * 7.95 + 0.05).toFixed(4);
+
+    return {
+      id: `${Date.now()}-${Math.random()}`,
+      type: type,
+      address: createRandomWalletAddress(),
+      amount: amount,
+      timestamp: timestamp
+    };
+  }
+
+  function loadActivityState() {
+    try {
+      const savedActivities = JSON.parse(
+        localStorage.getItem(activityStorageKey)
+      );
+      if (Array.isArray(savedActivities) && savedActivities.length > 0) {
+        return savedActivities.slice(0, maximumActivityCount);
+      }
+    } catch (error) {
+      console.error("讀取即時交易資料失敗：", error);
+    }
+
+    const initialActivities = Array.from(
+      { length: maximumActivityCount },
+      () => createRandomActivity("", Date.now() - randomInteger(0, 7200000))
+    ).sort((a, b) => b.timestamp - a.timestamp);
+
+    if (!initialActivities.some((activity) => activity.type === "deposit")) {
+      initialActivities[0] = createRandomActivity("deposit");
+    }
+    if (!initialActivities.some((activity) => activity.type === "withdraw")) {
+      initialActivities[1] = createRandomActivity("withdraw");
+    }
+
+    return initialActivities;
+  }
+
+  function saveActivityState(activities) {
+    try {
+      localStorage.setItem(activityStorageKey, JSON.stringify(activities));
+    } catch (error) {
+      console.error("儲存即時交易資料失敗：", error);
+    }
+  }
+
+  function formatActivityTime(timestamp) {
+    const date = new Date(timestamp);
+    const hour = String(date.getHours()).padStart(2, "0");
+    const minute = String(date.getMinutes()).padStart(2, "0");
+    return `${hour}:${minute}`;
+  }
+
+  function renderActivities(activities) {
+    activityScrollEl.innerHTML = "";
+
+    activities.forEach((activity) => {
+      const isDeposit = activity.type === "deposit";
+      const activityEl = document.createElement("div");
+      activityEl.className = "activity";
+      activityEl.dataset.type = activity.type;
+
+      activityEl.innerHTML = `
+        <div class="coin">
+          <img src="images/ETH.png" alt="ETH">
+        </div>
+        <div>
+          <div class="addr">
+            ${activity.address.slice(0, 8)}...${activity.address.slice(-6)}
+          </div>
+          <div class="meta">
+            <span class="type-tag">${isDeposit ? "充值" : "提領"}</span>
+            <span class="time">${formatActivityTime(activity.timestamp)}</span>
+          </div>
+        </div>
+        <div class="amount ${isDeposit ? "in" : "out"}">
+          <span class="amount-number">${isDeposit ? "+" : "-"}${activity.amount}</span>
+          <span class="eth-unit">ETH</span>
+        </div>
+      `;
+
+      activityScrollEl.appendChild(activityEl);
+    });
+  }
+
+  const liveActivities = loadActivityState();
+  renderActivities(liveActivities);
+  saveActivityState(liveActivities);
+
+  function scheduleNextActivity() {
+    const nextDelay = randomInteger(7000, 15000);
+
+    setTimeout(() => {
+      liveActivities.unshift(createRandomActivity());
+      liveActivities.splice(maximumActivityCount);
+
+      if (!liveActivities.some((activity) => activity.type === "deposit")) {
+        liveActivities[liveActivities.length - 1] = createRandomActivity("deposit");
+      }
+      if (!liveActivities.some((activity) => activity.type === "withdraw")) {
+        liveActivities[liveActivities.length - 1] = createRandomActivity("withdraw");
+      }
+
+      renderActivities(liveActivities);
+      saveActivityState(liveActivities);
+      scheduleNextActivity();
+    }, nextDelay);
+  }
+
+  scheduleNextActivity();
 
 
   // ===== 【全站 JavaScript：底部導覽與頁面切換】 =====
