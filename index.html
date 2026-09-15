@@ -675,6 +675,11 @@ overflow: hidden;
 .wallet-label{
     color: #9ba9b8;
     font-size: 14px;
+}
+.wallet-label-row{
+    display: flex;
+    align-items: center;
+    gap: 4px;
     margin-bottom: 6px;
 }
 
@@ -686,8 +691,8 @@ overflow: hidden;
 }
 
 .wallet-copy-btn{
-  width: auto;
-  height: auto;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border: none;
   border-radius: 0;
@@ -695,6 +700,9 @@ overflow: hidden;
   box-shadow: none;
   display: grid;
   place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
 }
 
 .wallet-copy-btn.pressed .copy-img {
@@ -703,9 +711,15 @@ overflow: hidden;
 }
 
 .copy-img{ 
-    width: 36px;
-    height: 36px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
+    max-width: none;
+    flex: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* ---------- 錢包頁面：USDT 餘額 ---------- */
@@ -3362,15 +3376,17 @@ color: #ffffff !important;
     </div>
         <div class="wallet-info-top">
             <div>
-                <div class="wallet-label">錢包地址</div>
+                <div class="wallet-label-row">
+                    <div class="wallet-label">錢包地址</div>
+                    <button class="wallet-copy-btn" id="copyWalletAddress" aria-label="複製錢包地址"
+onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pressed'),200)">
+                        <img src="images/copy.png" class="copy-img" alt="">
+                    </button>
+                </div>
                 <div class="wallet-address" id="walletAddress">
                     0x0000...0000
                 </div>
             </div>
-            <button class="wallet-copy-btn" id="copyWalletAddress"
-onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pressed'),200)">
-                <img src="images/copy.png" class="copy-img" alt="copy">
-            </button>
         </div>
     
     <div class="balance-header">
