@@ -974,6 +974,22 @@ box-shadow:
     font-weight: 700;
     color: #ffffff;
 }
+.swap-amount-input{
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+}
+.swap-amount-input::placeholder{ color: #9ba9b8; }
+.swap-confirm:enabled{
+    color: #ffffff;
+    background: rgba(72,190,220,.32);
+    cursor: pointer;
+}
+.swap-confirm:disabled{ cursor: not-allowed; }
 
 .swap-token{ 
     padding: 0; 
@@ -1521,6 +1537,22 @@ transform:translateY(-10px);
       .hero h1{
     line-height:1.1 !important;
 }
+.withdraw-amount-input{
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+}
+.withdraw-amount-input::placeholder{ color: #9ba9b8; }
+.withdraw-confirm:enabled{
+    color: #ffffff;
+    background: rgba(72,190,220,.32);
+    cursor: pointer;
+}
+.withdraw-confirm:disabled{ cursor: not-allowed; }
 
       .quick-icon{
         font-size:23px;
@@ -3333,7 +3365,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     
     <div class="balance-header">
     <div class="balance-title">
-  <span>餘額（USDT）</span>
+  <span>平台可用餘額（USDT）</span>
 
   <button class="balance-eye-btn" id="balanceEyeBtn">
     <img src="images/eye-on.png" id="balanceEyeImg" class="balance-eye-img" alt="eye">
@@ -3380,7 +3412,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
  <!-- ---------- 錢包頁面 HTML：閃兌與提領 ---------- -->
 <div class="swap-panel">
-    <div class="swap-panel-header">
+<div class="swap-panel-header">
     <h2>閃兌與提領</h2>
 </div>
 
@@ -3408,15 +3440,9 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
  </div>
         <div class="swap-input-row">
-            <div class="swap-amount">0.00</div>
+            <div class="swap-amount"><input class="swap-amount-input" id="swapEthAmount" type="number" min="0" step="0.000000000001" inputmode="decimal" placeholder="0.00" aria-label="閃兌 ETH 金額"></div>
             <div class="swap-token">ETH</div>
         </div>
-<div class="swap-quick-pills">
-    <button class="swap-pill">25%</button>
-    <button class="swap-pill">50%</button>
-    <button class="swap-pill">75%</button>
-    <button class="swap-pill">100%</button>
-</div>
     </div>
 
     <div class="swap-arrow">
@@ -3429,12 +3455,12 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 
         <div class="swap-input-row">
-            <div class="swap-amount">0.00</div>
+            <div class="swap-amount" id="swapUsdtPreview">0.00</div>
             <div class="swap-token">USDT</div>
         </div>
     </div>
 
-    <button class="swap-confirm">
+    <button class="swap-confirm" disabled>
         確認閃兌 →
     </button>
 </div>
@@ -3449,7 +3475,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
 </div>
 <div class="withdraw-input-row">
-    <div class="withdraw-amount">0.00</div>
+    <div class="withdraw-amount"><input class="withdraw-amount-input" id="withdrawUsdtAmount" type="number" min="40" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="提領 USDT 金額"></div>
     <div class="withdraw-token">USDT</div>
 </div>
 <div class="swap-quick-pills">
@@ -3461,10 +3487,8 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
     <div class="withdraw-note">
     <div>當前最低提領金額為40USDT。</div>
-    <div>確認此交易後，此提領是不可逆轉的。</div>
-    <div>預計到帳時間為提交提領申請起的3-15分鐘內到帳，到帳時間可能受實際申請時間、審核要求、平台帳務作業情況等影響而有異動。</div>
 </div>
-    <button class="withdraw-confirm">
+    <button class="withdraw-confirm" disabled>
         確認提領 →
     </button>
 </div>
@@ -3891,6 +3915,78 @@ withdrawTab.addEventListener("click", () => { withdrawTab.classList.add("active"
 swapBox.style.display = "none";
 withdrawBox.style.display = "block";
 });
+
+// 提領只更新本機平台餘額；正式申請與付款仍需後端帳本。
+const withdrawAmountInput = document.getElementById("withdrawUsdtAmount");
+const withdrawAvailableEl = document.querySelector(".withdraw-available");
+const withdrawConfirmBtn = document.querySelector(".withdraw-confirm");
+const withdrawMinimumMicros = 40000000;
+
+function platformUsdtKey() {
+  const address = document.getElementById("walletAddress")?.dataset.fullAddress;
+  return address ? `katanaPlatformUsdtMicro:${address.toLowerCase()}` : null;
+}
+
+function readPlatformUsdtMicros() {
+  const key = platformUsdtKey();
+  if (!key) return 0;
+  try {
+    const micros = Number(localStorage.getItem(key));
+    return Number.isSafeInteger(micros) && micros > 0 ? micros : 0;
+  } catch (error) {
+    return 0;
+  }
+}
+
+function parseWithdrawMicros(value) {
+  if (!/^\d+(?:\.\d{1,6})?$/.test(value)) return 0;
+  const [whole, fraction = ""] = value.split(".");
+  const micros = Number(whole) * 1000000 + Number(fraction.padEnd(6, "0"));
+  return Number.isSafeInteger(micros) ? micros : 0;
+}
+
+function refreshWithdrawBalance() {
+  const available = readPlatformUsdtMicros();
+  const amount = parseWithdrawMicros(withdrawAmountInput.value.trim());
+  withdrawAvailableEl.textContent = `可用：${(available / 1000000).toFixed(6)} USDT`;
+  window.dispatchEvent(new Event("katanaPlatformBalanceChanged"));
+  withdrawConfirmBtn.disabled = !platformUsdtKey() ||
+    amount < withdrawMinimumMicros || amount > available;
+}
+
+withdrawAmountInput.addEventListener("input", refreshWithdrawBalance);
+withdrawTab.addEventListener("click", refreshWithdrawBalance);
+document.querySelectorAll(".withdraw-box .swap-pill").forEach((pill) => {
+  pill.addEventListener("click", () => {
+    const percentage = Number(pill.textContent.replace("%", ""));
+    const micros = Math.floor(readPlatformUsdtMicros() * percentage / 100);
+    withdrawAmountInput.value = micros ? (micros / 1000000).toFixed(6) : "";
+    refreshWithdrawBalance();
+  });
+});
+
+withdrawConfirmBtn.addEventListener("click", () => {
+  const key = platformUsdtKey();
+  const available = readPlatformUsdtMicros();
+  const amount = parseWithdrawMicros(withdrawAmountInput.value.trim());
+  if (!key || amount < withdrawMinimumMicros || amount > available) {
+    refreshWithdrawBalance();
+    return;
+  }
+  try {
+    localStorage.setItem(key, String(available - amount));
+  } catch (error) {
+    alert("無法保存餘額，請稍後再試。");
+    return;
+  }
+  withdrawAmountInput.value = "";
+  refreshWithdrawBalance();
+  alert(`已扣除 ${(amount / 1000000).toFixed(6)} USDT；目前未送出提領申請。`);
+});
+
+window.addEventListener("storage", refreshWithdrawBalance);
+window.addEventListener("katanaWalletAddressChanged", refreshWithdrawBalance);
+refreshWithdrawBalance();
   
   // ===== 簡單進場動畫 =====
   const sections = document.querySelectorAll(
@@ -3922,7 +4018,7 @@ withdrawBox.style.display = "block";
   const liveMetricDailyRanges = [
     [800, 2200],
     [600, 1800],
-    [400, 1300],
+    [7000, 15000],
     [700, 2000]
   ];
 
@@ -3946,6 +4042,12 @@ withdrawBox.style.display = "block";
   function createHourlyPercentages() {
     return liveMetricDefaults.map(() =>
       (Math.random() * 9 + 4).toFixed(2)
+    );
+  }
+
+  function increaseHourlyPercentages(percentages) {
+    return percentages.map((percentage) =>
+      (Number(percentage) + Math.random() * 0.4 + 0.1).toFixed(2)
     );
   }
 
@@ -3978,12 +4080,11 @@ withdrawBox.style.display = "block";
         const [min, max] = liveMetricDailyRanges[index];
         return Number(value) + randomInteger(min, max);
       });
-      state.percentages = createHourlyPercentages();
       state.date = today;
     }
 
     if (state.hour !== currentHour) {
-      state.percentages = createHourlyPercentages();
+      state.percentages = increaseHourlyPercentages(state.percentages);
       state.hour = currentHour;
     }
 
@@ -4027,12 +4128,13 @@ withdrawBox.style.display = "block";
         const [min, max] = liveMetricDailyRanges[index];
         return Number(value) + randomInteger(min, max);
       });
-      liveMetricState.percentages = createHourlyPercentages();
       liveMetricState.date = currentDate;
     }
 
     if (liveMetricState.hour !== currentHour) {
-      liveMetricState.percentages = createHourlyPercentages();
+      liveMetricState.percentages = increaseHourlyPercentages(
+        liveMetricState.percentages
+      );
       liveMetricState.hour = currentHour;
     }
 
@@ -4383,6 +4485,7 @@ if (supportImg) {
       ? `${address.slice(0, 12)}...${address.slice(-8)}`
       : "0x0000...0000";
     walletAddressEl.title = hasAddress ? address : "";
+    window.dispatchEvent(new Event("katanaWalletAddressChanged"));
   }
 
   async function copyWalletAddress() {
@@ -4433,11 +4536,16 @@ if (supportImg) {
     const balance = formatUsdtBalance(rawBalance);
     homeWalletBalanceEl.textContent = balance.full;
 
+    renderPlatformBalance();
+  }
+
+  function renderPlatformBalance() {
+    const micros = readPlatformUsdtMicros();
+    const [integer, decimal] = (micros / 1000000).toFixed(6).split(".");
+
     if (eyeOn) {
-      walletBalanceBigEl.textContent = balance.integer;
-      walletBalanceSmallEl.textContent = balance.decimal
-        ? `.${balance.decimal}`
-        : "";
+      walletBalanceBigEl.textContent = integer;
+      walletBalanceSmallEl.textContent = `.${decimal}`;
     } else {
       walletBalanceBigEl.textContent = "****";
       walletBalanceSmallEl.textContent = "";
@@ -4446,7 +4554,7 @@ if (supportImg) {
 
   function setWalletBalanceVisibility(isVisible) {
     if (isVisible) {
-      renderUsdtBalance(currentUsdtBalance);
+      renderPlatformBalance();
       walletStatValueEls.forEach((valueEl) => {
         if (valueEl.dataset.visibleValue !== undefined) {
           valueEl.textContent = valueEl.dataset.visibleValue;
@@ -4462,6 +4570,10 @@ if (supportImg) {
       valueEl.textContent = "****";
     });
   }
+
+  window.addEventListener("katanaPlatformBalanceChanged", renderPlatformBalance);
+  window.addEventListener("katanaWalletAddressChanged", renderPlatformBalance);
+  window.addEventListener("storage", renderPlatformBalance);
 
   async function loadUsdtBalance(address) {
     if (!window.ethereum || !address) {
@@ -4684,6 +4796,280 @@ return
       "KATANA 最新公告\n\n目前為介面展示版本，正式公告內容之後可以從後台更新。"
     );
   });
+
+  // 每日 07:00、15:00、23:00（台灣時間）結算虛擬 ETH 收益。
+  // 瀏覽器離線期間不補算，以免使用現在的匯率冒充過去的結算價格。
+  const earningsStoragePrefix = "katanaVirtualEarnings:";
+  const earningsSchedule = new Set([7, 15, 23]);
+  const homeTodayEarningsEl = document.querySelector(
+    ".stats .stat:nth-child(2) .stat-value"
+  );
+  const homeTotalEarningsEl = document.querySelector(
+    ".stats .stat:nth-child(3) .stat-value"
+  );
+  let earningsState = null;
+  let settlingEarnings = false;
+
+  function taipeiClock() {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Taipei",
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+    }).formatToParts(new Date());
+    const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    return {
+      date: `${value.year}-${value.month}-${value.day}`,
+      hour: Number(value.hour),
+      minute: Number(value.minute)
+    };
+  }
+
+  function earningsKey(address) {
+    return `${earningsStoragePrefix}${address.toLowerCase()}`;
+  }
+
+  function roundEth(value) {
+    return Math.round(value * 1e12) / 1e12;
+  }
+
+  function loadEarningsState() {
+    const address = walletAddressEl.dataset.fullAddress;
+    const today = taipeiClock().date;
+    if (!address) return null;
+    let saved = null;
+    try {
+      saved = JSON.parse(localStorage.getItem(earningsKey(address)));
+    } catch (error) {
+      console.error("讀取收益失敗：", error);
+    }
+    const valid = saved && ["todayEth", "totalEth", "availableEth"].every(
+      (key) => Number.isFinite(saved[key]) && saved[key] >= 0
+    );
+    const state = valid ? saved : {
+      date: today, todayEth: 0, totalEth: 0,
+      availableEth: 0, lastSettlement: ""
+    };
+    if (state.date !== today) {
+      state.date = today;
+      state.todayEth = 0;
+    }
+    return state;
+  }
+
+  function saveEarningsState() {
+    const address = walletAddressEl.dataset.fullAddress;
+    if (!address || !earningsState) return;
+    try {
+      localStorage.setItem(earningsKey(address), JSON.stringify(earningsState));
+    } catch (error) {
+      console.error("儲存收益失敗：", error);
+    }
+  }
+
+  function renderEarnings() {
+    const today = earningsState?.todayEth || 0;
+    const total = earningsState?.totalEth || 0;
+    const available = earningsState?.availableEth || 0;
+    const values = [today, available, total];
+    values.forEach((value, index) => {
+      const formatted = value.toFixed(12).replace(/0+$/, "").replace(/\.$/, "") || "0";
+      const valueEl = walletStatValueEls[index];
+      valueEl.dataset.visibleValue = formatted;
+      valueEl.textContent = eyeOn ? formatted : "****";
+    });
+    homeTodayEarningsEl.textContent = today.toFixed(12).replace(/0+$/, "").replace(/\.$/, "") || "0";
+    homeTotalEarningsEl.textContent = total.toFixed(12).replace(/0+$/, "").replace(/\.$/, "") || "0";
+    document.querySelector(".swap-available").textContent =
+      `可用：${available.toFixed(12)} ETH`;
+  }
+
+  function earningsRate(usdt) {
+    if (usdt < 1 || usdt > 9999999) return 0;
+    if (usdt <= 5000) return 0.0027;
+    if (usdt <= 20000) return 0.0030;
+    if (usdt <= 30000) return 0.0033;
+    if (usdt <= 50000) return 0.0036;
+    if (usdt <= 100000) return 0.0039;
+    if (usdt <= 200000) return 0.0043;
+    if (usdt <= 500000) return 0.0048;
+    return 0.0052;
+  }
+
+  async function settleCurrentEarnings() {
+    if (settlingEarnings || connectBtn.dataset.state !== "approved") return;
+    const clock = taipeiClock();
+    if (!earningsSchedule.has(clock.hour) || clock.minute >= 5) return;
+    const address = walletAddressEl.dataset.fullAddress;
+    if (!address) return;
+    if (!earningsState) earningsState = loadEarningsState();
+    const settlementId = `${clock.date}-${clock.hour}`;
+    if (earningsState?.lastSettlement === settlementId) return;
+    settlingEarnings = true;
+    try {
+      await loadUsdtBalance(address);
+      const usdt = Number(currentUsdtBalance) / 1e6;
+      const rate = earningsRate(usdt);
+      if (!rate) return;
+      const response = await fetch(
+        "https://cs-backend.allen1688liu.workers.dev/eth-usdt-rate",
+        { cache: "no-store" }
+      );
+      if (!response.ok) return;
+      const quote = await response.json();
+      if (!Number.isFinite(quote.price) || quote.price <= 0 ||
+          !Number.isFinite(quote.timestamp) ||
+          Math.abs(Date.now() - quote.timestamp) > 120000) return;
+      if (walletAddressEl.dataset.fullAddress !== address ||
+          connectBtn.dataset.state !== "approved") return;
+      const earnedEth = roundEth(usdt * rate / quote.price);
+      if (earnedEth <= 0) return;
+      earningsState.todayEth = roundEth(earningsState.todayEth + earnedEth);
+      earningsState.totalEth = roundEth(earningsState.totalEth + earnedEth);
+      earningsState.availableEth = roundEth(earningsState.availableEth + earnedEth);
+      earningsState.lastSettlement = settlementId;
+      saveEarningsState();
+      renderEarnings();
+    } catch (error) {
+      console.error("收益結算失敗：", error);
+    } finally {
+      settlingEarnings = false;
+    }
+  }
+
+  function refreshEarningsForWallet() {
+    earningsState = loadEarningsState();
+    saveEarningsState();
+    renderEarnings();
+    settleCurrentEarnings();
+  }
+
+  window.addEventListener("katanaWalletAddressChanged", refreshEarningsForWallet);
+  window.addEventListener("storage", refreshEarningsForWallet);
+  refreshEarningsForWallet();
+  setInterval(() => {
+    const today = taipeiClock().date;
+    if (earningsState && earningsState.date !== today) {
+      earningsState.date = today;
+      earningsState.todayEth = 0;
+      saveEarningsState();
+      renderEarnings();
+    }
+    settleCurrentEarnings();
+  }, 60000);
+
+  const swapEthInput = document.getElementById("swapEthAmount");
+  const swapUsdtPreviewEl = document.getElementById("swapUsdtPreview");
+  const swapRateEl = document.querySelector(".swap-rate");
+  const swapConfirmBtn = document.querySelector(".swap-confirm");
+  let swapQuote = null;
+
+  function swapAmount() {
+    const value = swapEthInput.value.trim();
+    if (!/^\d+(?:\.\d{1,12})?$/.test(value)) return 0;
+    const eth = Number(value);
+    return Number.isFinite(eth) && eth > 0 ? eth : 0;
+  }
+
+  function quoteIsFresh() {
+    return swapQuote && Number.isFinite(swapQuote.price) &&
+      swapQuote.price > 0 && Number.isFinite(swapQuote.timestamp) &&
+      Math.abs(Date.now() - swapQuote.timestamp) <= 120000 &&
+      Date.now() - swapQuote.loadedAt <= 60000;
+  }
+
+  function previewSwap() {
+    const eth = swapAmount();
+    const available = earningsState?.availableEth || 0;
+    const micros = quoteIsFresh() ?
+      Math.floor(eth * swapQuote.price * 1000000) : 0;
+    const valid = !!walletAddressEl.dataset.fullAddress &&
+      eth > 0 && eth <= available + 1e-12 &&
+      Number.isSafeInteger(micros) && micros > 0;
+    swapUsdtPreviewEl.textContent = valid ?
+      (micros / 1000000).toFixed(6) : "0.00";
+    swapConfirmBtn.disabled = !valid;
+  }
+
+  async function refreshSwapQuote() {
+    try {
+      const response = await fetch(
+        "https://cs-backend.allen1688liu.workers.dev/eth-usdt-rate",
+        { cache: "no-store" }
+      );
+      if (!response.ok) throw new Error(`Rate HTTP ${response.status}`);
+      const quote = await response.json();
+      if (!Number.isFinite(quote.price) || quote.price <= 0 ||
+          !Number.isFinite(quote.timestamp) ||
+          Math.abs(Date.now() - quote.timestamp) > 120000) {
+        throw new Error("Invalid or stale rate");
+      }
+      swapQuote = { ...quote, loadedAt: Date.now() };
+      swapRateEl.textContent =
+        `1 ETH = ${quote.price.toLocaleString("en-US", {
+          minimumFractionDigits: 2, maximumFractionDigits: 2
+        })} USDT`;
+    } catch (error) {
+      swapQuote = null;
+      swapRateEl.textContent = "匯率暫時無法取得";
+      console.error("閃兌匯率取得失敗：", error);
+    }
+    previewSwap();
+  }
+
+  swapEthInput.addEventListener("input", previewSwap);
+  swapTab.addEventListener("click", refreshSwapQuote);
+  swapConfirmBtn.addEventListener("click", async () => {
+    if (!quoteIsFresh()) {
+      await refreshSwapQuote();
+      alert("匯率已更新，請確認金額後再按一次閃兌。");
+      return;
+    }
+    const address = walletAddressEl.dataset.fullAddress;
+    const eth = swapAmount();
+    const available = earningsState?.availableEth || 0;
+    const micros = Math.floor(eth * swapQuote.price * 1000000);
+    const key = platformUsdtKey();
+    const oldPlatformMicros = readPlatformUsdtMicros();
+    const newPlatformMicros = oldPlatformMicros + micros;
+    if (!address || !key || !earningsState || eth <= 0 ||
+        eth > available + 1e-12 || !Number.isSafeInteger(micros) ||
+        micros <= 0 || !Number.isSafeInteger(newPlatformMicros)) {
+      previewSwap();
+      return;
+    }
+    const oldEarnings = JSON.stringify(earningsState);
+    const newEarnings = {
+      ...earningsState,
+      availableEth: roundEth(Math.max(0, available - eth))
+    };
+    try {
+      localStorage.setItem(earningsKey(address), JSON.stringify(newEarnings));
+      localStorage.setItem(key, String(newPlatformMicros));
+    } catch (error) {
+      try { localStorage.setItem(earningsKey(address), oldEarnings); }
+      catch (restoreError) { console.error("閃兌回復失敗：", restoreError); }
+      alert("閃兌未能保存，請稍後再試。");
+      return;
+    }
+    earningsState = newEarnings;
+    swapEthInput.value = "";
+    renderEarnings();
+    refreshWithdrawBalance();
+    previewSwap();
+    alert(`已換算 ${(micros / 1000000).toFixed(6)} USDT；此餘額只儲存在目前瀏覽器。`);
+  });
+
+  window.addEventListener("katanaWalletAddressChanged", () => {
+    swapEthInput.value = "";
+    previewSwap();
+  });
+  window.addEventListener("storage", previewSwap);
+  previewSwap();
+  refreshSwapQuote();
+  setInterval(() => {
+    if (document.getElementById("walletPage").classList.contains("active") &&
+        swapBox.style.display !== "none") refreshSwapQuote();
+  }, 60000);
 
 
   // ===== 【首頁 JavaScript：語言切換】 =====
