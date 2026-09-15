@@ -668,8 +668,8 @@ overflow: hidden;
 .wallet-info-top{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 8px;
 }
 
 .wallet-label{
@@ -703,10 +703,9 @@ overflow: hidden;
 }
 
 .copy-img{ 
-    width: 60px; 
-    height: 60px; 
-    object-fit: cover;
-transform: translate(-213px, -16px);
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
 }
 
 /* ---------- 錢包頁面：USDT 餘額 ---------- */
@@ -976,6 +975,7 @@ box-shadow:
     font-weight: 700;
     color: #ffffff;
 }
+#swapUsdtPreview.is-empty{ color: #9ba9b8; }
 .swap-amount-input{
     width: 100%;
     min-width: 0;
@@ -1123,15 +1123,20 @@ box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
 }
 
 .withdraw-amount{
+    flex: 1;
+    min-width: 0;
     font-size: 38px;
     font-weight: 800;
     color: #ffffff;
 }
 
 .withdraw-token{
+    flex: 0 0 auto;
+    white-space: nowrap;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -1544,6 +1549,7 @@ transform:translateY(-10px);
 .withdraw-amount-input{
     width: 100%;
     min-width: 0;
+    box-sizing: border-box;
     border: 0;
     outline: 0;
     background: transparent;
@@ -3369,7 +3375,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     
     <div class="balance-header">
     <div class="balance-title">
-  <span>平台可用餘額（USDT）</span>
+  <span>餘額（USDT）</span>
 
   <button class="balance-eye-btn" id="balanceEyeBtn">
     <img src="images/eye-on.png" id="balanceEyeImg" class="balance-eye-img" alt="eye">
@@ -3459,7 +3465,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 </div>
 
         <div class="swap-input-row">
-            <div class="swap-amount" id="swapUsdtPreview">0.00</div>
+            <div class="swap-amount is-empty" id="swapUsdtPreview">0.00</div>
             <div class="swap-token">USDT</div>
         </div>
     </div>
@@ -4993,6 +4999,7 @@ return
       Number.isSafeInteger(micros) && micros > 0;
     swapUsdtPreviewEl.textContent = valid ?
       (micros / 1000000).toFixed(6) : "0.00";
+    swapUsdtPreviewEl.classList.toggle("is-empty", !valid);
     swapConfirmBtn.disabled = !valid;
   }
 
