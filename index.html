@@ -970,6 +970,8 @@ box-shadow:
 }
 
 .swap-amount{
+    flex: 1;
+    min-width: 0;
     font-size: 38px;
     font-weight: 700;
     color: #ffffff;
@@ -977,6 +979,7 @@ box-shadow:
 .swap-amount-input{
     width: 100%;
     min-width: 0;
+    box-sizing: border-box;
     border: 0;
     outline: 0;
     background: transparent;
@@ -992,6 +995,7 @@ box-shadow:
 .swap-confirm:disabled{ cursor: not-allowed; }
 
 .swap-token{ 
+    flex: 0 0 auto;
     padding: 0; 
     border: none; 
     border-radius: 0;
@@ -1128,9 +1132,9 @@ box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
 }
 
 .withdraw-token{
-    padding: 10px 16px;
-    border: 1px solid rgba(72,190,220,.3);
-    border-radius: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     color: #ffffff;
     font-size: 17px;
     font-weight: 800;
@@ -3487,6 +3491,8 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     </div>
     <div class="withdraw-note">
     <div>當前最低提領金額為40USDT。</div>
+    <div>確認此交易後，此提領是不可逆轉的。</div>
+    <div>預計到帳時間為提交提領申請起的3-15分鐘內到帳，到帳時間可能受實際申請時間、審核要求、平台帳務作業情況等影響而有異動。</div>
 </div>
     <button class="withdraw-confirm" disabled>
         確認提領 →
