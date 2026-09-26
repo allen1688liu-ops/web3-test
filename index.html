@@ -1350,7 +1350,7 @@ text-indent: 0;
     }
 
     .nav-item.active{
-      color:var(--accent);
+      color:#ffffff;
     }
 
    
@@ -4786,6 +4786,27 @@ body.announcement-center-open{
 @media (prefers-reduced-motion: reduce) {
   .bottom-nav { transition: none; }
 }
+
+/* 底部導覽以黑色凹面陰影表示選中，圖示與文字維持白色。 */
+.bottom-nav .nav-item {
+  color: #ffffff;
+  border-radius: 14px;
+  transition: background-color .15s ease, box-shadow .15s ease;
+}
+.bottom-nav .nav-item.active {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, .30);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, .70),
+              0 1px 0 rgba(255, 255, 255, .04);
+}
+.bottom-nav .nav-item:active {
+  background-color: rgba(0, 0, 0, .48);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, .85);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav .nav-item { transition: none; }
+}
+
 </style>
 </head>
 <body>
@@ -5352,9 +5373,9 @@ body.announcement-center-open{
 
     <div class="nav-icon">
     <img class="nav-home-img"
-     src="images/nav-home-purple.png"
+     src="images/nav-home.png"
      data-white="images/nav-home.png"
-     data-active="images/nav-home-purple.png"
+     data-active="images/nav-home.png"
      alt="首頁">
 </div>
 
@@ -5368,7 +5389,7 @@ body.announcement-center-open{
     <img class="nav-wallet-img"
      src="images/nav-wallet.png"
      data-white="images/nav-wallet.png"
-     data-active="images/nav-wallet-purple.png"
+     data-active="images/nav-wallet.png"
      alt="錢包">
 </div>
 
@@ -5382,7 +5403,7 @@ body.announcement-center-open{
     <img class="nav-swap-img"
      src="images/nav-swap.png"
      data-white="images/nav-swap.png"
-     data-active="images/nav-swap-purple.png"
+     data-active="images/nav-swap.png"
      alt="閃兌">
 </div>
     <div class="nav-swap-text">閃兌</div>
@@ -5395,7 +5416,7 @@ body.announcement-center-open{
     <img class="nav-history-img"
      src="images/nav-history.png"
      data-white="images/nav-history.png"
-     data-active="images/nav-history-purple.png"
+     data-active="images/nav-history.png"
      alt="收益歷史">
 </div>
 
@@ -5409,7 +5430,7 @@ body.announcement-center-open{
     <img class="nav-support-img"
      src="images/nav-support.png"
      data-white="images/nav-support.png"
-     data-active="images/nav-support-purple.png"
+     data-active="images/nav-support.png"
      alt="客服">
 </div>
 
@@ -9001,10 +9022,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const y = Math.min(maxY, Math.max(0, scroller.scrollTop));
     const change = y - previousY;
     const remaining = maxY - y;
+    const partnerTitle = document.querySelector('#homePage.active .partner-title');
+    const viewportHeight = window.innerHeight || scroller.clientHeight;
+    const partnerTop = partnerTitle ? partnerTitle.getBoundingClientRect().top : null;
+    const reachedPartners = partnerTop !== null && partnerTop <= viewportHeight - 24;
+    const leftPartners = partnerTop === null || partnerTop > viewportHeight + 36;
 
-    if (maxY < 120 || y < 40 || change < -2 || remaining > 140) {
+    if (maxY < 120 || y < 40 || change < -2 || (remaining > 140 && leftPartners)) {
       nav.classList.remove('is-scroll-hidden');
-    } else if (change > 2 && remaining <= 80 && !nav.querySelector(':focus-visible')) {
+    } else if (change > 2 && (reachedPartners || remaining <= 80) && !nav.querySelector(':focus-visible')) {
       nav.classList.add('is-scroll-hidden');
     }
     if (Math.abs(change) > 2) previousY = y;
