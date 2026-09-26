@@ -4673,20 +4673,42 @@ body.announcement-center-open{
 
 /* 四格快速操作；中樞配給標頭依正常文件順序排列。 */
 #homePage .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#allocationPage .allocation-notice-box { padding-top: 12px; }
+#allocationPage .allocation-top-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  margin: 0 -14px 12px;
+}
 #allocationPage .allocation-vip-btn {
   position: static;
   display: block;
   width: fit-content;
   max-width: 100%;
-  margin: 0 0 16px auto;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  margin: 0;
+  padding: 5px 6px;
+  font-size: 8px;
+  white-space: nowrap;
 }
 #allocationPage .home-notice-tag {
   transform: none;
-  margin: 0 auto 18px;
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  white-space: nowrap;
+}
+@media (max-width: 360px) {
+  #allocationPage .allocation-top-row { grid-template-columns: auto 1fr; }
+  #allocationPage .home-notice-tag { grid-column: 1; }
+  #allocationPage .allocation-vip-btn { grid-column: 2; }
 }
 #allocationPage .home-notice-logo {
   height: auto;
-  margin: 0 auto 18px;
+  margin: 0 auto 6px;
   text-align: center;
 }
 #allocationPage .home-notice-logo img {
@@ -5598,8 +5620,10 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 <section id="allocationPage" class="allocation-page app-page">
     <div class="allocation-content">
         <div class="home-notice-box allocation-notice-box">
+            <div class="allocation-top-row">
             <button class="allocation-vip-btn">成為VIP・獲取更多獎勵</button>
             <div class="home-notice-tag">收益詳細說明</div>
+            </div>
             <div class="home-notice-logo">
                 <img src="images/bedrock-wordmark-white.png" alt="BEDROCK">
             </div>
