@@ -4729,6 +4729,53 @@ body.announcement-center-open{
 #allocationPage .home-notice-line { margin: 12px auto; }
 #allocationPage .home-notice-desc { transform: none; margin: 0 0 16px; }
 
+
+/* 收益彈窗沿用中樞配給純字 Logo，取消旧有重疊位移。 */
+#homeNoticePopup .home-notice-box {
+  background: linear-gradient(150deg, #181020, #0b0911);
+  max-height: 88vh;
+  max-height: 88dvh;
+  padding: 18px 20px 22px;
+}
+#homeNoticePopup .home-notice-tag {
+  transform: none;
+  margin: 0 auto 16px;
+  font-size: 8px;
+}
+#homeNoticePopup .home-notice-logo {
+  height: auto;
+  margin: 0 auto 8px;
+}
+#homeNoticePopup .home-notice-logo img {
+  position: static;
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  transform: none;
+  object-fit: contain;
+}
+#homeNoticePopup .home-notice-title {
+  margin: 0;
+  transform: none;
+  font-size: clamp(15px, 4vw, 19px);
+}
+#homeNoticePopup .home-notice-line { margin: 12px auto; }
+#homeNoticePopup .home-notice-desc {
+  transform: none;
+  margin: 0 0 14px;
+}
+#homeNoticePopup .home-notice-rate-box {
+  transform: none;
+  margin: 0;
+  padding: 10px 14px;
+}
+#homeNoticePopup .home-notice-close-btn {
+  transform: none;
+  margin: 14px auto 0;
+}
+
 </style>
 </head>
 <body>
@@ -8307,7 +8354,7 @@ vipSlider.addEventListener("pointerup", (e) => {
     <div class="home-notice-box">
         <div class="home-notice-tag">收益詳細說明</div>
         <div class="home-notice-logo">
-    <img src="images/bedrock-logo.png" alt="BEDROCK">
+    <img src="images/bedrock-wordmark-white.png" alt="BEDROCK">
 </div>
         <div class="home-notice-title">NODE INTEREST RATE</div>
         <div class="home-notice-line">
