@@ -4472,7 +4472,7 @@ body.announcement-center-open{
   min-height: 220px;
   background-color: #000;
   background-size: cover;
-  background-position: center;
+  background-position: calc(50% - 24px) center;
 }
 .ecosystem h3,
 .ecosystem .eco-desc,
@@ -4666,6 +4666,43 @@ body.announcement-center-open{
 .home-header .lang-btn { transform: none; }
 #homePage .hero { margin-top: 16px; }
 
+
+/* 四格快速操作；中樞配給標頭依正常文件順序排列。 */
+#homePage .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#allocationPage .allocation-vip-btn {
+  position: static;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 16px auto;
+}
+#allocationPage .home-notice-tag {
+  transform: none;
+  margin: 0 auto 18px;
+}
+#allocationPage .home-notice-logo {
+  height: auto;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+#allocationPage .home-notice-logo img {
+  position: static;
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  transform: none;
+  object-fit: contain;
+}
+#allocationPage .home-notice-title {
+  transform: none;
+  margin: 0;
+  font-size: clamp(16px, 4.5vw, 23px);
+}
+#allocationPage .home-notice-line { margin: 12px auto; }
+#allocationPage .home-notice-desc { transform: none; margin: 0 0 16px; }
+
 </style>
 </head>
 <body>
@@ -4825,13 +4862,6 @@ body.announcement-center-open{
 <h2 class="quick-title">快速操作 <span></span></h2>
 
 <div class="quick-grid">
-
-  <button class="quick" id="quickSwap">
-    <div class="quick-icon">
-  <img src="./images/swap-white.png" alt="閃兌">
-</div>
-    <div>閃兌</div>
-  </button>
 
   <button class="quick" id="quickWithdraw">
     <div class="quick-icon">
@@ -5567,7 +5597,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
             <button class="allocation-vip-btn">成為VIP・獲取更多獎勵</button>
             <div class="home-notice-tag">收益詳細說明</div>
             <div class="home-notice-logo">
-                <img src="images/bedrock-logo.png" alt="BEDROCK">
+                <img src="images/bedrock-wordmark-white.png" alt="BEDROCK">
             </div>
             <div class="home-notice-title">NODE INTEREST RATE</div>
             <div class="home-notice-line"><span></span><i></i><span></span></div>
@@ -6690,7 +6720,6 @@ refreshWithdrawBalance();
 
   // ===== 【全站 JavaScript：底部導覽與頁面切換】 =====
   const navItems = document.querySelectorAll(".nav-item");
-  const quickSwap = document.getElementById("quickSwap");
 
 function clearBottomNavSelection() {
     navItems.forEach((item) => {
@@ -6767,13 +6796,6 @@ if (whitepaperNext) {
 }
 
 
-if (quickSwap) {
-    quickSwap.addEventListener("click", () => {
-        clearBottomNavSelection();
-        document.querySelector('.nav-item[data-action="swap"]')?.click();
-        clearBottomNavSelection();
-    });
-}
 const quickWithdraw = document.getElementById("quickWithdraw");
 if (quickWithdraw) {
      quickWithdraw.addEventListener("click", () => { 
