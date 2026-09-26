@@ -4803,14 +4803,16 @@ body.announcement-center-open{
   background: transparent;
   box-shadow: none;
 }
-.bottom-nav .nav-item:active {
+.bottom-nav .nav-item:active,
+.bottom-nav .nav-item.is-pressed {
   transform: scale(.94);
   opacity: .72;
   transition-duration: .06s;
 }
 @media (prefers-reduced-motion: reduce) {
   .bottom-nav .nav-item { transition: none; }
-  .bottom-nav .nav-item:active { transform: none; }
+  .bottom-nav .nav-item:active,
+  .bottom-nav .nav-item.is-pressed { transform: none; }
 }
 
 </style>
@@ -9050,6 +9052,53 @@ document.addEventListener("DOMContentLoaded", function () {
   const pageObserver = new MutationObserver(showNavigation);
   document.querySelectorAll('.app-page').forEach(page => {
     pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
+  });
+})();
+</script>
+<script>
+// Mobile tap feedback: keep quick taps visible without delaying navigation.
+(() => {
+  document.querySelectorAll('.bottom-nav .nav-item').forEach(button => {
+    let startedAt = 0;
+    let timer = 0;
+    function clearPress() {
+      clearTimeout(timer);
+      timer = 0;
+      button.classList.remove('is-pressed');
+    }
+    function beginPress() {
+      clearTimeout(timer);
+      startedAt = performance.now();
+      button.classList.add('is-pressed');
+      timer = setTimeout(clearPress, 1500);
+    }
+    function endPress() {
+      if (!button.classList.contains('is-pressed')) return;
+      clearTimeout(timer);
+      timer = setTimeout(clearPress, Math.max(0, 140 - (performance.now() - startedAt)));
+    }
+    if ('PointerEvent' in window) {
+      button.addEventListener('pointerdown', event => {
+        if (event.isPrimary && event.button === 0) beginPress();
+      }, { passive: true });
+      window.addEventListener('pointerup', endPress, { passive: true });
+      window.addEventListener('pointercancel', clearPress, { passive: true });
+      button.addEventListener('pointerleave', clearPress, { passive: true });
+    } else {
+      button.addEventListener('touchstart', beginPress, { passive: true });
+      window.addEventListener('touchend', endPress, { passive: true });
+      window.addEventListener('touchcancel', clearPress, { passive: true });
+    }
+    // Capture also covers keyboard activation and browsers synthesizing clicks.
+    button.addEventListener('click', () => {
+      beginPress();
+      endPress();
+    }, { capture: true });
+    window.addEventListener('blur', clearPress);
+    window.addEventListener('pagehide', clearPress);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) clearPress();
+    });
   });
 })();
 </script>
