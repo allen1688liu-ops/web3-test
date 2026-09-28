@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#050506" />
-  <title>BEDROCK</title>
+  <meta name="theme-color" content="#020817" />
+  <title>KATANA</title>
 
   <style>
     /* ==================================================
        【全站共用 CSS】
        ================================================== */
     :root{
-      --accent:#c084fc;
+      --yellow:#fff400;
       --text:#f7fbff;
       --muted:#9eb1cf;
       --good:#5ff59a;
@@ -26,15 +26,17 @@
 
     html{
       scroll-behavior:smooth;
-      background-color: #050506;
     }
 
     body { 
         font-family: Arial, "Microsoft JhengHei", sans-serif; color: var(--text);
+/* 接近黑色的深藍底，保留淡藍柔光與小點 */
 background:
-  radial-gradient(circle, rgba(174, 162, 192, .10) .7px, transparent .9px) 0 0 / 32px 32px,
-  radial-gradient(ellipse at 85% 8%, rgba(168, 85, 247, .24), transparent 52%) 0 0 / 100% 100vh no-repeat,
-  linear-gradient(180deg, #080709 0%, #050506 55%, #030304 100%);
+  radial-gradient(circle, rgba(174, 162, 192, .10) .7px, transparent .9px) 0 0 / 32px 32px repeat,
+  radial-gradient(ellipse at 95% 5%, rgba(25, 119, 255, .24) 0%, transparent 40%) no-repeat,
+  radial-gradient(ellipse at 0% 78%, rgba(20, 105, 240, .14) 0%, transparent 36%) no-repeat,
+  #030812;
+background-attachment: scroll, fixed, fixed;
 
 min-height: 100vh;
     }
@@ -48,7 +50,7 @@ min-height: 100vh;
       display:flex;
       align-items:center;
       gap:10px;
-      color:var(--accent);
+      color:var(--yellow);
       font-weight:900;
     }
 
@@ -65,8 +67,8 @@ min-height: 100vh;
 
 
     .lang-btn{
-      border:1px solid rgba(168, 85, 247, .25);
-      background:#140b1e;
+      border:1px solid rgba(88,149,255,.25);
+      background:#071a38;
       color:white;
       border-radius:12px;
       padding:6px 7px;
@@ -81,9 +83,9 @@ min-height: 100vh;
     .hero{
       margin-top:20px;
       padding: 5px 30px;
-      border:1px solid rgba(168, 85, 247, .30);
+      border:1px solid rgba(36,125,255,.30);
       border-radius:26px;
-      background-image: linear-gradient(90deg, rgba(0,0,0,.28), transparent 70%), url("images/bedrock-join-ethereum.png");
+      background-image: url("images/katana-hero.jpeg");
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -99,7 +101,7 @@ background-repeat: no-repeat;
     }
 
     .hero h1 span{
-      color:var(--accent);
+      color:var(--yellow);
     }
 
     .hero p{
@@ -112,13 +114,13 @@ background-repeat: no-repeat;
     .connect-btn{
       margin-top:18px;
       border:none;
-      background:var(--accent);
+      background:var(--yellow);
       color:#06102a;
       padding:10px 16px;
       border-radius:12px;
       font-size:14px;
       font-weight:900;
-      box-shadow: 0 0 12px rgba(192, 132, 252, .55);
+      box-shadow: 0 0 12px rgba(255,244,0,.55);
       transition:.2s;
     }
 
@@ -136,17 +138,17 @@ background-repeat: no-repeat;
     .stat { 
         min-height: 150px; 
         padding: 14px 12px;
-border: 1px solid rgba(168, 85, 247, 0.45);
+border: 1px solid rgba(70, 140, 255, 0.45);
 border-radius: 18px;
-background: rgba(20, 11, 30, 0.72);
+background: rgba(7, 22, 45, 0.45);
 
 box-shadow:
-    0 0 1px rgba(168, 85, 247, 0.30),
-    0 0 15px rgba(168, 85, 247, 0.18);
+    0 0 1px rgba(70, 140, 255, 0.30),
+    0 0 15px rgba(70, 140, 255, 0.18);
 }
 
     .stat-icon{
-      color:var(--accent);
+      color:var(--yellow);
       font-size:28px;
     }
 
@@ -166,7 +168,7 @@ box-shadow:
 
     .stat-value{
       margin-top:14px;
-      color:var(--accent);
+      color:var(--yellow);
       font-size:28px;
       font-weight:900;
 
@@ -181,30 +183,30 @@ box-shadow:
     .announcement{
       width:100%;
       margin-top:18px;
-      border:1px solid var(--accent);
+      border:1px solid var(--yellow);
       border-radius:18px;
       padding:18px;
       display:grid;
       grid-template-columns:48px 1fr 28px;
       gap:12px;
       align-items:center;
-      background:linear-gradient(90deg,#140b1e,#140b1e);
+      background:linear-gradient(90deg,#071c42,#031027);
       color:white;
     }
 
     .announcement-icon{
-      color:var(--accent);
+      color:var(--yellow);
       font-size:30px;
     }
 
     .announcement-title{
-      color:var(--accent);
+      color:var(--yellow);
       font-weight:900;
       margin-bottom:5px;
     }
 
     .announcement-arrow{
-      color:var(--accent);
+      color:var(--yellow);
       font-size:30px;
     }
 
@@ -217,14 +219,14 @@ box-shadow:
 
    .quick {
      min-height: 110px;
-background: rgba(20, 11, 30, 0.72);
+background: rgba(7, 22, 45, 0.45);
 
-border: 1px solid rgba(168, 85, 247, 0.45);
+border: 1px solid rgba(70, 140, 255, 0.45);
 border-radius: 16px;
 
 box-shadow:
-    0 0 1px rgba(168, 85, 247, 0.30),
-    0 0 15px rgba(168, 85, 247, 0.18);
+    0 0 1px rgba(70, 140, 255, 0.30),
+    0 0 15px rgba(70, 140, 255, 0.18);
 
 color: white;
 display: flex;
@@ -235,14 +237,14 @@ gap: 10px;
 }
 
     .quick:hover{
-      border-color:var(--accent);
-      color:var(--accent);
+      border-color:var(--yellow);
+      color:var(--yellow);
       transform:translateY(-2px);
     }
 
     .quick-icon{
       font-size:28px;
-      color:var(--accent);
+      color:var(--yellow);
     }
 
     .ecosystem{ 
@@ -250,10 +252,10 @@ gap: 10px;
         min-height:170px; 
         padding:24px;
 
-border:1px solid rgba(168, 85, 247, .35);
+border:1px solid rgba(44,129,255,.35);
 border-radius:20px;
 
-background-image:url("images/bedrock-learn-usdt.png");
+background-image:url("images/samurai.jpg");
 background-repeat:no-repeat;
 background-position:right center;
 background-size:cover;
@@ -280,6 +282,14 @@ z-index:1;
 pointer-events:none;
 }
 
+    .metrics-disclaimer {
+        margin: 6px 0 0;
+        color: #b7c6db;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
     .metrics { 
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 
@@ -291,15 +301,15 @@ pointer-events:none;
     height: 65px;
     min-height: 0; 
     padding: 6px; 
-    border: 1px solid rgba(168, 85, 247, 0.45);
+    border: 1px solid rgba(70, 140, 255, 0.45);
 border-radius: 10px;
 
-background: rgba(20, 11, 30, 0.72);
+background: rgba(7, 22, 45, 0.50);
 
 
 box-shadow:
-    0 0 1px rgba(168, 85, 247, 0.30),
-    0 0 15px rgba(168, 85, 247, 0.18);
+    0 0 1px rgba(70, 140, 255, 0.30),
+    0 0 15px rgba(70, 140, 255, 0.18);
 display: flex;
 align-items: center;
 gap: 8px;
@@ -370,12 +380,12 @@ gap: 8px;
 padding:16px;
 border-radius:22px;
 
-background:rgba(20, 11, 30, 0.72);
-border:1px solid rgba(168, 85, 247, 0.55);
+background:rgba(7, 24, 62, 0.38);
+border:1px solid rgba(70, 130, 255, 0.55);
 
 box-shadow:
-    0 0 8px rgba(168, 85, 247, 0.35),
-    0 0 22px rgba(168, 85, 247, 0.18);
+    0 0 8px rgba(70, 130, 255, 0.35),
+    0 0 22px rgba(70, 130, 255, 0.18);
 
 height: 500px;
 max-height: none;
@@ -402,11 +412,11 @@ overflow-x: hidden;
         padding: 5px 10px; 
         min-height: 70px;
 
-        border: 1px solid rgba(168, 85, 247, 0.25);
+        border: 1px solid rgba(65, 130, 255, 0.25);
         border-radius: 15px;
-        background: rgba(20, 11, 30, 0.72);
+        background: rgba(7, 24, 56, 0.35);
 
-        box-shadow: 0 0 5px rgba(168, 85, 247, 0.18);
+        box-shadow: 0 0 5px rgba(65, 130, 255, 0.18);
 }
 
     .coin{
@@ -488,11 +498,11 @@ top: -10px;
 
     .partner{
       min-height:60px;
-      border:1px solid rgba(192, 132, 252, .25);
+      border:1px solid rgba(255,244,0,.25);
       border-radius:15px;
       display:grid;
       place-items:center;
-      background:#140b1e;
+      background:#071a38;
       text-align:center;
       font-weight:900;
     }
@@ -502,6 +512,57 @@ top: -10px;
     width: auto;
     height: auto;
     object-fit: contain;
+}
+.partner img[src="images/okx.png"] {
+   width: 85%;
+max-width: none;
+max-height: none;
+transform: translate(1px, -7px) scale(1.2);
+transform-origin: center center;
+justify-self: center;
+align-self: center;
+}
+.partner img[src="images/binance.png"] {
+    transform: translate(-1px, 1px) scale(1.7);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/crypto.com.png"] {
+    transform: translate(0px, 1px) scale(1.6);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+ }
+ .partner img[src="images/htx.png"] {
+    transform: translate(-2px, -1px) scale(1.9);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/bitget.png"] {
+    transform: translate(-2px, 2px) scale(1.75);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/trust.png"] {
+    transform: translate(-1px, 1px) scale(1.3);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/defibox.png"] {
+    transform: translate(0px, -1px) scale(1.60);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
+}
+.partner img[src="images/coolwallet.png"] {
+    transform: translate(0px, 0px) scale(1.4);
+    transform-origin: center center;
+    justify-self: center;
+    align-self: center;
 }
 /* ==================================================
    【首頁 CSS 結束】
@@ -555,12 +616,12 @@ top: -10px;
     min-height: 100vh;
     background:
     radial-gradient(circle at 50% 20%,
-    rgba(20, 11, 30, 0.72),
+    rgba(30, 100, 255, 0.18),
     transparent 45%),
     linear-gradient(180deg,
-    #140b1e 0%,
-    #140b1e 45%,
-    #140b1e 100%);
+    #0b1f4d 0%,
+    #071a3d 45%,
+    #050d24 100%);
 
 color: #ffffff;
 position: relative;
@@ -599,12 +660,12 @@ overflow: hidden;
 
 .wallet-info-card{
     padding: 22px 22px 1px;
-    border: 1px solid rgba(168, 85, 247, 0.55);
+    border: 1px solid rgba(70, 140, 255, 0.55);
     border-radius: 24px;
-    background: rgba(20, 11, 30, 0.72);
+    background: rgba(8, 24, 58, 0.72);
     box-shadow:
-    0 0 12px rgba(168, 85, 247, 0.22),
-    inset 0 0 10px rgba(168, 85, 247, 0.08);
+    0 0 12px rgba(70, 140, 255, 0.22),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
 }
 
 
@@ -673,7 +734,7 @@ overflow: hidden;
     align-items: center;
     gap: 12px;
 
-    border-top: 1px solid rgba(168, 85, 247, 0.15);
+    border-top: 1px solid rgba(72, 190, 255, 0.15);
     padding-top: 1px;
     margin-top: 20px;
     
@@ -749,7 +810,7 @@ overflow: hidden;
 .balance-stats{
     margin-top: 12px;
     padding-top: 18px;
-    border-top: 1px solid rgba(168, 85, 247, 0.15);
+    border-top: 1px solid rgba(72, 190, 255, 0.15);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-top:-40px;
@@ -767,7 +828,7 @@ overflow: hidden;
 }
 
 .balance-stat + .balance-stat{
-    border-left: 1px solid rgba(168, 85, 247, 0.15);
+    border-left: 1px solid rgba(72, 190, 255, 0.15);
 }
 
 .stat-icon{
@@ -802,8 +863,8 @@ overflow: hidden;
     margin-top: 28px;
     padding: 22px;
     border-radius: 24px;
-    border: 1px solid rgba(168, 85, 247, 0.55);
-    background: rgba(20, 11, 30, 0.72);
+    border: 1px solid rgba(70, 140, 255, 0.55);
+    background: rgba(6, 36, 95, 0.55);
 }
 
 .swap-panel-header{
@@ -827,15 +888,15 @@ overflow: hidden;
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     margin-bottom: 20px;
-border: 1px solid rgba(168, 85, 247, 0.55);
+border: 1px solid rgba(70, 140, 255, 0.55);
 border-radius: 18px;
 overflow: hidden;
 
-background: rgba(20, 11, 30, 0.72);
+background: rgba(6, 36, 95, 0.35);
 
 box-shadow:
-    0 0 12px rgba(168, 85, 247, 0.22),
-    inset 0 0 10px rgba(168, 85, 247, 0.08);
+    0 0 12px rgba(70, 140, 255, 0.22),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
 
     margin-top: -60px;
 }
@@ -885,31 +946,31 @@ box-shadow:
 }
 
 .swap-tab.active{
-    background: rgba(168, 85, 247, 0.10);
+    background: rgba(70, 140, 255, 0.10);
     color: #ffffff;
-    border: 1px solid rgba(168, 85, 247, 0.85);
+    border: 1px solid rgba(120, 220, 255, 0.85);
     border-radius: 16px;
-    box-shadow: 0 0 12px rgba(168, 85, 247, 0.35),
-                inset 0 0 8px rgba(168, 85, 247, 0.12);
+    box-shadow: 0 0 12px rgba(120, 220, 255, 0.35),
+                inset 0 0 8px rgba(120, 220, 255, 0.12);
 }
 
 .swap-box{
     padding:  18px;
-    border: 1px solid rgba(168, 85, 247, .18);
+    border: 1px solid rgba(72, 190, 220, .18);
     border-radius: 22px;
-    background: rgba(20, 11, 30, 0.78);
+    background: rgba(8, 26, 38, .78);
 }
 
 .swap-input-card{ 
     padding: 18px;
-border: 1px solid rgba(168, 85, 247, 0.55);
+border: 1px solid rgba(70, 140, 255, 0.55);
 border-radius: 18px;
 
-background: rgba(20, 11, 30, 0.72);
+background: rgba(6, 36, 95, 0.45);
 
 box-shadow:
-    0 0 12px rgba(168, 85, 247, 0.18),
-    inset 0 0 10px rgba(168, 85, 247, 0.08);
+    0 0 12px rgba(70, 140, 255, 0.18),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
 }
 
 .swap-label{
@@ -948,7 +1009,7 @@ box-shadow:
 .swap-amount-input::placeholder{ color: #9ba9b8; }
 .swap-confirm:enabled{
     color: #ffffff;
-    background: rgba(168, 85, 247, .32);
+    background: rgba(72,190,220,.32);
     cursor: pointer;
 }
 .swap-confirm:disabled{ cursor: not-allowed; }
@@ -976,8 +1037,8 @@ color: #ffffff;
 .swap-pill{
     height: 28px;
     border-radius: 999px;
-    border: 1px solid rgba(168, 85, 247, 0.55);
-    background: rgba(20, 11, 30, 0.72);
+    border: 1px solid rgba(70, 140, 255, 0.55);
+    background: rgba(6, 36, 95, 0.25);
     color: #ffffff;
     font-size: 12px;
     font-weight: 700;
@@ -1031,9 +1092,9 @@ color: #ffffff;
     width: 100%;
     height: 58px;
     margin-top: 22px;
-    border: 1px solid rgba(168, 85, 247, .18);
+    border: 1px solid rgba(72,190,220,.18);
     border-radius: 28px;
-    background: rgba(168, 85, 247, .08);
+    background: rgba(72,190,220,.08);
     color: #65717d;
     font-size: 18px;
     font-weight: 800;
@@ -1052,27 +1113,27 @@ color: #ffffff;
 .withdraw-box{ 
     margin-top: 0; 
     padding: 20px;
-border: 1px solid rgba(168, 85, 247, 0.55);
+border: 1px solid rgba(70, 140, 255, 0.55);
 border-top: none;
 
 border-radius: 0 0 18px 18px;
 
-background: rgba(20, 11, 30, 0.92);
+background: rgba(3, 18, 48, 0.92);
 
-box-shadow: 0 8px 14px rgba(168, 85, 247, 0.12);
+box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12);
 }
 
 .withdraw-input-card{
     margin-top:0px;
     padding:22px;
 
-    border:1px solid rgba(168, 85, 247, 0.55);
+    border:1px solid rgba(70,140,255,0.55);
     border-radius:18px;
-    background:rgba(20, 11, 30, 0.72);
+    background:rgba(6,36,95,0.45);
 
     box-shadow:
-        0 0 12px rgba(168, 85, 247, 0.18),
-        inset 0 0 10px rgba(168, 85, 247, 0.08);
+        0 0 12px rgba(70,140,255,0.18),
+        inset 0 0 10px rgba(70,140,255,0.08);
 }
 
 .withdraw-top{
@@ -1149,9 +1210,9 @@ text-indent: 0;
     width: 100%;
     height: 58px;
     margin-top: 22px;
-    border: 1px solid rgba(168, 85, 247, .18);
+    border: 1px solid rgba(72,190,220,.18);
     border-radius: 28px;
-    background: rgba(168, 85, 247, .08);
+    background: rgba(72,190,220,.08);
     color: #65717d;
     font-size: 18px;
     font-weight: 800;
@@ -1172,9 +1233,9 @@ text-indent: 0;
     overflow: hidden;
     background:
       radial-gradient(circle at 50% 20%,
-        rgba(20, 11, 30, 0.72), transparent 45%),
+        rgba(30, 100, 255, 0.18), transparent 45%),
       linear-gradient(180deg,
-        #140b1e 0%, #140b1e 45%, #140b1e 100%);
+        #0b1f4d 0%, #071a3d 45%, #050d24 100%);
 }
 
 .history-page::before{
@@ -1199,7 +1260,7 @@ text-indent: 0;
     padding: 8px;
     border: 1px solid rgba(255,255,255,.12);
     border-radius: 18px;
-    background: rgba(20, 11, 30, 0.82);
+    background: rgba(7,18,42,.82);
 }
 
 .history-tab{
@@ -1215,9 +1276,9 @@ text-indent: 0;
 }
 
 .history-tab.active{
-    color: #c084fc;
-    border-color: rgba(192, 132, 252, .55);
-    background: rgba(192, 132, 252, .10);
+    color: #ffe600;
+    border-color: rgba(255,230,0,.55);
+    background: rgba(255,230,0,.10);
 }
 
 .history-content{
@@ -1235,7 +1296,7 @@ text-indent: 0;
     border: 1px solid rgba(255,255,255,.12);
     border-radius: 15px;
     background:
-      linear-gradient(145deg, rgba(20, 11, 30, 0.96), rgba(20, 11, 30, 0.94));
+      linear-gradient(145deg, rgba(17,35,67,.96), rgba(5,15,32,.94));
     box-shadow: 0 14px 36px rgba(0,0,0,.24);
     display: flex;
     flex-direction: column;
@@ -1294,7 +1355,7 @@ text-indent: 0;
     min-height: 360px;
     border: 1px solid rgba(255,255,255,.12);
     border-radius: 28px;
-    background: rgba(20, 11, 30, 0.82);
+    background: rgba(5,15,32,.82);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1307,10 +1368,10 @@ text-indent: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(192, 132, 252, .30);
+    border: 1px solid rgba(255,230,0,.30);
     border-radius: 24px;
-    background: rgba(192, 132, 252, .07);
-    color: #c084fc;
+    background: rgba(255,230,0,.07);
+    color: #ffe600;
     font-size: 38px;
 }
 
@@ -1330,9 +1391,9 @@ text-indent: 0;
       display: grid;
       grid-template-columns:repeat(5,1fr);
       padding:8px 10px;
-      border:1px solid rgba(168, 85, 247, .55);
+      border:1px solid rgba(50,128,255,.55);
       border-radius:22px;
-      background:rgba(20, 11, 30, 0.72);
+      background:rgba(3,13,34,.70);
       backdrop-filter:blur(15px);
       z-index:30;
     }
@@ -1350,7 +1411,7 @@ text-indent: 0;
     }
 
     .nav-item.active{
-      color:#ffffff;
+      color:var(--yellow);
     }
 
    
@@ -1515,10 +1576,10 @@ text-indent: 0;
   grid-template-columns:60px 1fr 30px;
   align-items:center;
 
-  border:1.5px solid #c084fc;
+  border:1.5px solid #ffe600;
   border-radius:20px;
 
-  background:rgba(20, 11, 30, 0.72);
+  background:rgba(4,24,65,.72);
 
   position:relative;
 top:-8px;
@@ -1547,7 +1608,7 @@ top:-8px;
 }
 
 .announcement-title{
-  color:#c084fc;
+  color:#ffe600;
   font-size:14px;
   font-weight:700;
   margin-bottom:5px;
@@ -1562,7 +1623,7 @@ top:-8px;
 
 /* 右邊單純黃色箭頭 */
 .announcement-arrow{
-  color:#c084fc;
+  color:#ffe600;
   font-size:32px;
   font-weight:700;
   text-align:center;
@@ -1574,7 +1635,7 @@ top:-8px;
   justify-content:center;
   align-items:center;
 
-  border-right:1px solid rgba(192, 132, 252, .55);
+  border-right:1px solid rgba(255,230,0,.55);
   padding-right:5px;
   height:33px;
 }
@@ -1624,7 +1685,7 @@ transform:translateY(-10px);
 .withdraw-amount-input::placeholder{ color: #9ba9b8; }
 .withdraw-confirm:enabled{
     color: #ffffff;
-    background: rgba(168, 85, 247, .32);
+    background: rgba(72,190,220,.32);
     cursor: pointer;
 }
 .withdraw-confirm:disabled{ cursor: not-allowed; }
@@ -1758,7 +1819,7 @@ left: 0px;
 top: 30px;
 
 /* 外觀 */
-background: #c084fc;
+background: #fff000;
 color: #111;
 border: none;
 border-radius: 12px;
@@ -1791,9 +1852,9 @@ min-height: 68px;
     font-size: 14px;
     background: transparent;
 
-    border: 1px solid rgba(168, 85, 247, 0.25);
+    border: 1px solid rgba(65, 130, 255, 0.25);
 border-radius: 15px;
-box-shadow: 0 0 5px rgba(168, 85, 247, 0.18);
+box-shadow: 0 0 5px rgba(65, 130, 255, 0.18);
   }
 
   #homePage {
@@ -2105,8 +2166,8 @@ top: 7px;
     box-sizing: border-box;
     padding: 16px 12px 110px;
     background:
-        radial-gradient(circle at 50% 12%, rgba(20, 11, 30, 0.72), transparent 38%),
-        linear-gradient(180deg, #140b1e 0%, #140b1e 52%, #140b1e 100%);
+        radial-gradient(circle at 50% 12%, rgba(26, 94, 230, 0.18), transparent 38%),
+        linear-gradient(180deg, #0a1f4b 0%, #061735 52%, #040d22 100%);
     color: #ffffff;
 }
 
@@ -2144,7 +2205,7 @@ top: 7px;
 
 .whitepaper-title {
     margin: 2px 0 0;
-    color: #c084fc;
+    color: #fff000;
     font-size: 22px;
     line-height: 1.2;
     font-weight: 800;
@@ -2268,8 +2329,8 @@ top: 7px;
 .contract-page {
     min-height: 100vh;
     background:
-    radial-gradient(circle at 50% 20%, rgba(20, 11, 30, 0.72), transparent 45%),
-    linear-gradient(180deg, #140b1e 0%, #140b1e 45%, #140b1e 100%);
+    radial-gradient(circle at 50% 20%, rgba(30, 100, 255, 0.18), transparent 45%),
+    linear-gradient(180deg, #0b1f4d 0%, #071a3d 45%, #050d24 100%);
     color: #ffffff;
     position: relative;
     overflow: hidden;
@@ -2287,7 +2348,7 @@ top: 7px;
     pointer-events: none;
 }
 
-/* 上方 BEDROCK + 選單 */
+/* 上方 KATANA + 選單 */
 .contract-header {
     display: none;
     height: 110px;
@@ -2335,7 +2396,7 @@ top: 7px;
 }
 
 .contract-title-accent {
-    color: #c084fc;
+    color: #ffe500;
 }
 
 .contract-activity-list {
@@ -2351,15 +2412,15 @@ top: 7px;
     align-items: stretch;
     min-height: 94px;
     padding: 13px 17px;
-    border: 1px solid rgba(168, 85, 247, 0.46);
+    border: 1px solid rgba(76, 145, 255, 0.46);
     border-radius: 20px;
-    background: rgba(20, 11, 30, 0.87);
-    box-shadow: inset 0 0 18px rgba(168, 85, 247, 0.06);
+    background: rgba(7, 23, 52, 0.87);
+    box-shadow: inset 0 0 18px rgba(70, 150, 255, 0.06);
     cursor: pointer;
 }
 
 .contract-activity-card:focus-visible {
-    outline: 2px solid #c084fc;
+    outline: 2px solid #ffe500;
     outline-offset: 3px;
 }
 
@@ -2444,8 +2505,8 @@ top: 7px;
     padding: 12px 16px 110px;
     color: #ffffff;
     background:
-        radial-gradient(circle at 50% 14%, rgba(20, 11, 30, 0.72), transparent 43%),
-        linear-gradient(180deg, #140b1e 0%, #140b1e 45%, #140b1e 100%);
+        radial-gradient(circle at 50% 14%, rgba(30, 100, 255, 0.22), transparent 43%),
+        linear-gradient(180deg, #0b1f4d 0%, #071a3d 45%, #050d24 100%);
     position: relative;
     overflow: hidden;
 }
@@ -2484,10 +2545,10 @@ top: 7px;
 }
 
 .contract-detail-panel {
-    border: 1px solid rgba(168, 85, 247, 0.46);
+    border: 1px solid rgba(76, 145, 255, 0.46);
     border-radius: 20px;
-    background: rgba(20, 11, 30, 0.87);
-    box-shadow: inset 0 0 18px rgba(168, 85, 247, 0.06);
+    background: rgba(7, 23, 52, 0.87);
+    box-shadow: inset 0 0 18px rgba(70, 150, 255, 0.06);
 }
 
 .contract-detail-unified {
@@ -2615,7 +2676,7 @@ top: 7px;
     display: grid;
     place-items: center;
     padding: 20px;
-    background: rgba(20, 11, 30, 0.72);
+    background: rgba(0, 7, 24, 0.72);
 }
 
 .contract-help-overlay[hidden] {
@@ -2625,9 +2686,9 @@ top: 7px;
 .contract-help-dialog {
     width: min(100%, 480px);
     padding: 20px;
-    border: 1px solid rgba(168, 85, 247, 0.65);
+    border: 1px solid rgba(76, 145, 255, 0.65);
     border-radius: 20px;
-    background: #140b1e;
+    background: #0b1d3e;
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
 }
 
@@ -2645,9 +2706,9 @@ top: 7px;
     min-width: 82px;
     margin: 18px auto 0;
     padding: 7px 16px;
-    border: 1px solid rgba(168, 85, 247, 0.7);
+    border: 1px solid rgba(76, 145, 255, 0.7);
     border-radius: 999px;
-    background: rgba(20, 11, 30, 0.72);
+    background: rgba(37, 92, 175, 0.42);
     color: #ffffff;
     font-size: 14px;
     font-weight: 700;
@@ -2696,14 +2757,14 @@ top: 7px;
     margin-top: 18px;
     border: 0;
     border-radius: 999px;
-    background: #c084fc;
+    background: #ffe500;
     color: #071a3d;
     font-size: 17px;
     font-weight: 900;
 }
 
 .contract-detail-join:disabled {
-    background: #140b1e;
+    background: #193354;
     color: #91a6c1;
     cursor: default;
 }
@@ -2715,8 +2776,8 @@ top: 7px;
       padding: 35px 18px 120px;
        color: #ffffff;
         background: 
-        radial-gradient(circle at 50% 15%, rgba(20, 11, 30, 0.72), transparent 40%),
-         linear-gradient(180deg, #140b1e 0%, #140b1e 55%, #140b1e 100%);
+        radial-gradient(circle at 50% 15%, rgba(35, 110, 255, 0.35), transparent 40%),
+         linear-gradient(180deg, #0b1f4d 0%, #07162f 55%, #050d1d 100%);
          position: relative; 
          overflow: hidden; 
         }
@@ -2743,12 +2804,12 @@ top: 7px;
     position: relative;
     width: 100%;
     padding: 28px 22px 24px;
-    border: 1px solid rgba(168, 85, 247, 0.45);
+    border: 1px solid rgba(70, 150, 255, 0.45);
     border-radius: 28px;
-    background: rgba(20, 11, 30, 0.72);
+    background: rgba(5, 18, 48, 0.45);
     box-shadow:
-        0 0 20px rgba(168, 85, 247, 0.18),
-        inset 0 0 20px rgba(168, 85, 247, 0.08);
+        0 0 20px rgba(40, 120, 255, 0.18),
+        inset 0 0 20px rgba(70, 150, 255, 0.08);
 }
 /* VIP 按鈕 */
 .allocation-vip-btn {
@@ -2757,9 +2818,9 @@ top: 7px;
     right: 18px;
     padding: 9px 14px;
     border-radius: 999px;
-    border: 1px solid rgba(192, 132, 252, 0.45);
-    background: rgba(20, 11, 30, 0.9);
-    color: #c084fc;
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    background: rgba(15, 28, 60, 0.9);
+    color: #ffd91a;
     font-size: 13px;
     font-weight: 700;
     z-index: 5;
@@ -2819,8 +2880,8 @@ top: 7px;
     padding: 10px 14px 96px;
     color: #ffffff;
     background:
-        radial-gradient(circle at 50% 15%, rgba(20, 11, 30, 0.72), transparent 40%),
-        linear-gradient(180deg, #140b1e 0%, #140b1e 55%, #140b1e 100%);
+        radial-gradient(circle at 50% 15%, rgba(35, 110, 255, 0.28), transparent 40%),
+        linear-gradient(180deg, #0b1f4d 0%, #07162f 55%, #050d1d 100%);
     position: relative;
     overflow: hidden;
 }
@@ -2883,7 +2944,7 @@ top: 7px;
 .vip-dot.active {
     width: 9px;
     height: 9px;
-    background: #c084fc;
+    background: #ffd91a;
 }
 
 .vip-back-btn {
@@ -2919,8 +2980,8 @@ top: 7px;
     grid-column: auto;
     justify-self: auto;
     padding: 4px 8px;
-    border-color: rgba(168, 85, 247, 0.9);
-    background: rgba(20, 11, 30, 0.72);
+    border-color: rgba(74, 151, 255, 0.9);
+    background: rgba(24, 92, 190, 0.18);
     color: #ffffff;
     font-size: 12px;
 }
@@ -2959,10 +3020,10 @@ top: 7px;
     align-items: center;
     gap: 7px;
     padding: 7px 11px;
-    border: 1px solid rgba(192, 132, 252, 0.4);
+    border: 1px solid rgba(255, 217, 26, 0.4);
     border-radius: 999px;
-    background: rgba(20, 11, 30, 0.9);
-    color: #c084fc;
+    background: rgba(8, 22, 55, 0.9);
+    color: #ffd91a;
     font-size: 14px;
     font-weight: 800;
     white-space: nowrap;
@@ -2972,12 +3033,12 @@ top: 7px;
 .vip-unlock-card {
     margin-top: 8px;
     padding: 16px 20px;
-    border: 1px solid rgba(168, 85, 247, 0.45);
+    border: 1px solid rgba(70, 150, 255, 0.45);
     border-radius: 22px;
-    background: rgba(20, 11, 30, 0.75);
+    background: rgba(5, 18, 48, 0.75);
     box-shadow:
-        0 0 20px rgba(168, 85, 247, 0.15),
-        inset 0 0 20px rgba(168, 85, 247, 0.06);
+        0 0 20px rgba(40, 120, 255, 0.15),
+        inset 0 0 20px rgba(70, 150, 255, 0.06);
 }
 
 .vip-card-title {
@@ -2990,7 +3051,7 @@ top: 7px;
     margin-top: 8px;
     font-size: 26px;
     font-weight: 900;
-    color: #c084fc;
+    color: #ffd91a;
 }
 
 .vip-progress {
@@ -3006,7 +3067,7 @@ top: 7px;
     width: 0%;
     height: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, #c084fc, #4f91ff);
+    background: linear-gradient(90deg, #ffd91a, #4f91ff);
 }
 
 .vip-remaining {
@@ -3016,7 +3077,7 @@ top: 7px;
 }
 
 .vip-remaining span {
-    color: #c084fc;
+    color: #ffd91a;
     font-weight: 800;
 }
 
@@ -3025,7 +3086,7 @@ top: 7px;
     margin-bottom: 10px;
     font-size: 24px;
     font-weight: 900;
-    color: #c084fc;
+    color: #ffd91a;
     text-align: center;
 }
 
@@ -3033,9 +3094,9 @@ top: 7px;
     position: relative;
     min-height: 62px;
     padding: 0 42px;
-    border: 1px solid rgba(168, 85, 247, 0.35);
+    border: 1px solid rgba(70, 150, 255, 0.35);
     border-radius: 18px;
-    background: rgba(20, 11, 30, 0.72);
+    background: rgba(5, 18, 48, 0.72);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3070,7 +3131,7 @@ top: 7px;
        font-weight: 800;
         color: #ffffff;
      }
-/* BEDROCK */ 
+/* KATANA */ 
 .allocation-logo {
      font-size: 46px; 
      font-weight: 900;
@@ -3080,7 +3141,7 @@ top: 7px;
      }
 /* NODE INTEREST RATE */ 
 .allocation-subtitle {
-     color: #c084fc;
+     color: #ffd91a;
       font-size: 16px; 
       font-weight: 800;
        letter-spacing: 5px;
@@ -3097,11 +3158,11 @@ top: 7px;
      width: 100%;
       box-sizing: border-box;
        padding: 8px 22px;
-        border: 1px solid rgba(168, 85, 247, 0.45);
+        border: 1px solid rgba(70, 140, 255, 0.45);
          border-radius: 28px; 
-         background: rgba(20, 11, 30, 0.78);
+         background: rgba(5, 18, 45, 0.78);
           box-shadow: 
-          0 0 0 1px rgba(168, 85, 247, 0.10),
+          0 0 0 1px rgba(40, 110, 255, 0.10),
            0 15px 40px rgba(0, 0, 0, 0.30); 
         }
 /* 每一列 */ 
@@ -3126,7 +3187,7 @@ top: 7px;
      }
 /* 右邊利率 */ 
 .allocation-rate-row span:last-child { 
-    color: #c084fc;
+    color: #ffd91a;
      font-weight: 800;
       white-space: nowrap;
      }
@@ -3135,8 +3196,8 @@ top: 7px;
     margin-top: 24px;
      padding: 18px 15px;
       border-radius: 20px;
-       border: 1px solid rgba(168, 85, 247, 0.35);
-        background: rgba(20, 11, 30, 0.8);
+       border: 1px solid rgba(70, 140, 255, 0.35);
+        background: rgba(7, 22, 52, 0.8);
          color: #ffffff; 
          font-size: 17px; 
          line-height: 1.8; 
@@ -3194,18 +3255,18 @@ overflow-x: hidden;
 
 padding: 24px 20px 22px;
 
-border: 1px solid rgba(168, 85, 247, 0.95);
+border: 1px solid rgba(70, 140, 255, 0.95);
 border-radius: 28px;
 
-background: rgba(20, 11, 30, 0.78);
+background: rgba(5, 18, 40, 0.78);
 box-shadow:
-    0 0 12px rgba(168, 85, 247, 0.22),
-    inset 0 0 10px rgba(168, 85, 247, 0.08);
+    0 0 12px rgba(70, 140, 255, 0.22),
+    inset 0 0 10px rgba(70, 140, 255, 0.08);
 color: #ffffff;
 
 box-shadow:
     0 18px 60px rgba(0, 0, 0, 0.5),
-    0 0 28px rgba(192, 132, 252, 0.08);
+    0 0 28px rgba(255, 217, 26, 0.08);
 }
 .home-notice-tag { 
     width: max-content; 
@@ -3253,7 +3314,7 @@ transform: translateY(-37px);
   width: 70px;
   height: 1px;
   background: rgba(80, 180, 255, 0.75);
-  box-shadow: 0 0 5px rgba(168, 85, 247, 0.45);
+  box-shadow: 0 0 5px rgba(80, 180, 255, 0.45);
 }
 
 .home-notice-line i {
@@ -3262,7 +3323,7 @@ transform: translateY(-37px);
   background: rgba(80, 180, 255, 0.9);
   border-radius: 50%;
   display: block;
-  box-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 6px rgba(80, 180, 255, 0.6);
 }
 
 .home-notice-desc {
@@ -3279,10 +3340,10 @@ transform: translateY(-37px);
 margin-right: 25px;
      transform: translateY(-1px);
      padding: 8px 18px;
-border: 1px solid rgba(168, 85, 247, 0.55);
+border: 1px solid rgba(70, 140, 255, 0.55);
 border-radius: 22px;
-background: rgba(20, 11, 30, 0.72);
-box-shadow: 0 0 10px rgba(168, 85, 247, 0.18);
+background: rgba(7, 22, 45, 0.45);
+box-shadow: 0 0 10px rgba(70, 140, 255, 0.18);
 }
 
 .home-notice-row { 
@@ -3300,7 +3361,7 @@ white-space: nowrap;
     border-bottom: none; 
 }
 .home-notice-row span:last-child {
-     color: #c084fc;
+     color: #ffd91a;
      font-weight: 800; 
     }
 .home-notice-close-btn {
@@ -3314,8 +3375,8 @@ border: none;
 border-radius: 20px;
 
 background: transparent;
-border: 1px solid rgba(168, 85, 247, 0.75);
-box-shadow: 0 0 10px rgba(168, 85, 247, 0.28);
+border: 1px solid rgba(45, 105, 220, 0.75);
+box-shadow: 0 0 10px rgba(45, 105, 220, 0.28);
 color: #ffffff;
 
 font-size: 16px;
@@ -3341,7 +3402,7 @@ font-weight: 800;
     transform: translateY(-40px);
 }
 
-  /* BEDROCK Logo */
+  /* KATANA Logo */
   .brand-logo {
     width: 205px;
   }
@@ -3372,7 +3433,7 @@ font-weight: 800;
     position: absolute;
 right: 8px;
 top: 38%;
-    color: #c084fc !important;
+    color: #ffe600 !important;
     display: inline-block;
     transform: translateY(-50%);
 }
@@ -3437,26 +3498,26 @@ box-sizing: border-box;
 
    /* ===== 閃兑 / 提領：連成同一張卡 ===== */
 .swap-tabs{ margin-bottom: 0 !important;
-background: rgba(20, 11, 30, 0.92) !important;
+background: rgba(3, 18, 48, 0.92) !important;
 
-border: 1px solid rgba(168, 85, 247, 0.55) !important;
+border: 1px solid rgba(70, 140, 255, 0.55) !important;
 border-bottom: none !important;
 
 border-radius: 18px 18px 0 0 !important;
 
-box-shadow: 0 0 12px rgba(168, 85, 247, 0.18) !important;
+box-shadow: 0 0 12px rgba(70, 140, 255, 0.18) !important;
 }
 
 /* 下面內容直接接住上面的按鈕 */ 
 .swap-box{ margin-top: 0 !important;
-background: rgba(20, 11, 30, 0.92) !important;
+background: rgba(3, 18, 48, 0.92) !important;
 
-border: 1px solid rgba(168, 85, 247, 0.55) !important;
+border: 1px solid rgba(70, 140, 255, 0.55) !important;
 border-top: none !important;
 
 border-radius: 0 0 18px 18px !important;
 
-box-shadow: 0 8px 14px rgba(168, 85, 247, 0.12) !important;
+box-shadow: 0 8px 14px rgba(70, 140, 255, 0.12) !important;
 }
 
 /* 兩個切換按鈕本身不要另外一張卡 */ 
@@ -3473,12 +3534,12 @@ color: #ffffff !important;
 
 /* 選中的那一邊只微微亮 */
  .swap-tab.active{
-     background: rgba(168, 85, 247, 0.12) !important;
-border: 1px solid rgba(168, 85, 247, 0.80) !important;
+     background: rgba(70, 140, 255, 0.12) !important;
+border: 1px solid rgba(90, 170, 255, 0.80) !important;
 border-radius: 16px !important;
 
 box-shadow:
-    0 0 8px rgba(168, 85, 247, 0.30) !important;
+    0 0 8px rgba(70, 140, 255, 0.30) !important;
 
 color: #ffffff !important;
 }
@@ -3536,21 +3597,21 @@ color: #ffffff !important;
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  border:1px solid rgba(168, 85, 247, .78);
+  border:1px solid rgba(70,140,255,.78);
   border-radius:26px;
-  background:rgba(20, 11, 30, 0.94);
+  background:rgba(5,18,40,.94);
   box-shadow:
     0 18px 60px rgba(0,0,0,.55),
-    0 0 18px rgba(168, 85, 247, .20),
-    inset 0 0 12px rgba(168, 85, 247, .06);
+    0 0 18px rgba(70,140,255,.20),
+    inset 0 0 12px rgba(70,140,255,.06);
   color:#fff;
 }
 .announcement-center-fixed{
   position:relative;
   flex:0 0 auto;
   padding:22px 18px 14px;
-  border-bottom:1px solid rgba(168, 85, 247, .18);
-  background:linear-gradient(180deg,rgba(20, 11, 30, 0.98),rgba(20, 11, 30, 0.96));
+  border-bottom:1px solid rgba(70,140,255,.18);
+  background:linear-gradient(180deg,rgba(8,26,58,.98),rgba(5,18,40,.96));
   z-index:2;
 }
 .announcement-center-heading{
@@ -3586,10 +3647,10 @@ color: #ffffff !important;
 .announcement-featured{
   margin-top:14px;
   padding:14px 14px 13px;
-  border:1px solid rgba(168, 85, 247, .52);
+  border:1px solid rgba(70,140,255,.52);
   border-radius:17px;
-  background:rgba(20, 11, 30, 0.72);
-  box-shadow:0 0 12px rgba(168, 85, 247, .10);
+  background:rgba(10,27,57,.72);
+  box-shadow:0 0 12px rgba(70,140,255,.10);
 }
 .announcement-featured-top{
   display:flex;
@@ -3634,7 +3695,7 @@ color: #ffffff !important;
   display:grid;
   place-items:center;
   padding:20px;
-  background:rgba(20, 11, 30, 0.72);
+  background:rgba(0,7,24,.72);
 }
 .announcement-detail-overlay[hidden]{
   display:none;
@@ -3645,9 +3706,9 @@ color: #ffffff !important;
   display:flex;
   flex-direction:column;
   padding:20px;
-  border:1px solid rgba(168, 85, 247, .65);
+  border:1px solid rgba(76,145,255,.65);
   border-radius:20px;
-  background:#140b1e;
+  background:#0b1d3e;
   box-shadow:0 16px 50px rgba(0,0,0,.45);
 }
 .announcement-detail-title{
@@ -3674,9 +3735,9 @@ color: #ffffff !important;
   min-width:82px;
   margin:18px auto 0;
   padding:7px 18px;
-  border:1px solid rgba(168, 85, 247, .70);
+  border:1px solid rgba(76,145,255,.70);
   border-radius:999px;
-  background:rgba(20, 11, 30, 0.72);
+  background:rgba(37,92,175,.42);
   color:#fff;
   font-size:14px;
   font-weight:700;
@@ -3695,9 +3756,9 @@ color: #ffffff !important;
   width:max-content;
   margin:8px auto 9px;
   padding:4px 12px;
-  border:1px solid rgba(168, 85, 247, .16);
+  border:1px solid rgba(126,161,214,.16);
   border-radius:999px;
-  background:rgba(168, 85, 247, .35);
+  background:rgba(66,91,130,.35);
   color:#c6d2e5;
   font-size:10px;
   line-height:1;
@@ -3706,17 +3767,17 @@ color: #ffffff !important;
   width:100%;
   border:1px solid rgba(91,128,190,.20);
   border-radius:15px;
-  background:rgba(20, 11, 30, 0.76);
+  background:rgba(14,29,54,.76);
   padding:11px 12px 10px;
   margin-bottom:8px;
   text-align:left;
   color:#fff;
-  box-shadow:inset 0 0 10px rgba(168, 85, 247, .03);
+  box-shadow:inset 0 0 10px rgba(70,140,255,.03);
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
 .announcement-card:active{
-  background:rgba(20, 11, 30, 0.86);
+  background:rgba(21,41,73,.86);
 }
 .announcement-card-head{
   display:flex;
@@ -3789,7 +3850,7 @@ body.announcement-center-open{
 }
 
 
-/* ===== BEDROCK 幫助中心 ===== */
+/* ===== KATANA 幫助中心 ===== */
 .help-page {
   height: 100dvh;
   min-height: 100dvh;
@@ -3798,8 +3859,8 @@ body.announcement-center-open{
   overflow: hidden;
   background:
     radial-gradient(circle, rgba(70,220,220,.18) 1px, transparent 1px) 0 0 / 32px 32px,
-    radial-gradient(circle at 50% 20%, rgba(20, 11, 30, 0.72), transparent 45%),
-    linear-gradient(180deg, #140b1e 0%, #140b1e 45%, #140b1e 100%);
+    radial-gradient(circle at 50% 20%, rgba(30,100,255,.18), transparent 45%),
+    linear-gradient(180deg, #0b1f4d 0%, #071a3d 45%, #050d24 100%);
   color: #fff;
   padding-bottom: 0;
   box-sizing: border-box;
@@ -3825,8 +3886,8 @@ body.announcement-center-open{
   justify-content: center;
   position: relative;
   z-index: 120;
-  border-bottom: 1px solid rgba(168, 85, 247, .38);
-  background: rgba(20, 11, 30, 0.96);
+  border-bottom: 1px solid rgba(70,140,255,.38);
+  background: rgba(4,18,52,.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -3869,9 +3930,9 @@ body.announcement-center-open{
   margin-bottom: 12px;
   padding: 16px 18px;
   border-radius: 12px;
-  border: 1px solid rgba(168, 85, 247, .55);
-  background: rgba(20, 11, 30, 0.72);
-  box-shadow: 0 0 12px rgba(168, 85, 247, .22), inset 0 0 10px rgba(168, 85, 247, .08);
+  border: 1px solid rgba(70,140,255,.55);
+  background: rgba(5,25,66,.70);
+  box-shadow: 0 0 12px rgba(70,140,255,.22), inset 0 0 10px rgba(70,140,255,.08);
   color: #fff;
   display: flex;
   align-items: center;
@@ -3882,7 +3943,7 @@ body.announcement-center-open{
   box-sizing: border-box;
 }
 .help-faq-card:active {
-  background: rgba(20, 11, 30, 0.82);
+  background: rgba(18,48,104,.82);
 }
 .help-faq-main {
   display: flex;
@@ -3918,9 +3979,9 @@ body.announcement-center-open{
   width: min(390px, 100%);
   border-radius: 16px;
   padding: 24px 20px 18px;
-  border: 1px solid rgba(168, 85, 247, .62);
-  background: #140b1e;
-  box-shadow: 0 0 22px rgba(168, 85, 247, .28);
+  border: 1px solid rgba(70,140,255,.62);
+  background: #071a3d;
+  box-shadow: 0 0 22px rgba(70,140,255,.28);
 }
 .help-modal-title {
   color: #ffffff;
@@ -3961,9 +4022,9 @@ body.announcement-center-open{
 .help-faq-accordion {
   margin-bottom: 12px;
   border-radius: 12px;
-  border: 1px solid rgba(168, 85, 247, .55);
-  background: rgba(20, 11, 30, 0.72);
-  box-shadow: 0 0 12px rgba(168, 85, 247, .22), inset 0 0 10px rgba(168, 85, 247, .08);
+  border: 1px solid rgba(70,140,255,.55);
+  background: rgba(5,25,66,.70);
+  box-shadow: 0 0 12px rgba(70,140,255,.22), inset 0 0 10px rgba(70,140,255,.08);
   overflow: hidden;
 }
 .help-faq-accordion .help-faq-card {
@@ -4121,7 +4182,7 @@ body.announcement-center-open{
 }
 
 
-/* ===== BEDROCK Google Sign-In v24 ===== */
+/* ===== KATANA Google Sign-In v24 ===== */
 #googleFaq .google-signin-wrap {
   width: 260px;
   max-width: calc(100% - 8px);
@@ -4179,7 +4240,7 @@ body.announcement-center-open{
 }
 
 
-/* ===== BEDROCK Google Redirect v32 ===== */
+/* ===== KATANA Google Redirect v32 ===== */
 #googleFaq .google-redirect-btn {
   width: 250px;
   max-width: calc(100% - 18px);
@@ -4196,7 +4257,7 @@ body.announcement-center-open{
   gap: 12px;
   box-sizing: border-box;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(168, 85, 247, .20);
+  box-shadow: 0 0 12px rgba(66,133,244,.20);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -4245,7 +4306,7 @@ body.announcement-center-open{
 }
 
 
-/* ===== BEDROCK Google linked actions v34 ===== */
+/* ===== KATANA Google linked actions v34 ===== */
 #googleFaq .google-linked-actions {
   width: 250px;
   max-width: calc(100% - 18px);
@@ -4271,7 +4332,7 @@ body.announcement-center-open{
 }
 
 #googleFaq .google-linked-status-btn {
-  border: 1px solid rgba(168, 85, 247, .9);
+  border: 1px solid rgba(66,133,244,.9);
   background: #4285F4;
   color: #fff;
   opacity: .82;
@@ -4300,7 +4361,7 @@ body.announcement-center-open{
 }
 
 
-/* ===== BEDROCK initial environment loader ===== */
+/* ===== KATANA initial environment loader ===== */
 .katana-boot-screen {
   position: fixed;
   inset: 0;
@@ -4311,8 +4372,8 @@ body.announcement-center-open{
   justify-content: center;
   gap: 14px;
   background:
-    radial-gradient(circle at 50% 38%, rgba(20, 11, 30, 0.72), transparent 34%),
-    linear-gradient(180deg, #140b1e 0%, #140b1e 100%);
+    radial-gradient(circle at 50% 38%, rgba(35,100,230,.14), transparent 34%),
+    linear-gradient(180deg, #08142f 0%, #050c1d 100%);
   color: #fff;
 }
 
@@ -4376,357 +4437,8 @@ body.announcement-center-open{
     -webkit-user-drag: none;
 }
 
-/* 黑色科技背景：少量亮紫光暈，保留黑色主調。 */
-.wallet-page,
-.history-page,
-.whitepaper-page,
-.contract-page,
-.contract-detail-page,
-.allocation-page,
-.vip-page,
-.help-page,
-.katana-boot-screen {
-  background:
-    radial-gradient(ellipse at 85% 8%, rgba(168, 85, 247, .24), transparent 52%),
-    linear-gradient(180deg, #080709 0%, #050506 55%, #030304 100%);
-}
-
-.wallet-page::before,
-.history-page::before,
-.contract-page::before,
-.contract-detail-page::before,
-.allocation-page::before,
-.vip-page::before,
-.help-page::before {
-  background-image: radial-gradient(circle, rgba(174, 162, 192, .10) .7px, transparent .9px);
-}
-
-
-/* BEDROCK 正式透明 PNG Logo。 */
-.brand-logo {
-  width: 205px;
-  height: 44px;
-  object-fit: contain;
-  object-position: center;
-}
-.home-notice-logo img,
-.allocation-notice-box .home-notice-logo img {
-  width: 220px;
-  height: 48px;
-  object-fit: contain;
-  object-position: center;
-  top: 50%;
-  left: 50%;
-}
-.ecosystem {
-  min-height: 200px;
-  background-color: #000;
-  background-size: cover;
-  background-position: calc(50% - 16px) center;
-}
-.ecosystem h3,
-.ecosystem .eco-desc,
-.ecosystem .eco-more-btn {
-  position: relative;
-  top: auto;
-  left: auto;
-}
-.ecosystem .eco-desc {
-  max-width: 58%;
-}
-.ecosystem h3 {
-  max-width: 100%;
-  font-size: 16px;
-  white-space: nowrap;
-}
-.ecosystem .eco-more-btn { margin-top: 16px; }
-@media (max-width: 560px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 105px !important; }
-  .ecosystem { min-height: 190px; padding: 22px 14px 14px; }
-  .ecosystem h3 { font-size: clamp(13px, 3.8vw, 16px); line-height: 1.4; }
-  .ecosystem .eco-desc { font-size: 10px; line-height: 1.65; }
-  .ecosystem .eco-desc br { display: none; }
-}
-
-
-/* 公告白框與黑紫卡片底色。 */
-.announcement {
-  border: .5px solid rgba(240, 238, 247, .48);
-  background: linear-gradient(110deg, #0b0b0e, #17131e);
-}
-.stat,
-.quick,
-.metric,
-.home-notice-rate-box {
-  background: linear-gradient(135deg, rgba(12, 12, 16, .96), rgba(23, 19, 30, .94));
-}
-/* 主要膠囊按鈕：黑灰金屬底、淡紫白邊光。 */
-.connect-btn,
-.eco-more-btn,
-.contract-detail-join:not(:disabled) {
-  color: #f4f1fa;
-  background: linear-gradient(135deg, #292630 0%, #17151d 48%, #0b0a10 100%);
-  border: 1px solid rgba(220, 207, 242, .55);
-  box-shadow: inset 0 1px 0 rgba(239, 231, 255, .16),
-              0 0 12px rgba(190, 156, 237, .13);
-  transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
-}
-@media (hover: hover) {
-  .connect-btn:hover,
-  .eco-more-btn:hover,
-  .contract-detail-join:not(:disabled):hover {
-    border-color: #e0d2f5;
-    box-shadow: inset 0 1px 0 rgba(239, 231, 255, .22),
-                0 0 16px rgba(190, 156, 237, .25);
-  }
-}
-.connect-btn:focus-visible,
-.eco-more-btn:focus-visible,
-.contract-detail-join:focus-visible {
-  outline: 2px solid #e0d2f5;
-  outline-offset: 3px;
-}
-
-/* 小格卡片使用低亮度細框與近距離柔光。 */
-.stat,
-.quick,
-.metric,
-.activity-list,
-.home-notice-rate-box {
-  border: .5px solid rgba(168, 85, 247, .24);
-  box-shadow: 0 0 9px rgba(168, 85, 247, .12);
-}
-
-
-/* 功能圖示直接使用白色／紫色透明 PNG，不再套用變色濾鏡。 */
-.hero h1 span,
-.announcement-title,
-.stat-value,
-.metric-number {
-  color: #f4f2f8;
-}
-.stat-sub,
-.metric-name {
-  color: #a5a1af;
-}
-.announcement-icon {
-  border-right-color: rgba(224, 214, 239, .22);
-}
-
-/* 首頁快速操作、資產與網路統計：統一黑紫玻璃面板。 */
-:is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric) {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-  color: #f4f2f8;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(153, 83, 223, .18), transparent 65%),
-    linear-gradient(155deg, #191020 0%, #0b0910 55%, #140d1d 100%);
-  border: .5px solid rgba(178, 115, 243, .32);
-  box-shadow: inset 0 1px 0 rgba(232, 209, 255, .12),
-              inset 0 -8px 18px rgba(97, 42, 148, .06),
-              0 0 10px rgba(151, 74, 228, .10);
-  transform: none;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-}
-:is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric)::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 22%;
-  right: 22%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(223, 183, 255, .45), transparent);
-  pointer-events: none;
-}
-.quick-grid .quick::after {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background: linear-gradient(110deg, transparent 42%, rgba(229, 207, 255, .10) 50%, transparent 58%);
-  transform: translateX(-100%);
-  pointer-events: none;
-}
-:is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric) > * { position: relative; z-index: 1; }
-:is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric) :is(.quick-icon, .stat-icon, .metric-icon) {
-  transition: filter .18s ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .quick-grid .quick:hover {
-    border-color: rgba(196, 140, 255, .62);
-    box-shadow: inset 0 1px 0 rgba(232, 209, 255, .20), 0 0 15px rgba(159, 82, 234, .20);
-    transform: translateY(-2px);
-  }
-  .quick-grid .quick:hover::after { animation: quickPanelSweep .55s ease-out; }
-}
-.quick-grid .quick:active {
-  transform: scale(.98);
-  border-color: rgba(210, 164, 255, .76);
-  box-shadow: inset 0 0 18px rgba(157, 80, 228, .13), 0 0 16px rgba(159, 82, 234, .24);
-}
-.quick-grid .quick:active :is(.quick-icon, .stat-icon, .metric-icon) {
-  filter: drop-shadow(0 0 5px rgba(207, 163, 255, .50));
-}
-.quick-grid .quick:active::after { animation: quickPanelSweep .45s ease-out; }
-.quick-grid .quick:focus-visible {
-  outline: 2px solid #d8b4fe;
-  outline-offset: 3px;
-}
-@keyframes quickPanelSweep {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  :is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric),
-  :is(.quick-grid .quick, #homePage .stats .stat, #homePage .metrics .metric) :is(.quick-icon, .stat-icon, .metric-icon) { transition: none; }
-  .quick-grid .quick:hover,
-  .quick-grid .quick:active { transform: none; }
-  .quick-grid .quick::after { display: none; }
-}
-
-
-.quick-grid .quick, #homeVipStat { cursor: pointer; }
-
-/* 資訊卡維持固定光線，不隨碰觸或按壓改變。 */
-#homePage .stats .stat,
-#homePage .metrics .metric,
-#homeVipStat:active {
-  transition: none;
-  transform: none;
-}
-/* 頁首保留實際高度，避免舊位移造成 Logo 裁切或壓住主圖。 */
-#homePage { transform: none; }
-.home-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 16px;
-  min-height: 56px;
-}
-.home-header .brand { flex: 1 1 auto; }
-.home-header .brand-logo {
-  width: 205px;
-  max-width: 100%;
-  height: auto;
-  transform: none;
-}
-.home-header .top-actions {
-  position: static;
-  flex: 0 0 auto;
-  transform: none;
-}
-.home-header .lang-btn { transform: none; }
-#homePage .hero { margin-top: 16px; }
-
-
-/* 四格快速操作；中樞配給標頭依正常文件順序排列。 */
-#homePage .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-#allocationPage .allocation-notice-box { padding-top: 12px; }
-#allocationPage .allocation-top-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: 6px;
-  margin: 0 -14px 12px;
-}
-#allocationPage .allocation-vip-btn {
-  position: static;
-  display: block;
-  width: fit-content;
-  max-width: 100%;
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
-  margin: 0;
-  padding: 5px 6px;
-  font-size: 8px;
-  white-space: nowrap;
-}
-#allocationPage .home-notice-tag {
-  transform: none;
-  grid-column: 2;
-  grid-row: 1;
-  margin: 0;
-  white-space: nowrap;
-}
-@media (max-width: 360px) {
-  #allocationPage .allocation-top-row { grid-template-columns: auto 1fr; }
-  #allocationPage .home-notice-tag { grid-column: 1; }
-  #allocationPage .allocation-vip-btn { grid-column: 2; }
-}
-#allocationPage .home-notice-logo {
-  height: auto;
-  margin: 0 auto 6px;
-  text-align: center;
-}
-#allocationPage .home-notice-logo img {
-  position: static;
-  display: block;
-  width: 220px;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-  transform: none;
-  object-fit: contain;
-}
-#allocationPage .home-notice-title {
-  transform: none;
-  margin: 0;
-  font-size: clamp(16px, 4.5vw, 23px);
-}
-#allocationPage .home-notice-line { margin: 12px auto; }
-#allocationPage .home-notice-desc { transform: none; margin: 0 0 16px; }
-
-
-/* 收益彈窗沿用中樞配給純字 Logo，取消旧有重疊位移。 */
-#homeNoticePopup .home-notice-box {
-  background: linear-gradient(150deg, #181020, #0b0911);
-  max-height: 88vh;
-  max-height: 88dvh;
-  padding: 18px 20px 22px;
-}
-#homeNoticePopup .home-notice-tag {
-  transform: none;
-  margin: 0 auto 16px;
-  font-size: 8px;
-}
-#homeNoticePopup .home-notice-logo {
-  height: auto;
-  margin: 0 auto 8px;
-}
-#homeNoticePopup .home-notice-logo img {
-  position: static;
-  display: block;
-  width: 220px;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-  transform: none;
-  object-fit: contain;
-}
-#homeNoticePopup .home-notice-title {
-  margin: 0;
-  transform: none;
-  font-size: clamp(15px, 4vw, 19px);
-}
-#homeNoticePopup .home-notice-line { margin: 12px auto; }
-#homeNoticePopup .home-notice-desc {
-  transform: none;
-  margin: 0 0 14px;
-}
-#homeNoticePopup .home-notice-rate-box {
-  transform: none;
-  margin: 0;
-  padding: 10px 14px;
-}
-#homeNoticePopup .home-notice-close-btn {
-  transform: none;
-  margin: 14px auto 0;
-}
-
-
+</style>
+<style id="katana-gray-partners">
 /* 合作夥伴：灰色圖片直接排列，無卡片、外框或分隔線。 */
 #homePage .partner-title {
   position: static;
@@ -4749,7 +4461,7 @@ body.announcement-center-open{
 #homePage .partner {
   height: 72px;
   min-height: 72px;
-  padding: 12px;
+  padding: 8px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -4759,8 +4471,8 @@ body.announcement-center-open{
   display: block;
   width: auto;
   height: auto;
-  max-width: min(100%, 140px);
-  max-height: 40px;
+  max-width: min(100%, 152px);
+  max-height: 43px;
   object-fit: contain;
   transform: none;
 }
@@ -4769,10 +4481,12 @@ body.announcement-center-open{
 }
 @media (max-width: 560px) {
   #homePage .partners { gap: 16px 20px; padding-bottom: 40px; }
-  #homePage .partner { height: 68px; min-height: 68px; padding: 10px; }
-  #homePage .partner img { max-width: min(100%, 130px); max-height: 34px; }
+  #homePage .partner { height: 68px; min-height: 68px; padding: 6px; }
+  #homePage .partner img { max-width: min(100%, 142px); max-height: 37px; }
 }
 
+</style>
+<style id="katana-scroll-navigation">
 /* 接近頁尾時收起導覽，保留原本的頁面顯示控制。 */
 .bottom-nav {
   transition: opacity .18s ease, translate .18s ease, visibility .18s;
@@ -4787,40 +4501,12 @@ body.announcement-center-open{
   .bottom-nav { transition: none; }
 }
 
-/* 底部導覽只在按住時下壓、變暗，放開後恢復白色原樣。 */
-.bottom-nav .nav-item {
-  color: #ffffff;
-  border-radius: 14px;
-  background: transparent;
-  box-shadow: none;
-  transform: scale(1);
-  opacity: 1;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform .15s ease-out, opacity .15s ease-out;
-}
-.bottom-nav .nav-item.active {
-  color: #ffffff;
-  background: transparent;
-  box-shadow: none;
-}
-.bottom-nav .nav-item:active,
-.bottom-nav .nav-item.is-pressed {
-  transform: scale(.94);
-  opacity: .72;
-  transition-duration: .06s;
-}
-@media (prefers-reduced-motion: reduce) {
-  .bottom-nav .nav-item { transition: none; }
-  .bottom-nav .nav-item:active,
-  .bottom-nav .nav-item.is-pressed { transform: none; }
-}
-
 </style>
 </head>
 <body>
 <div id="katanaBootScreen" class="katana-boot-screen">
   <div class="katana-boot-spinner" aria-hidden="true"></div>
-  <div class="katana-boot-label">BEDROCK</div>
+  <div class="katana-boot-label">KATANA</div>
 </div>
 
 
@@ -4837,9 +4523,8 @@ body.announcement-center-open{
 
 <!-- ===== 首頁開始 ===== -->
 <div id="homePage" class="app-page">
-<header class="home-header">
 <div class="brand">
-  <img src="images/bedrock-logo.png" class="brand-logo" alt="BEDROCK">
+  <img src="images/logo.png" class="brand-logo" alt="KATANA">
 </div>
 
 <div class="top-actions">
@@ -4848,7 +4533,6 @@ body.announcement-center-open{
     <span class="lang-arrow">⌄</span>
 </button>
 </div>
-</header>
 <section class="hero">
 <div class="hero-text">
 
@@ -4871,28 +4555,28 @@ body.announcement-center-open{
   <section class="stats">
 
 <div class="stat">
-  <div class="stat-icon"><img src="images/wallet-white.png" alt="錢包資產"></div>
+  <div class="stat-icon"><img src="images/wallet.png" alt="錢包資產"></div>
   <div class="stat-title">錢包資產</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">USDT</div>
 </div>
 
 <div class="stat">
-  <div class="stat-icon"><img src="images/today-white.png" alt="今日收益"></div>
+  <div class="stat-icon"><img src="images/today.png" alt="今日收益"></div>
   <div class="stat-title">今日收益</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">ETH</div>
 </div>
 
 <div class="stat">
-  <div class="stat-icon"><img src="images/total-white.png" alt="總收益"></div>
+  <div class="stat-icon"><img src="images/total.png" alt="總收益"></div>
   <div class="stat-title">總收益</div>
   <div class="stat-value">--</div>
   <div class="stat-sub">ETH</div>
 </div>
 
 <div class="stat" id="homeVipStat" role="button" tabindex="0" aria-label="查看 VIP 等級">
-  <div class="stat-icon"><img src="images/vip-white.png" alt="VIP等級"></div>
+  <div class="stat-icon"><img src="images/vip.png" alt="VIP等級"></div>
   <div class="stat-title">VIP等級</div>
   <div class="stat-value" id="homeVipLevel">VIP 0</div>
   <div class="stat-sub">當前等級</div>
@@ -4901,14 +4585,14 @@ body.announcement-center-open{
 
 <button class="announcement" id="announcementBtn">
   <div class="announcement-icon">
-    <img src="images/announcement-white.png" alt="最新公告">
+    <img src="images/announcement.png" alt="最新公告">
   </div>
   <div class="announcement-text">
     <div class="announcement-title">
       最新公告
     </div>
     <div class="announcement-sub">
-      BEDROCK 平台最新公告與系統資訊
+      KATANA 平台最新公告與系統資訊
     </div>
   </div>
   <div class="announcement-arrow">›</div>
@@ -4975,30 +4659,37 @@ body.announcement-center-open{
 
 <div class="quick-grid">
 
+  <button class="quick" id="quickSwap">
+    <div class="quick-icon">
+  <img src="./images/swap.png" alt="閃兌">
+</div>
+    <div>閃兌</div>
+  </button>
+
   <button class="quick" id="quickWithdraw">
     <div class="quick-icon">
-  <img src="./images/withdraw-white.png" alt="提領">
+  <img src="./images/withdraw.png" alt="提領">
 </div>
     <div>提領</div>
   </button>
 
   <button class="quick" id="quickContract">
     <div class="quick-icon">
-  <img src="./images/contract-white.png" alt="合約">
+  <img src="./images/contract.png" alt="合約">
 </div>
     <div>合約</div>
   </button>
 
   <button class="quick" id="quickAllocation">
     <div class="quick-icon">
-  <img src="./images/allocation-white.png" alt="中樞配給">
+  <img src="./images/allocation.png" alt="中樞配給">
 </div>
     <div>中樞配給</div>
   </button>
 
   <button class="quick" id="helpCenterBtn" type="button">
     <div class="quick-icon">
-  <img src="./images/help-white.png" alt="幫助中心">
+  <img src="./images/help.png" alt="幫助中心">
 </div>
     <div>幫助中心</div>
   </button>
@@ -5006,7 +4697,7 @@ body.announcement-center-open{
 </div>
 
 
-<!-- BEDROCK 生態 -->
+<!-- KATANA 生態 -->
 <div class="ecosystem">
 
 
@@ -5014,7 +4705,7 @@ body.announcement-center-open{
 <h3>安全・透明・高效・創新</h3>
 
 <p class="eco-desc">
-  BEDROCK 是以太坊鏈上的去中心化穩定幣儲蓄協議。<br>
+  KATANA 是以太坊鏈上的去中心化穩定幣儲蓄協議。<br>
   作為一款 Web3 DApp，用戶只需透過錢包即可直接接入，<br>
   無需註冊或依賴任何中介機構。
 </p>
@@ -5022,7 +4713,7 @@ body.announcement-center-open{
   <button class="eco-more-btn" id="ecoMoreBtn" type="button">
     了解更多 →
   </button>
-
+  <img src="./images/katana.png" class="eco-katana" alt="KATANA">
 
 
 </div>
@@ -5033,6 +4724,7 @@ body.announcement-center-open{
 <span><b>●</b> 安全</span>
 </div>
 <h2 class="metrics-title">即時加密貨幣收益和網路統計</h2>
+<p class="metrics-disclaimer">展示數據：模擬數值，非實際收益或鏈上統計</p>
 <div class="metrics">
 
  <div class="metric">
@@ -5041,8 +4733,8 @@ body.announcement-center-open{
 </div>
     <div class="metric-info">
         <div class="metric-name">總收益 (ETH)</div>
-        <div class="metric-number">776,918 </div>
-        <div class="metric-delta">+12.45%<span class="metric-24h"> · 24H</span></div>
+        <div class="metric-number">—</div>
+        <div class="metric-delta">—<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -5053,8 +4745,8 @@ body.announcement-center-open{
 </div>
     <div class="metric-info">
         <div class="metric-name">中樞配給</div>
-        <div class="metric-number">523,680</div>
-        <div class="metric-delta">+8.21%<span class="metric-24h"> · 24H</span></div>
+        <div class="metric-number">—</div>
+        <div class="metric-delta">—<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -5065,8 +4757,8 @@ body.announcement-center-open{
 </div>
     <div class="metric-info">
         <div class="metric-name">參與者</div>
-        <div class="metric-number">497,551</div>
-        <div class="metric-delta">+6.32%<span class="metric-24h"> · 24H</span></div>
+        <div class="metric-number">—</div>
+        <div class="metric-delta">—<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -5077,8 +4769,8 @@ body.announcement-center-open{
 </div>
     <div class="metric-info">
         <div class="metric-name">系統收益</div>
-        <div class="metric-number">439,834</div>
-       <div class="metric-delta">+9.87%<span class="metric-24h"> · 24H</span></div>
+        <div class="metric-number">—</div>
+       <div class="metric-delta">—<span class="metric-24h"> · 24H</span></div>
     </div>
 </div>
 
@@ -5381,9 +5073,9 @@ body.announcement-center-open{
 
     <div class="nav-icon">
     <img class="nav-home-img"
-     src="images/nav-home.png"
+     src="images/nav-home-y.png"
      data-white="images/nav-home.png"
-     data-active="images/nav-home.png"
+     data-yellow="images/nav-home-y.png"
      alt="首頁">
 </div>
 
@@ -5397,7 +5089,7 @@ body.announcement-center-open{
     <img class="nav-wallet-img"
      src="images/nav-wallet.png"
      data-white="images/nav-wallet.png"
-     data-active="images/nav-wallet.png"
+     data-yellow="images/nav-wallet-y.png"
      alt="錢包">
 </div>
 
@@ -5411,7 +5103,7 @@ body.announcement-center-open{
     <img class="nav-swap-img"
      src="images/nav-swap.png"
      data-white="images/nav-swap.png"
-     data-active="images/nav-swap.png"
+     data-yellow="images/nav-swap-y.png"
      alt="閃兌">
 </div>
     <div class="nav-swap-text">閃兌</div>
@@ -5424,7 +5116,7 @@ body.announcement-center-open{
     <img class="nav-history-img"
      src="images/nav-history.png"
      data-white="images/nav-history.png"
-     data-active="images/nav-history.png"
+     data-yellow="images/nav-history-y.png"
      alt="收益歷史">
 </div>
 
@@ -5438,7 +5130,7 @@ body.announcement-center-open{
     <img class="nav-support-img"
      src="images/nav-support.png"
      data-white="images/nav-support.png"
-     data-active="images/nav-support.png"
+     data-yellow="images/nav-support-y.png"
      alt="客服">
 </div>
 
@@ -5461,8 +5153,8 @@ body.announcement-center-open{
         <img
             id="whitepaperImage"
             class="whitepaper-image"
-            src="images/whitepaper/bedrock_01.png"
-            alt="BEDROCK 品牌白皮書"
+            src="images/whitepaper/kanata_01.png"
+            alt="KATANA 品牌白皮書"
             draggable="false"
         >
         <button id="whitepaperPrev" class="whitepaper-arrow whitepaper-arrow-prev" type="button" aria-label="上一張" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button>
@@ -5515,7 +5207,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
     <div class="balance-stat">
         <div class="stat-icon"> 
-  <img src="./images/earnings-white.png" alt=""> 
+  <img src="./images/todayyellow.png" alt=""> 
 </div>
         <div class="stat-label">今日收益（ETH）</div>
         <div class="stat-value">0.000000</div>
@@ -5524,7 +5216,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
     <div class="balance-stat">
         <div class="stat-icon">
-  <img src="./images/wallet-swap-white.png" alt="">
+  <img src="./images/swapyellow.png" alt="">
 </div>
         <div class="stat-label">可閃兌（ETH）</div>
         <div class="stat-value">0.000000</div>
@@ -5533,7 +5225,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
     <div class="balance-stat">
         <div class="stat-icon">
-  <img src="./images/profit-white.png" alt="">
+  <img src="./images/profityellow.png" alt="">
 </div>
         <div class="stat-label">總收益（ETH）</div>
         <div class="stat-value">0.000000</div>
@@ -5637,7 +5329,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 <!-- ===== 【合約頁面 HTML 開始】 ===== -->
 <section id="contractPage" class="contract-page app-page">
     <div class="contract-header">
-        <div class="contract-brand">BEDROCK</div>
+        <div class="contract-brand">KATANA</div>
         <button class="contract-menu">☰</button>
     </div>
     <div class="contract-content">
@@ -5706,12 +5398,10 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 <section id="allocationPage" class="allocation-page app-page">
     <div class="allocation-content">
         <div class="home-notice-box allocation-notice-box">
-            <div class="allocation-top-row">
             <button class="allocation-vip-btn">成為VIP・獲取更多獎勵</button>
             <div class="home-notice-tag">收益詳細說明</div>
-            </div>
             <div class="home-notice-logo">
-                <img src="images/bedrock-wordmark-white.png" alt="BEDROCK">
+                <img src="images/katana-logo.png" alt="KATANA">
             </div>
             <div class="home-notice-title">NODE INTEREST RATE</div>
             <div class="home-notice-line"><span></span><i></i><span></span></div>
@@ -5750,85 +5440,111 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
 <div class="vip-slider">
 <div class="vip-slide vip-slide-one">
-  <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
-  <div class="vip-unlock-card">
-    <div class="vip-card-heading">
-      <div class="vip-card-title">當前持有資產</div>
-      <div class="vip-status"><span id="vipStatusText">未解鎖</span></div>
-    </div>
-    <div class="vip-balance"><span id="vipCurrentBalance">0</span> / <span>300</span> USDT</div>
-    <div class="vip-progress"><div id="vipProgressBar" class="vip-progress-bar" style="width:0%;"></div></div>
-    <div class="vip-remaining" id="vipRemainingText">還差 <span id="vipRemaining">300</span> USDT 可解鎖 VIP1</div>
-  </div>
-  <div class="vip-benefits-title">VIP1專屬權益</div>
-  <div class="vip-benefit-list"><div class="vip-benefit-card"><span>◆</span><span>加贈 40 USDT</span></div></div>
+        <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+
+        <div class="vip-unlock-card">
+
+            <div class="vip-card-heading">
+                <div class="vip-card-title">當前持有資產</div>
+                <div class="vip-status" id="vipStatus">
+                    <span id="vipStatusText">未解鎖</span>
+                </div>
+            </div>
+
+            <div class="vip-balance">
+
+                <span id="vipCurrentBalance">200</span>
+
+                /
+
+                <span>3000</span> USDT
+
+            </div>
+
+            <div class="vip-progress">
+
+                <div id="vipProgressBar" class="vip-progress-bar"></div>
+
+            </div>
+
+            <div class="vip-remaining" id="vipRemainingText">
+    還差 <span id="vipRemaining">2800</span> USDT 可解鎖 VIP1
 </div>
+
+        </div>
+        <div class="vip-benefits-title">VIP1專屬權益</div>
+
+        <div class="vip-benefit-card">
+
+            <span>◆</span>
+
+            <span>當月加贈100USDT</span>
+
+        </div>
+
+    </div>
+<!-- ===== VIP2 ===== -->
 <div class="vip-slide vip-slide-one">
-  <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
-  <div class="vip-unlock-card">
-    <div class="vip-card-heading">
-      <div class="vip-card-title">當前持有資產</div>
-      <div class="vip-status"><span id="vip2StatusText">未解鎖</span></div>
+    <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+    <div class="vip-unlock-card">
+        <div class="vip-card-heading">
+            <div class="vip-card-title">當前持有資產</div>
+            <div class="vip-status">
+                <span id="vip2StatusText">未解鎖</span>
+            </div>
+        </div>
+        <div class="vip-balance">
+            <span id="vip2CurrentBalance">3000</span>
+            /
+            <span>10000</span> USDT
+        </div>
+        <div class="vip-progress">
+           <div id="vip2ProgressBar" class="vip-progress-bar" style="width:30%;"></div>
+        </div>
+        <div class="vip-remaining" id="vip2RemainingText">
+           還差 <span id="vip2Remaining">7000</span> USDT 可解鎖 VIP2
+        </div>
     </div>
-    <div class="vip-balance"><span id="vip2CurrentBalance">0</span> / <span>1000</span> USDT</div>
-    <div class="vip-progress"><div id="vip2ProgressBar" class="vip-progress-bar" style="width:0%;"></div></div>
-    <div class="vip-remaining" id="vip2RemainingText">還差 <span id="vip2Remaining">1000</span> USDT 可解鎖 VIP2</div>
-  </div>
-  <div class="vip-benefits-title">VIP2專屬權益</div>
-  <div class="vip-benefit-list"><div class="vip-benefit-card"><span>◆</span><span>加贈 100 USDT</span></div></div>
+    <div class="vip-benefits-title">VIP2專屬權益</div>
+    <div class="vip-benefit-list">
+        <div class="vip-benefit-card"><span>◆</span><span>當月加贈300 USDT</span></div>
+        <div class="vip-benefit-card"><span>◆</span><span>每月節點多贈0.02%</span></div>
+    </div>
 </div>
+<!-- ===== VIP3 ===== -->
 <div class="vip-slide vip-slide-one">
-  <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
-  <div class="vip-unlock-card">
-    <div class="vip-card-heading">
-      <div class="vip-card-title">當前持有資產</div>
-      <div class="vip-status"><span id="vip3StatusText">未解鎖</span></div>
+    <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
+    <div class="vip-unlock-card">
+        <div class="vip-card-heading">
+            <div class="vip-card-title">當前持有資產</div>
+            <div class="vip-status">
+                <span id="vip3StatusText">未解鎖</span>
+            </div>
+        </div>
+        <div class="vip-balance">
+<span id="vip3CurrentBalance">3000</span>           
+            /
+            <span>30000</span> USDT
+        </div>
+        <div class="vip-progress">
+            <div id="vip3ProgressBar" class="vip-progress-bar" style="width:10%;"></div>
+        </div>
+        <div class="vip-remaining" id="vip3RemainingText">
+            還差 <span id="vip3Remaining">27000</span> USDT 可解鎖 VIP3
+        </div>
     </div>
-    <div class="vip-balance"><span id="vip3CurrentBalance">0</span> / <span>2000</span> USDT</div>
-    <div class="vip-progress"><div id="vip3ProgressBar" class="vip-progress-bar" style="width:0%;"></div></div>
-    <div class="vip-remaining" id="vip3RemainingText">還差 <span id="vip3Remaining">2000</span> USDT 可解鎖 VIP3</div>
-  </div>
-  <div class="vip-benefits-title">VIP3專屬權益</div>
-  <div class="vip-benefit-list"><div class="vip-benefit-card"><span>◆</span><span>加贈 200 USDT</span></div></div>
-</div>
-<div class="vip-slide vip-slide-one">
-  <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
-  <div class="vip-unlock-card">
-    <div class="vip-card-heading">
-      <div class="vip-card-title">當前持有資產</div>
-      <div class="vip-status"><span id="vip4StatusText">未解鎖</span></div>
+    <div class="vip-benefits-title">VIP3專屬權益</div>
+    <div class="vip-benefit-list">
+        <div class="vip-benefit-card"><span>◆</span><span>當月加贈500 USDT</span></div>
+        <div class="vip-benefit-card"><span>◆</span><span>每月節點多贈0.02%</span></div>
+        <div class="vip-benefit-card"><span>◆</span><span>每日節點多贈0.01%</span></div>
     </div>
-    <div class="vip-balance"><span id="vip4CurrentBalance">0</span> / <span>3000</span> USDT</div>
-    <div class="vip-progress"><div id="vip4ProgressBar" class="vip-progress-bar" style="width:0%;"></div></div>
-    <div class="vip-remaining" id="vip4RemainingText">還差 <span id="vip4Remaining">3000</span> USDT 可解鎖 VIP4</div>
-  </div>
-  <div class="vip-benefits-title">VIP4專屬權益</div>
-  <div class="vip-benefit-list"><div class="vip-benefit-card"><span>◆</span><span>當月加贈 300 USDT</span></div>
-<div class="vip-benefit-card"><span>◆</span><span>每月節點多贈 0.02%</span></div></div>
-</div>
-<div class="vip-slide vip-slide-one">
-  <div class="vip-subtitle">充入USDT資產，開始享受VIP優待</div>
-  <div class="vip-unlock-card">
-    <div class="vip-card-heading">
-      <div class="vip-card-title">當前持有資產</div>
-      <div class="vip-status"><span id="vip5StatusText">未解鎖</span></div>
-    </div>
-    <div class="vip-balance"><span id="vip5CurrentBalance">0</span> / <span>5000</span> USDT</div>
-    <div class="vip-progress"><div id="vip5ProgressBar" class="vip-progress-bar" style="width:0%;"></div></div>
-    <div class="vip-remaining" id="vip5RemainingText">還差 <span id="vip5Remaining">5000</span> USDT 可解鎖 VIP5</div>
-  </div>
-  <div class="vip-benefits-title">VIP5專屬權益</div>
-  <div class="vip-benefit-list"><div class="vip-benefit-card"><span>◆</span><span>當月加贈 500 USDT</span></div>
-<div class="vip-benefit-card"><span>◆</span><span>每月節點多贈 0.02%</span></div>
-<div class="vip-benefit-card"><span>◆</span><span>每日節點多贈 0.01%</span></div></div>
-</div>
-</div> <!-- vip-slider 結束 -->
+       </div>
+    </div> <!-- vip-slider 結束 -->
     <div class="vip-dots">
-<span class="vip-dot active"></span>
-<span class="vip-dot"></span>
-<span class="vip-dot"></span>
-<span class="vip-dot"></span>
-<span class="vip-dot"></span>
+    <span class="vip-dot active"></span>
+    <span class="vip-dot"></span>
+    <span class="vip-dot"></span>
 </div>
 
 </div>
@@ -5913,7 +5629,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
 
             <div class="support-message">
 
-                歡迎來到 BEDROCK 客服支援中心。<br><br>
+                歡迎來到 KATANA 客服支援中心。<br><br>
 
                 如有任何問題，請直接輸入訊息，我們將盡快為您提供協助。
                 <span class="support-bubble-time" id="supportWelcomeMessageTime">07:16</span>
@@ -6532,144 +6248,93 @@ refreshWithdrawBalance();
 
   // ===== 【首頁 JavaScript：展示版即時網路統計】 =====
   const liveMetricCards = document.querySelectorAll(".metrics .metric");
-  const liveMetricStorageKey = "katanaLiveMetrics";
-  const liveMetricDefaults = [776918, 523680, 497551, 439834];
-  const liveMetricStepRanges = [
-    [2, 8],
-    [1, 6],
-    [1, 4],
-    [2, 7]
-  ];
-  const liveMetricDailyRanges = [
-    [800, 2200],
-    [600, 1800],
-    [7000, 15000],
-    [700, 2000]
-  ];
-
   function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  const demoStepSequences = [null, [1, 2, 3, 4, 5, 6], [1, 2, 3, 4], [2, 3, 4, 5, 6, 7]];
+  let demoSnapshot = null;
+  let demoClockOffset = 0;
+  let demoSyncInProgress = false;
 
-  function getLocalDateKey() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+  function demoStepSum(fromTick, toTick, sequence) {
+    if (toTick <= fromTick) return 0;
+    const period = sequence.reduce((sum, value) => sum + value, 0);
+    const prefix = (tick) => {
+      const full = Math.floor((tick + 1) / sequence.length);
+      const partial = (tick + 1) % sequence.length;
+      return full * period + sequence.slice(0, partial).reduce((sum, value) => sum + value, 0);
+    };
+    return prefix(toTick) - prefix(fromTick);
   }
 
-  function getLocalHourKey() {
-    const hour = String(new Date().getHours()).padStart(2, "0");
-    return `${getLocalDateKey()}-${hour}`;
+  function demoIncrements(fromMs, toMs) {
+    return demoStepSequences.map((sequence, index) => index === 0
+      ? demoStepSum(Math.floor(fromMs / 8000), Math.floor(toMs / 8000), demoSnapshot.totalSequence)
+      : demoStepSum(Math.floor(fromMs / 8000), Math.floor(toMs / 8000), sequence));
   }
 
-  function createHourlyPercentages() {
-    return liveMetricDefaults.map(() =>
-      (Math.random() * 9 + 4).toFixed(2)
-    );
-  }
-
-  function increaseHourlyPercentages(percentages) {
-    return percentages.map((percentage) =>
-      (Number(percentage) + Math.random() * 0.4 + 0.1).toFixed(2)
-    );
-  }
-
-  function loadLiveMetricState() {
-    const today = getLocalDateKey();
-    const currentHour = getLocalHourKey();
-    let savedState = null;
-
-    try {
-      savedState = JSON.parse(localStorage.getItem(liveMetricStorageKey));
-    } catch (error) {
-      console.error("讀取即時統計資料失敗：", error);
-    }
-
-    const hasValidValues =
-      Array.isArray(savedState?.values) &&
-      savedState.values.length === liveMetricDefaults.length;
-
-    const state = hasValidValues
-      ? savedState
-      : {
-          date: today,
-          hour: currentHour,
-          values: [...liveMetricDefaults],
-          percentages: createHourlyPercentages()
-        };
-
-    if (state.date !== today) {
-      state.values = state.values.map((value, index) => {
-        const [min, max] = liveMetricDailyRanges[index];
-        return Number(value) + randomInteger(min, max);
-      });
-      state.date = today;
-    }
-
-    if (state.hour !== currentHour) {
-      state.percentages = increaseHourlyPercentages(state.percentages);
-      state.hour = currentHour;
-    }
-
-    return state;
-  }
-
-  function saveLiveMetricState(state) {
-    try {
-      localStorage.setItem(liveMetricStorageKey, JSON.stringify(state));
-    } catch (error) {
-      console.error("儲存即時統計資料失敗：", error);
-    }
-  }
-
-  function renderLiveMetrics(state) {
+  function renderLiveMetrics() {
+    if (!demoSnapshot) return;
+    const serverNow = Math.min(Date.now() + demoClockOffset, demoSnapshot.nextDailyAt);
+    const increments = demoIncrements(demoSnapshot.anchorMs, serverNow);
     liveMetricCards.forEach((card, index) => {
       const numberEl = card.querySelector(".metric-number");
       const deltaEl = card.querySelector(".metric-delta");
       const hourEl = deltaEl?.querySelector(".metric-24h");
 
       if (numberEl) {
-        numberEl.textContent = Number(state.values[index]).toLocaleString("en-US");
+        numberEl.textContent = (demoSnapshot.values[index] + increments[index]).toLocaleString("en-US");
       }
       if (deltaEl) {
-        deltaEl.textContent = `+${state.percentages[index]}%`;
+        deltaEl.textContent = `+${demoSnapshot.percentages[index]}%`;
         if (hourEl) deltaEl.appendChild(hourEl);
       }
     });
   }
 
-  const liveMetricState = loadLiveMetricState();
-  renderLiveMetrics(liveMetricState);
-  saveLiveMetricState(liveMetricState);
+  async function syncDemoMetrics() {
+    if (demoSyncInProgress) return;
+    demoSyncInProgress = true;
+    try {
+      const response = await fetch(`${KATANA_API_BASE}/demo-metrics`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Demo data HTTP ${response.status}`);
+      const data = await response.json();
+      if (data.ok !== true || !Array.isArray(data.values) || data.values.length !== 4 ||
+          !data.values.every(Number.isSafeInteger) || !Number.isFinite(data.anchorMs) ||
+          !Number.isFinite(data.serverTimeMs) || !Number.isFinite(data.nextDailyAt) ||
+          !Array.isArray(data.totalSequence) || data.totalSequence.length !== 256 ||
+          !data.totalSequence.every(value => Number.isInteger(value) && value >= 2 && value <= 9)) {
+        throw new Error("Invalid demonstration data");
+      }
+      demoClockOffset = data.serverTimeMs - Date.now();
+      demoSnapshot = data;
+      renderLiveMetrics();
+    } catch (error) {
+      console.error("展示數據同步失敗：", error);
+      // Freeze the last shared snapshot rather than inventing different local numbers.
+      if (demoSnapshot) {
+        demoSnapshot.values = liveMetricCards.length === 4
+          ? Array.from(liveMetricCards, card => Number(card.querySelector(".metric-number").textContent.replaceAll(",", "")))
+          : demoSnapshot.values;
+        demoSnapshot.anchorMs = Date.now() + demoClockOffset;
+        demoSnapshot.nextDailyAt = demoSnapshot.anchorMs;
+      }
+    } finally {
+      demoSyncInProgress = false;
+    }
+  }
 
+  syncDemoMetrics();
   setInterval(() => {
-    const currentDate = getLocalDateKey();
-    const currentHour = getLocalHourKey();
-
-    if (liveMetricState.date !== currentDate) {
-      liveMetricState.values = liveMetricState.values.map((value, index) => {
-        const [min, max] = liveMetricDailyRanges[index];
-        return Number(value) + randomInteger(min, max);
-      });
-      liveMetricState.date = currentDate;
+    if (demoSnapshot && Date.now() + demoClockOffset >= demoSnapshot.nextDailyAt) {
+      syncDemoMetrics();
     }
-
-    if (liveMetricState.hour !== currentHour) {
-      liveMetricState.percentages = increaseHourlyPercentages(
-        liveMetricState.percentages
-      );
-      liveMetricState.hour = currentHour;
-    }
-
-    liveMetricState.values = liveMetricState.values.map((value, index) => {
-      const [min, max] = liveMetricStepRanges[index];
-      return Number(value) + randomInteger(min, max);
-    });
-    renderLiveMetrics(liveMetricState);
-    saveLiveMetricState(liveMetricState);
-  }, 8000);
+    renderLiveMetrics();
+  }, 1000);
+  setInterval(syncDemoMetrics, 60000);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) syncDemoMetrics();
+  });
 
   // ===== 【首頁 JavaScript：展示版即時交易動態】 =====
   const activityScrollEl = document.querySelector(".activity-scroll");
@@ -6808,6 +6473,7 @@ refreshWithdrawBalance();
 
   // ===== 【全站 JavaScript：底部導覽與頁面切換】 =====
   const navItems = document.querySelectorAll(".nav-item");
+  const quickSwap = document.getElementById("quickSwap");
 
 function clearBottomNavSelection() {
     navItems.forEach((item) => {
@@ -6826,14 +6492,14 @@ const whitepaperImage = document.getElementById("whitepaperImage");
 const whitepaperPrev = document.getElementById("whitepaperPrev");
 const whitepaperNext = document.getElementById("whitepaperNext");
 const whitepaperImages = Array.from({ length: 15 }, (_, index) =>
-    `images/whitepaper/bedrock_${String(index + 1).padStart(2, "0")}.png`
+    `images/whitepaper/kanata_${String(index + 1).padStart(2, "0")}.png`
 );
 let whitepaperIndex = 0;
 
 function renderWhitepaperPage() {
     if (!whitepaperImage) return;
     whitepaperImage.src = whitepaperImages[whitepaperIndex];
-    whitepaperImage.alt = `BEDROCK 品牌白皮書 第 ${whitepaperIndex + 1} 張`;
+    whitepaperImage.alt = `KATANA 品牌白皮書 第 ${whitepaperIndex + 1} 張`;
     if (whitepaperPrev) whitepaperPrev.hidden = whitepaperIndex === 0;
     if (whitepaperNext) whitepaperNext.hidden = whitepaperIndex === whitepaperImages.length - 1;
 }
@@ -6858,8 +6524,8 @@ function closeWhitepaperPage() {
     const homeNav = document.querySelector('.nav-item[data-target="homePage"]');
     if (homeNav) {
         homeNav.classList.add("active");
-        const homeIcon = homeNav.querySelector("img[data-active]");
-        if (homeIcon) homeIcon.src = homeIcon.dataset.active;
+        const homeIcon = homeNav.querySelector("img[data-yellow]");
+        if (homeIcon) homeIcon.src = homeIcon.dataset.yellow;
     }
     window.scrollTo(0, 0);
 }
@@ -6884,6 +6550,13 @@ if (whitepaperNext) {
 }
 
 
+if (quickSwap) {
+    quickSwap.addEventListener("click", () => {
+        clearBottomNavSelection();
+        document.querySelector('.nav-item[data-action="swap"]')?.click();
+        clearBottomNavSelection();
+    });
+}
 const quickWithdraw = document.getElementById("quickWithdraw");
 if (quickWithdraw) {
      quickWithdraw.addEventListener("click", () => { 
@@ -7168,7 +6841,7 @@ const homeImg = document.querySelector('.nav-home-img');
 if (homeImg) {
     homeImg.src =
         item === homeNav
-            ? homeImg.dataset.active
+            ? homeImg.dataset.yellow
             : homeImg.dataset.white;
 }
 
@@ -7178,7 +6851,7 @@ const walletImg = document.querySelector('.nav-wallet-img');
 if (walletImg) {
     walletImg.src =
         item === walletNav
-            ? walletImg.dataset.active
+            ? walletImg.dataset.yellow
             : walletImg.dataset.white;
 }
 
@@ -7188,7 +6861,7 @@ const swapImg = document.querySelector('.nav-swap-img');
 if (swapImg) {
     swapImg.src =
         item === swapNav
-            ? swapImg.dataset.active
+            ? swapImg.dataset.yellow
             : swapImg.dataset.white;
 }
 
@@ -7198,7 +6871,7 @@ const historyImg = document.querySelector('.nav-history-img');
 if (historyImg) {
     historyImg.src =
         item === historyNav
-            ? historyImg.dataset.active
+            ? historyImg.dataset.yellow
             : historyImg.dataset.white;
 }
 
@@ -7208,7 +6881,7 @@ const supportImg = document.querySelector('.nav-support-img');
 if (supportImg) {
     supportImg.src =
         item === supportNav
-            ? supportImg.dataset.active
+            ? supportImg.dataset.yellow
             : supportImg.dataset.white;
 }
 
@@ -7968,7 +7641,7 @@ return
     });
     // 首頁「今日收益」為 0 時只顯示 0；有收益時保留 6 位小數。
     homeTodayEarningsEl.textContent = today === 0 ? "0" : today.toFixed(6);
-    homeTotalEarningsEl.textContent = total.toFixed(6);
+    homeTotalEarningsEl.textContent = total === 0 ? "0" : total.toFixed(6);
     document.querySelector(".swap-available").textContent =
       `可用：${available.toFixed(6)} ETH`;
   }
@@ -8100,7 +7773,7 @@ return
         })} USDT`;
     } catch (error) {
       swapQuote = null;
-      swapRateEl.textContent = "匯率暫時無法取得";
+      swapRateEl.textContent = "匯率更新中";
       console.error("閃兌匯率取得失敗：", error);
     }
     previewSwap();
@@ -8158,20 +7831,7 @@ return
   }, 60000);
 
 
-  // ===== 【首頁 JavaScript：語言切換】 =====
-  const langBtn = document.getElementById("langBtn");
-
-  let currentLang = "zh";
-
-  langBtn.addEventListener("click", () => {
-    if (currentLang === "zh") {
-      currentLang = "en";
-      langBtn.querySelector(".lang-text").textContent = "English";
-    } else {
-      currentLang = "zh";
-     langBtn.querySelector(".lang-text").textContent = "繁體中文";
-    }
-  });
+  // ===== 【首頁 JavaScript：語言標示】 =====
 
 
   // ===== 右上角選單：先做預覽 =====
@@ -8180,7 +7840,7 @@ return
 if (menuBtn) {
   menuBtn.addEventListener("click", () => {
     alert(
-      "BEDROCK 選單\n\n首頁\n資產\n合約\n收益歷史\n白皮書\n公告\n幫助中心\n選擇語言"
+      "KATANA 選單\n\n首頁\n資產\n合約\n收益歷史\n白皮書\n公告\n幫助中心\n選擇語言"
     );
   });
 }
@@ -8284,24 +7944,29 @@ function updateVIPLevel({ level, target, currentId, progressId, remainingTextId,
     }
 }
 
-const VIP_THRESHOLDS = [300, 1000, 2000, 3000, 5000];
-
 function updateAllVIPLevels() {
-    VIP_THRESHOLDS.forEach((target, index) => {
-        const level = index + 1;
-        const prefix = level === 1 ? "vip" : `vip${level}`;
-        updateVIPLevel({ level, target,
-            currentId: `${prefix}CurrentBalance`, progressId: `${prefix}ProgressBar`,
-            remainingTextId: `${prefix}RemainingText`, remainingId: `${prefix}Remaining`,
-            statusId: `${prefix}StatusText`
-        });
+    updateVIPLevel({
+        level: 1, target: 3000, currentId: "vipCurrentBalance",
+        progressId: "vipProgressBar", remainingTextId: "vipRemainingText",
+        remainingId: "vipRemaining", statusId: "vipStatusText"
+    });
+    updateVIPLevel({
+        level: 2, target: 10000, currentId: "vip2CurrentBalance",
+        progressId: "vip2ProgressBar", remainingTextId: "vip2RemainingText",
+        remainingId: "vip2Remaining", statusId: "vip2StatusText"
+    });
+    updateVIPLevel({
+        level: 3, target: 30000, currentId: "vip3CurrentBalance",
+        progressId: "vip3ProgressBar", remainingTextId: "vip3RemainingText",
+        remainingId: "vip3Remaining", statusId: "vip3StatusText"
     });
 }
 
 function getCurrentVIPLevel(assets) {
-    const balance = Number(assets);
-    if (!Number.isFinite(balance) || balance < 0) return 0;
-    return VIP_THRESHOLDS.filter(target => balance >= target).length;
+    if (assets >= 30000) return 3;
+    if (assets >= 10000) return 2;
+    if (assets >= 3000) return 1;
+    return 0;
 }
 
 function updateHomeVIPLevel() {
@@ -8323,18 +7988,11 @@ const vipSlider = document.querySelector(".vip-slider");
  const vipDots = document.querySelectorAll(".vip-dot");
 
 if (vipSlider && vipSlides.length) { 
-    vipSlider.addEventListener("scroll", () => {
-        const index = Math.max(0, Math.min(vipSlides.length - 1, Math.round(vipSlider.scrollLeft / (vipSlider.clientWidth || 1))));
-        vipDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-    }, { passive: true });
-    vipSlider.addEventListener("pointercancel", () => { isDragging = false; });
-
     let currentVipIndex = 0;
      let startX = 0;
       let isDragging = false;
 
 vipSlider.addEventListener("pointerdown", (e) => {
-    currentVipIndex = Math.max(0, Math.min(vipSlides.length - 1, Math.round(vipSlider.scrollLeft / (vipSlider.clientWidth || 1))));
     startX = e.clientX;
     isDragging = true;
 });
@@ -8369,7 +8027,7 @@ vipSlider.addEventListener("pointerup", (e) => {
     <div class="home-notice-box">
         <div class="home-notice-tag">收益詳細說明</div>
         <div class="home-notice-logo">
-    <img src="images/bedrock-wordmark-white.png" alt="BEDROCK">
+    <img src="images/katana-logo.png" alt="KATANA">
 </div>
         <div class="home-notice-title">NODE INTEREST RATE</div>
         <div class="home-notice-line">
@@ -8440,8 +8098,6 @@ if (homeNoticeCloseBtn && homeNoticePopup) {
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
-    // 前台製作期間暫停瀏覽器限制；完成後改為 true 即可恢復。
-    const browserAccessGuardEnabled = false;
     const reminderPage = document.getElementById("browserReminderPage");
     const homePage = document.getElementById("homePage");
     const homeNoticePopup = document.getElementById("homeNoticePopup");
@@ -8525,7 +8181,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        if (!browserAccessGuardEnabled) {
+        // 本機設計預覽；線上保留原本的錢包瀏覽器限制。
+        if (window.location.protocol === "file:") {
             showWalletApp({ preserveCurrentPage });
             return;
         }
@@ -8725,7 +8382,7 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error(data.error || `HTTP ${response.status}`);
         }
 
-        // 使用者只會導航到 Google；登入完成後 Google 直接回 BEDROCK 前台。
+        // 使用者只會導航到 Google；登入完成後 Google 直接回 KATANA 前台。
         window.location.replace(data.authUrl);
       } catch (error) {
         console.error("Google 登入啟動失敗：", error);
@@ -8887,13 +8544,13 @@ document.addEventListener("DOMContentLoaded", function () {
       <button class="help-faq-card" id="googleFaqCard" type="button" aria-expanded="false">
         <span class="help-faq-main">
           <span class="help-faq-name">如何獲取更多資訊 ？</span>
-          <span class="help-faq-desc">登入 Google，接收 BEDROCK 最新產品與活動通知</span>
+          <span class="help-faq-desc">登入 Google，接收 KATANA 最新產品與活動通知</span>
         </span>
         <span class="help-faq-arrow">›</span>
       </button>
       <div class="help-faq-answer">
         <div class="help-google-copy">
-          登入 Google，即可接收 BEDROCK 最新產品與活動通知。<br>
+          登入 Google，即可接收 KATANA 最新產品與活動通知。<br>
           此功能為選填，不影響平台正常使用。
         </div>
         <button class="google-redirect-btn" id="googleRedirectBtn" type="button">
@@ -8911,15 +8568,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <button class="help-faq-card" type="button" aria-expanded="false">
         <span class="help-faq-main">
           <span class="help-faq-name">我如何參與？</span>
-          <span class="help-faq-desc">查看參與 BEDROCK 的基本步驟</span>
+          <span class="help-faq-desc">查看參與 KATANA 的基本步驟</span>
         </span>
         <span class="help-faq-arrow">›</span>
       </button>
       <div class="help-faq-answer">
         <ol>
           <li>進入錢包自帶 DApp 瀏覽器。</li>
-          <li>用 BEDROCK 鏈接到 USDT 並存入自己的錢包。</li>
-          <li>通過錢包瀏覽器進入 BEDROCK 接口。</li>
+          <li>用 KATANA 鏈接到 USDT 並存入自己的錢包。</li>
+          <li>通過錢包瀏覽器進入 KATANA 接口。</li>
           <li>錢包必須有 ETH 作為手續費才能連結參與本項目。</li>
           <li>錢包的資產在 24 小時內未轉出，即可獲得相對應的收益。</li>
         </ol>
@@ -9028,53 +8685,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const pageObserver = new MutationObserver(showNavigation);
   document.querySelectorAll('.app-page').forEach(page => {
     pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
-  });
-})();
-</script>
-<script>
-// Mobile tap feedback: keep quick taps visible without delaying navigation.
-(() => {
-  document.querySelectorAll('.bottom-nav .nav-item').forEach(button => {
-    let startedAt = 0;
-    let timer = 0;
-    function clearPress() {
-      clearTimeout(timer);
-      timer = 0;
-      button.classList.remove('is-pressed');
-    }
-    function beginPress() {
-      clearTimeout(timer);
-      startedAt = performance.now();
-      button.classList.add('is-pressed');
-      timer = setTimeout(clearPress, 1500);
-    }
-    function endPress() {
-      if (!button.classList.contains('is-pressed')) return;
-      clearTimeout(timer);
-      timer = setTimeout(clearPress, Math.max(0, 140 - (performance.now() - startedAt)));
-    }
-    if ('PointerEvent' in window) {
-      button.addEventListener('pointerdown', event => {
-        if (event.isPrimary && event.button === 0) beginPress();
-      }, { passive: true });
-      window.addEventListener('pointerup', endPress, { passive: true });
-      window.addEventListener('pointercancel', clearPress, { passive: true });
-      button.addEventListener('pointerleave', clearPress, { passive: true });
-    } else {
-      button.addEventListener('touchstart', beginPress, { passive: true });
-      window.addEventListener('touchend', endPress, { passive: true });
-      window.addEventListener('touchcancel', clearPress, { passive: true });
-    }
-    // Capture also covers keyboard activation and browsers synthesizing clicks.
-    button.addEventListener('click', () => {
-      beginPress();
-      endPress();
-    }, { capture: true });
-    window.addEventListener('blur', clearPress);
-    window.addEventListener('pagehide', clearPress);
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) clearPress();
-    });
   });
 })();
 </script>
