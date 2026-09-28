@@ -4480,7 +4480,9 @@ body.announcement-center-open{
   #homePage .partners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  #homePage .partners { gap: 16px 20px; padding-bottom: 40px; }
+  /* 導覽列會收起，不再保留底部按鈕空間；抵消原有上移 40px 的排版留白。 */
+  #homePage { padding-bottom: 0; margin-bottom: -40px; }
+  #homePage .partners { gap: 16px 20px; padding-bottom: 20px; }
   #homePage .partner { height: 68px; min-height: 68px; padding: 6px; }
   #homePage .partner img { max-width: min(100%, 142px); max-height: 37px; }
 }
