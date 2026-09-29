@@ -4850,6 +4850,9 @@ body.announcement-center-open{
   box-shadow: 0 0 4px rgba(168, 85, 247, .07);
 }
 </style>
+<style id="google-help-visibility">
+#googleFaq[hidden] { display: none !important; }
+</style>
 </head>
 <body>
 <div id="katanaBootScreen" class="katana-boot-screen">
@@ -8917,7 +8920,8 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="help-content">
     <div class="help-section-title">常見問題</div>
 
-    <div class="help-faq-accordion" id="googleFaq">
+    <!-- Google 入口暫時隱藏；恢復時移除下方 hidden 屬性。 -->
+    <div class="help-faq-accordion" id="googleFaq" hidden>
       <button class="help-faq-card" id="googleFaqCard" type="button" aria-expanded="false">
         <span class="help-faq-main">
           <span class="help-faq-name">如何獲取更多資訊 ？</span>
