@@ -5619,7 +5619,7 @@ onclick="this.classList.add('pressed');setTimeout(()=>this.classList.remove('pre
     <div class="swap-input-card">
         <div class="swap-receive-topline">
     <div class="swap-label">即將收到</div>
-    <div class="swap-rate">1 ETH = 0.00 USDT</div>
+    <div class="swap-rate">匯率更新中</div>
 </div>
 
         <div class="swap-input-row">
@@ -8005,7 +8005,7 @@ return
     });
     // 首頁「今日收益」為 0 時只顯示 0；有收益時保留 6 位小數。
     homeTodayEarningsEl.textContent = today === 0 ? "0" : today.toFixed(6);
-    homeTotalEarningsEl.textContent = total.toFixed(6);
+    homeTotalEarningsEl.textContent = total === 0 ? "0" : total.toFixed(6);
     document.querySelector(".swap-available").textContent =
       `可用：${available.toFixed(6)} ETH`;
   }
@@ -8137,7 +8137,7 @@ return
         })} USDT`;
     } catch (error) {
       swapQuote = null;
-      swapRateEl.textContent = "匯率暫時無法取得";
+      swapRateEl.textContent = "匯率更新中";
       console.error("閃兌匯率取得失敗：", error);
     }
     previewSwap();
