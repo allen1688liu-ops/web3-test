@@ -1828,7 +1828,7 @@ box-shadow: 0 0 5px rgba(168, 85, 247, 0.18);
     justify-content: space-around; 
     align-items: center;
 
-margin: 12px 0;      
+margin: 12px 20px;      
 color: #8a9aa5;
 font-size: 12px;     
 
@@ -4749,7 +4749,7 @@ body.announcement-center-open{
 #homePage .partner {
   height: 72px;
   min-height: 72px;
-  padding: 12px;
+  padding: 8px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -4759,8 +4759,8 @@ body.announcement-center-open{
   display: block;
   width: auto;
   height: auto;
-  max-width: min(100%, 140px);
-  max-height: 40px;
+  max-width: min(100%, 152px);
+  max-height: 43px;
   object-fit: contain;
   transform: none;
 }
@@ -4768,10 +4768,13 @@ body.announcement-center-open{
   #homePage .partners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  #homePage .partners { gap: 16px 20px; padding-bottom: 40px; }
-  #homePage .partner { height: 68px; min-height: 68px; padding: 10px; }
-  #homePage .partner img { max-width: min(100%, 130px); max-height: 34px; }
+  /* 首頁無上移位移，只移除底部按鈕預留空間。 */
+  #homePage { padding-bottom: 0; margin-bottom: 0; }
+  #homePage .partners { gap: 16px 20px; padding-bottom: 20px; }
+  #homePage .partner { height: 68px; min-height: 68px; padding: 6px; }
+  #homePage .partner img { max-width: min(100%, 142px); max-height: 37px; }
 }
+
 
 /* 接近頁尾時收起導覽，保留原本的頁面顯示控制。 */
 .bottom-nav {
@@ -4815,6 +4818,37 @@ body.announcement-center-open{
   .bottom-nav .nav-item.is-pressed { transform: none; }
 }
 
+</style>
+<style id="bedrock-lower-layout">
+#homePage .metrics-title,
+#homePage .activity-list-title {
+  color: #96969c;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-align: center;
+  text-shadow: none;
+}
+#homePage .activity-list {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
+  height: auto;
+  overflow: visible;
+}
+#homePage .activity-list-title {
+  margin-bottom: 4px;
+}
+#homePage .activity-scroll {
+  width: 100%;
+}
+#homePage .activity {
+  border-color: rgba(167, 135, 198, .18);
+  box-shadow: 0 0 4px rgba(168, 85, 247, .07);
+}
 </style>
 </head>
 <body>
@@ -5086,7 +5120,7 @@ body.announcement-center-open{
 
 
 <div class="activity-list">
-    <div class="activity-list-title">· 即時交易動態 </div>
+    <div class="activity-list-title">即時交易動態</div>
     <div class="activity-scroll">
 
   <div class="activity" data-type="withdraw">
